@@ -1,0 +1,6 @@
+
+                <svg version="1.0" id="square" xmlns="http://www.w3.org/2000/svg" width="{{width}}px" height="{{height}}px"
+                    viewBox="0 0 448 512">
+                    <path d="M384 32H64C29 32 0 61 0 96V416C0 451 29 480 64 480H384C419 480 448 451 448 416V96C448 61 419 32 384 32ZM432 416C432 442 410 464 384 464H64C38 464 16 442 16 416V96C16 70 38 48 64 48H384C410 48 432 70 432 96V416Z" />
+                </svg>
+            

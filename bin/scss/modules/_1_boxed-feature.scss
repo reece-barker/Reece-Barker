@@ -1,0 +1,8 @@
+/* -------------------------------- 
+
+File#: _1_boxed-feature
+Title: Boxed Feature
+Descr: Feature section with a "boxed" layout
+Usage: codyhouse.co/license
+
+-------------------------------- */

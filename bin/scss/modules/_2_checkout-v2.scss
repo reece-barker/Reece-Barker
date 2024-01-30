@@ -1,0 +1,22 @@
+/* -------------------------------- 
+
+File#: _2_checkout-v2
+Title: Checkout v2
+Descr: Checkout template
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+.checkout-v2__billing-checkbox {
+  display: none;
+}
+
+.js {
+  .checkout-v2__billing-checkbox {
+    display: block;
+  }
+
+  .checkout-v2__billing-info {
+    display: none;
+  }
+}

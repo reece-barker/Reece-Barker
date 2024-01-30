@@ -1,0 +1,280 @@
+<div class="flex justify-between padding-x-md margin-y-sm items-center">
+    <h1 class="text-lg hbs-ui__text">Billing</h1>
+
+    <div class="language-picker margin-left-auto language-picker--flags js-language-picker"
+        data-trigger-class="btn bg js-tab-focus">
+        <form id="LANG" action="" class="language-picker__form">
+            <label class="hbs-ui__text" for="hbs-ui__languages-input">Select your language</label>
+
+            <select name="language-picker-select" id="hbs-ui__languages-input">
+                <option lang="en" class="hbs-ui__text" value="english" {{#if location.english.isSelected}}
+                    selected{{/if}}>English</option>
+                <option lang="de" class="hbs-ui__text" value="deutsch" {{#if location.deutsch.isSelected}}
+                    selected{{/if}}>Deutsch</option>
+                <option lang="fr" class="hbs-ui__text" value="francais" {{#if location.francais.isSelected}}
+                    selected{{/if}}>Français</option>
+                <option lang="it" class="hbs-ui__text" value="italiano" {{#if location.italiano.isSelected}}
+                    selected{{/if}}>Italiano</option>
+            </select>
+        </form>
+    </div>
+</div>
+
+<section class="radius-md padding-md">
+    <p class="hbs-ui__text bg padding-md shadow-xs radius-md margin-bottom-sm">
+        Acolytes is currently working on making the Billing section fully functional, please be patient.
+    </p>
+
+    <div class="flex padding-lg radius-md margin-bottom-sm flex-center">
+        <form method="POST" action="/options/billing" class="padding-md bg radius-md shadow-xs max-width-xs">
+            <div class="text-center margin-bottom-sm">
+                <h1>Billing</h1>
+            </div>
+
+            <div class="grid gap-sm margin-bottom-sm">
+                <div>
+                    <label class="form-label margin-bottom-xxs" for="card-number">Card Number</label>
+                    <input {{#if users._options.billing.card_number}}value="{{users._options.billing.card_number}}"{{/if}} class="form-control width-100%" id="card-number" autocomplete="cc-number" name="card-number"
+                        aria-label="Card Number" type="text" inputmode="numeric" placeholder="Card Number" required
+                        title="16 characters minimum"
+                        oninput="var v = value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');var matches = v.match(/\d{4,16}/g);var match = matches && matches[0] || '';var parts = [];for (i=0, len=match.length; i<len; i+=4) {parts.push(match.substring(i, i+4));}if (parts.length) {this.value = parts.join(' ');} else {this.value = value;}">
+                </div>
+
+                <div>
+                    <label class="form-label margin-bottom-xxs" for="name-on-card">Name on Card</label>
+                    <input {{#if users._options.billing.name_on_card}}value="{{users._options.billing.name_on_card}}"{{/if}} class="form-control width-100%" id="name-on-card" autocomplete="cc-name" name="security-code"
+                        inputmode="numeric" aria-label="Name on Card" type="text" placeholder="Name on Card" required>
+                </div>
+
+                <div class="col-6@sm">
+                    <label class="form-label margin-bottom-xxs" for="expiration-date">Expiration date
+                        (MM/YY)</label>
+                    <input class="form-control width-100%" id="expiration-date" autocomplete="cc-exp"
+                        name="expiration-date" {{#if users._options.billing.expiration_date}}value="{{users._options.billing.expiration_date}}"{{/if}} inputmode="numeric" aria-label="Expiration date (MM/YY)" type="text"
+                        placeholder="MM / YY"
+                        oninput="var v = value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');var matches = v.match(/\d{2,4}/g);var match = matches && matches[0] || '';var parts = [];for (i=0, len=match.length; i<len; i+=2) {parts.push(match.substring(i, i+2));}if (parts.length) {this.value = parts.join(' / ');} else {this.value = value;}"
+                        pattern=".{4,}" required title="4 characters minimum">
+                </div>
+
+                <div class="col-6@sm">
+                    <label class="form-label margin-bottom-xxs" for="security-code">Security code</label>
+                    <input class="form-control width-100%" id="security-code" autocomplete="cc-csc" name="security-code"
+                        inputmode="numeric" {{#if users._options.billing.security_code}}value="{{users._options.billing.security_code}}"{{/if}} aria-label="Security code" type="text" placeholder="Security code"
+                        pattern=".{3,}" maxlength="3" required title="3 characters minimum">
+                </div>
+            </div>
+
+            <div class="margin-bottom-sm">
+                <div class="flex justify-between margin-bottom-xxxs">
+                    <label class="form-label" for="password">Password</label>
+                    <span class="text-sm"><a href="/forgot-your-password">Forgot your password?</a></span>
+                </div>
+
+                <input class="form-control password__input js-password__input width-100%" id="password"
+                    autocomplete="off" class="form-control " name="password" aria-label="Password" type="password"
+                    placeholder="Password" pattern=".{10,}" required title="10 characters minimum">
+            </div>
+
+            <div class="margin-bottom-xs">
+                <button type="submit"
+                    class="btn btn--primary sign-in__btn btn--form btn--preserve-width btn--md width-100%">
+                    <span class="btn__content-a">Save your information</span>
+                    <span class="btn__content-b">
+                        <svg class="icon icon--is-spinning" aria-hidden="true" viewBox="0 0 16 16">
+                            <title>Loading</title>
+                            <g stroke-width="1" fill="currentColor" stroke="currentColor">
+                                <path d="M.5,8a7.5,7.5,0,1,1,1.91,5" fill="none" stroke="currentColor"
+                                    stroke-linecap="round" stroke-linejoin="round"></path>
+                            </g>
+                        </svg>
+                    </span>
+                </button>
+            </div>
+
+            <div class="text-center">
+                <p class="text-sm">Not sure about our <a href="/legals/privacy-policy">Privacy Policy</a>?</p>
+            </div>
+        </form>
+    </div>
+</section>
+
+<script class="hbs-ui__scripts">
+    $(async () => {
+        $('[type=submit]').on('click', async (e) => {
+            e.preventDefault();
+
+            $('[type=submit]').toggleClass('btn--state-b');
+
+            $.ajax({
+                type: 'POST',
+                url: '/options/billing',
+                dataType: 'json',
+                contentType: 'application/x-www-form-urlencoded',
+                data: {
+                    card_number: document.querySelector('#card-number').value,
+                    name_on_card: document.querySelector('#name-on-card').value,
+                    expiration_date: document.querySelector('#expiration-date').value,
+                    security_code: document.querySelector('#security-code').value,
+                    password: document.querySelector('#password').value
+                },
+                beforeSend: async (xhr) => {
+                    console.log(
+                        'You have requested to save your information with Acolytes.'
+                    );
+                },
+                error: async (err) => {
+                    if (err) {
+                        $('[type=submit]').toggleClass('btn--state-b');
+
+                        return console.error(err);
+                    }
+                },
+                success: async (args) => {
+                    const {
+                        err,
+                        _id,
+                        xhr
+                    } = args;
+
+                    if (err) {
+                        return await (async (err) => {
+                            const {
+                                elements,
+                                xhr,
+                                async
+                            } = err;
+
+                            if (async) {
+                                return await elements.forEach(async (
+                                    _id, i, elements) => {
+                                    if (!document
+                                        .querySelector(_id)
+                                    ) {
+                                        $('[type=submit]')
+                                            .toggleClass(
+                                                'btn--state-b'
+                                            );
+
+                                        return;
+                                    }
+
+                                    const element = document
+                                        .querySelector(_id);
+
+                                    element.classList.add(
+                                        'form-control--error'
+                                    );
+
+                                    element
+                                        .addEventListener(
+                                            'focus', async (
+                                                e) => {
+                                                if (e
+                                                    .target
+                                                    .closest(
+                                                        'input'
+                                                    )
+                                                    .classList
+                                                    .contains(
+                                                        'form-control--error'
+                                                    )
+                                                ) {
+                                                    e.target
+                                                        .closest(
+                                                            'input'
+                                                        )
+                                                        .classList
+                                                        .remove(
+                                                            'form-control--error'
+                                                        );
+                                                }
+                                            });
+
+                                    if (xhr) {
+                                        element
+                                            .setAttribute(
+                                                'placeholder',
+                                                xhr[_id]);
+                                    }
+
+                                    $('[type=submit]')
+                                        .toggleClass(
+                                            'btn--state-b');
+                                });
+                            }
+
+                            elements.forEach((_id, i, elements) => {
+                                if (!document.querySelector(
+                                        _id)) {
+                                    $('[type=submit]')
+                                        .toggleClass(
+                                            'btn--state-b');
+
+                                    return;
+                                }
+
+                                const element = document
+                                    .querySelector(_id);
+
+                                element.classList.add(
+                                    'form-control--error');
+
+                                element.addEventListener(
+                                    'focus', (e) => {
+                                        if (e.target
+                                            .closest(
+                                                'input')
+                                            .classList
+                                            .contains(
+                                                'form-control--error'
+                                            )) {
+                                            e.target
+                                                .closest(
+                                                    'input')
+                                                .classList
+                                                .remove(
+                                                    'form-control--error'
+                                                );
+                                        }
+                                    });
+
+                                if (xhr) {
+                                    element.setAttribute(
+                                        'placeholder', xhr[
+                                            _id]);
+                                }
+
+                                $('[type=submit]').toggleClass(
+                                    'btn--state-b');
+                            });
+                        })(err);
+                    }
+
+                    localStorage.setItem('_id', _id);
+
+                    if (xhr) {
+                        const {
+                            uuid,
+                            url,
+                            async
+                        } = xhr;
+
+                        if (uuid) {
+                            sessionStorage.setItem('uuid', uuid);
+
+                            if (async) {
+                                $('[type=submit]').toggleClass('btn--state-b');
+
+                                return await window.location.replace(url);
+                            }
+
+                            $('[type=submit]').toggleClass('btn--state-b');
+
+                            window.location.replace(url);
+                        }
+                    }
+                }
+            });
+        });
+    });
+</script>

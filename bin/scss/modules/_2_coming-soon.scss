@@ -1,0 +1,83 @@
+/* -------------------------------- 
+
+File#: _2_coming-soon
+Title: Coming Soon
+Descr: Coming soon template
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+.coming-soon {
+  position: relative;
+  z-index: 1;
+}
+
+.coming-soon__figure {
+  position: relative;
+  height: 40vh;
+
+  img {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.coming-soon__social-btn {
+  --btn-size: 32px;
+  --icon-size: 16px;
+
+  position: relative;
+  width: var(--btn-size);
+  height: var(--btn-size);
+
+  display: inline-flex;
+
+  .icon {
+    position: relative;
+    z-index: 2;
+    display: block;
+    margin: auto;
+    font-size: var(--icon-size);
+    color: var(--color-contrast-high); // icon color
+  }
+
+  &::before { // icon bg
+    content: '';
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    transform: scale(0.5);
+    transition: .3s var(--ease-out);
+  }
+
+  &:hover::before {
+    background-color: var(--color-contrast-lower);
+    transform: scale(1);
+  }
+}
+
+@include breakpoint(md) {
+  .coming-soon__figure {
+    height: auto;
+    clip-path: polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%);
+    animation: coming-soon-figure-anim .6s var(--ease-out) forwards;
+  }
+}
+
+@keyframes coming-soon-figure-anim {
+  from {
+    clip-path: polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%);
+  }
+
+  to {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 10% 100%);
+  }
+}

@@ -1,0 +1,179 @@
+<div class="flex justify-between padding-x-md margin-y-sm items-center">
+    <h1 class="text-lg hbs-ui__text">Collaboration</h1>
+
+    <div class="language-picker margin-left-auto language-picker--flags js-language-picker"
+        data-trigger-class="btn bg js-tab-focus">
+        <form id="LANG" action="" class="language-picker__form">
+            <label class="hbs-ui__text" for="hbs-ui__languages-input">Select your language</label>
+
+            <select name="language-picker-select" id="hbs-ui__languages-input">
+                <option lang="en" class="hbs-ui__text" value="english" {{#if location.english.isSelected}}
+                    selected{{/if}}>English</option>
+                <option lang="de" class="hbs-ui__text" value="deutsch" {{#if location.deutsch.isSelected}}
+                    selected{{/if}}>Deutsch</option>
+                <option lang="fr" class="hbs-ui__text" value="francais" {{#if location.francais.isSelected}}
+                    selected{{/if}}>Français</option>
+                <option lang="it" class="hbs-ui__text" value="italiano" {{#if location.italiano.isSelected}}
+                    selected{{/if}}>Italiano</option>
+            </select>
+        </form>
+    </div>
+</div>
+
+<section class="radius-md padding-md">
+    <p class="hbs-ui__text bg padding-md shadow-xs radius-md margin-bottom-sm">
+        Acolytes is currently working on making the Collaboration settings section fully functional, please be patient.
+    </p>
+
+    <div class="bg padding-md shadow-xs radius-md margin-bottom-sm">
+        <div class="flex items-center justify-between margin-bottom-sm">
+            <button aria-controls="not-allowed" class="btn btn--subtle text-sm">
+                Would you like to create a new organization?
+            </button>
+
+            <div class="flash-message js-flash-message" role="status" id="not-allowed" data-duration="8000">
+                <span class="inline-flex items-center">
+                    <svg aria-hidden="true" class="icon margin-right-xxxs" viewBox="0 0 32 32">
+                        <title>error icon</title>
+                        <g>
+                            <path
+                                d="M16,0C7.178,0,0,7.178,0,16s7.178,16,16,16s16-7.178,16-16S24.822,0,16,0z M17.929,7L17,19h-2L14.071,7 H17.929z M16,25c-1.105,0-2-0.895-2-2c0-1.105,0.895-2,2-2c1.105,0,2,0.895,2,2C18,24.105,17.105,25,16,25z">
+                            </path>
+                        </g>
+                    </svg>
+                    <p class="text-sm">You are not allowed to create an organization.</p>
+                </span>
+            </div>
+
+            <div class="flex items-center gap-sm">
+                <label class="form-label sr-only margin-bottom-xxs" for="id">_id:</label>
+                <div class="input-group">
+                    <input class="form-control text-sm" type="text" placeholder="_id" name="id" id="id">
+                    <button class="btn btn--primary text-sm">Join</button>
+                </div>
+            </div>
+        </div>
+
+        <ul class="organization-cell__list">
+            <li aria-organization="Munich-International-School" class="organization-cell">
+                <div class="organization-cell__body">
+                    <figure aria-hidden="true">
+                        <section class="sr-only" id="Munich International School"></section>
+                        <img class="organization-cell__img" src="{{URL 'utils/img/jpg/profiles/kristen.jpg'}}"
+                            alt="Organization">
+                    </figure>
+
+                    <div class="organization-cell__content text-component line-height-sm v-space-xxs">
+                        <p>
+                            <a href="#0" class="color-contrast-high text-md">
+                                <strong aria-title="Munich-International-School">Munich International School</strong>
+                            </a>
+                        </p>
+
+                        <p aria-description="Munich-International-School" class="color-contrast-medium">Munich
+                            International School is not just another
+                            international school. Visitors see it immediately when they step onto our parkland campus.
+                            Students feel it every day through their inspiring interactions with our world-class
+                            faculty…
+                        </p>
+                    </div>
+                </div>
+
+                <div class="organization-cell__cta">
+                    <button aria-controls="Munich-International-School" onclick="$(this).toggleClass('btn--state-b'); setTimeout(() => {$(this).toggleClass('btn--state-b');}, 1000)"
+                        class="btn btn--primary btn--join btn--preserve-width btn--form width-100%">
+                        <span class="btn__content-a">
+                            <span>Join</span>
+                        </span>
+                        <span class="btn__content-b">
+                            <svg class="icon icon--is-spinning" aria-hidden="true" viewBox="0 0 16 16">
+                                <title>Loading</title>
+                                <g stroke-width="1" fill="currentColor" stroke="currentColor">
+                                    <path d="M.5,8a7.5,7.5,0,1,1,1.91,5" fill="none" stroke="currentColor"
+                                        stroke-linecap="round" stroke-linejoin="round"></path>
+                                </g>
+                            </svg>
+                        </span>
+                    </button>
+                </div>
+
+                <div class="organization-cell__controls">
+                    <div class="flash-message js-flash-message" role="status" id="Munich-International-School"
+                        data-duration="8000">
+                        <span class="inline-flex items-center">
+                            <svg aria-hidden="true" class="icon margin-right-xxxs" viewBox="0 0 32 32">
+                                <title>success icon</title>
+                                <g>
+                                    <path
+                                        d="M16,0C7.2,0,0,7.2,0,16s7.2,16,16,16s16-7.2,16-16S24.8,0,16,0z M23.7,11.7l-10,10C13.5,21.9,13.3,22,13,22 s-0.5-0.1-0.7-0.3l-4-4c-0.4-0.4-0.4-1,0-1.4s1-0.4,1.4,0l3.3,3.3l9.3-9.3c0.4-0.4,1-0.4,1.4,0S24.1,11.3,23.7,11.7z">
+                                    </path>
+                                </g>
+                            </svg>
+                            <p class="text-sm">You have requested to join Munich International School.</p>
+                        </span>
+                    </div>
+                </div>
+            </li>
+
+            <li aria-organization="Buchhof-International-School" class="organization-cell">
+                <div class="organization-cell__body">
+                    <figure aria-hidden="true">
+                        <section class="sr-only" id="Buchhof International School"></section>
+                        <img class="organization-cell__img" src="{{URL 'utils/img/jpg/profiles/kristen.jpg'}}"
+                            alt="Organization">
+                    </figure>
+
+                    <div class="organization-cell__content text-component line-height-sm v-space-xxs">
+                        <p>
+                            <a href="#0" class="color-contrast-high text-md">
+                                <strong aria-title="Buchhof-International-School">Bavarian International School</strong>
+                            </a>
+                        </p>
+
+                        <p aria-description="Buchhof-International-School" class="color-contrast-medium">The Bavarian
+                            International School strives to develop motivated, responsible life-long learners who make a
+                            difference to our world. Our Mission is inspiring and challenging young minds as a caring
+                            and committed international community to achieve excellence, assume responsibility and
+                            pursue life-long learning.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="organization-cell__cta">
+                    <button aria-controls="Buchhof-International-School" onclick="$(this).toggleClass('btn--state-b'); setTimeout(() => {$(this).toggleClass('btn--state-b');}, 1000)"
+                        class="btn btn--primary btn--join btn--preserve-width btn--form width-100%">
+                        <span class="btn__content-a">
+                            <span>Join</span>
+                        </span>
+                        <span class="btn__content-b">
+                            <svg class="icon icon--is-spinning" aria-hidden="true" viewBox="0 0 16 16">
+                                <title>Loading</title>
+                                <g stroke-width="1" fill="currentColor" stroke="currentColor">
+                                    <path d="M.5,8a7.5,7.5,0,1,1,1.91,5" fill="none" stroke="currentColor"
+                                        stroke-linecap="round" stroke-linejoin="round"></path>
+                                </g>
+                            </svg>
+                        </span>
+                    </button>
+                </div>
+
+                <div class="organization-cell__controls">
+                    <div class="flash-message js-flash-message" role="status" id="Buchhof-International-School"
+                        data-duration="8000">
+                        <span class="inline-flex items-center">
+                            <svg aria-hidden="true" class="icon margin-right-xxxs" viewBox="0 0 32 32">
+                                <title>success icon</title>
+                                <g>
+                                    <path
+                                        d="M16,0C7.2,0,0,7.2,0,16s7.2,16,16,16s16-7.2,16-16S24.8,0,16,0z M23.7,11.7l-10,10C13.5,21.9,13.3,22,13,22 s-0.5-0.1-0.7-0.3l-4-4c-0.4-0.4-0.4-1,0-1.4s1-0.4,1.4,0l3.3,3.3l9.3-9.3c0.4-0.4,1-0.4,1.4,0S24.1,11.3,23.7,11.7z">
+                                    </path>
+                                </g>
+                            </svg>
+                            <p class="text-sm">You have requested to join Buchhof International School.</p>
+                        </span>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</section>

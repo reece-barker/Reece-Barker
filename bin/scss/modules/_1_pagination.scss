@@ -1,0 +1,80 @@
+/* -------------------------------- 
+
+File#: _1_pagination
+Title: Pagination 
+Descr: Component used to navigate through pages of related content
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+.pagination {}
+
+.pagination__list > li {
+  display: inline-block; // flex fallback
+}
+
+// --split - push first + last item to sides
+.pagination--split {
+  .pagination__list {
+    width: 100%;
+
+    > *:first-child {
+        margin-right: auto;
+    }
+
+    > *:last-child {
+        margin-left: auto;
+    }
+  }
+}
+
+.pagination__item {
+  display: inline-block; // flex fallback
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  line-height: 1;
+  padding-top: var(--space-xs);
+  padding-bottom: var(--space-xs); 
+  padding-left: calc(1.355 * var(--space-xs));
+  padding-right: calc(1.355 * var(--space-xs));
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  height: 100%;
+  color: var(--color-contrast-higher);
+  transition: .2s;
+  @include fontSmooth;
+
+  &:hover:not(.pagination__item--selected):not(.pagination__item--ellipsis) {
+    background-color: var(--color-contrast-lower);
+  }
+
+  &:active {
+    transform: translateY(2px);
+  }
+}
+
+.pagination__item--selected {
+  background-color: var(--color-contrast-higher);
+  color: var(--color-bg);
+  box-shadow: var(--shadow-sm);
+}
+
+.pagination__item--disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+// --jumper
+.pagination__jumper {
+  .form-control {
+    width: 3.2em;
+    margin-right: var(--space-xs);
+    padding: var(--space-xs);
+  }
+
+  em {
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+}

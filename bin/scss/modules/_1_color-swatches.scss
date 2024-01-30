@@ -1,0 +1,59 @@
+/* -------------------------------- 
+
+File#: _1_color-swatches
+Title: Color Swatches
+Descr: A list of selectable swatches used to show a product color variants
+Usage: codyhouse.co/license
+
+-------------------------------- */
+:root {
+  --color-swatches-gap: var(--space-xxs); // gap among swatches
+  --color-swatch-size: 32px; // swatch height and width
+  --color-swatch-radius: 50%; // swatch border radius
+}
+
+.color-swatches {}
+
+.color-swatches__list { // list of swatches
+  display: flex;
+  margin-bottom: calc(-1 * var(--color-swatches-gap, 0.5em));
+  margin-left: calc(-1 * var(--color-swatches-gap, 0.5em));
+}
+
+.color-swatches__item {
+  margin-bottom: var(--color-swatches-gap);
+  margin-left: var(--color-swatches-gap);
+}
+
+.color-swatches__swatch {
+  position: relative;
+  display: block;
+  height: var(--color-swatch-size);
+  width: var(--color-swatch-size);
+  border-radius: var(--color-swatch-radius);
+  cursor: pointer;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    border: 1px solid alpha(var(--color-contrast-higher), 0.1);
+    border-radius: inherit;
+    pointer-events: none;
+    transition: .2s;
+  }
+
+  &:hover::before {
+    border-color: alpha(var(--color-contrast-higher), 0.3);
+  }
+}
+
+.color-swatches__item--selected .color-swatches__swatch::before {
+  border-color: alpha(var(--color-contrast-higher), 0.8);
+  width: calc(100% + 6px);
+  height: calc(100% + 6px);
+}

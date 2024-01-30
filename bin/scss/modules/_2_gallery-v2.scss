@@ -1,0 +1,27 @@
+/* -------------------------------- 
+
+File#: _2_gallery-v2
+Title: Gallery v2
+Descr: A gallery of card components with an additional text element
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+:root {
+  --gallery-v2-offset: 50px; // grid items offset value 
+}
+
+.gallery-v2 {
+  position: relative;
+  z-index: 1;
+}
+
+@include breakpoint(sm) {
+  .gallery-v2__grid {
+    padding-bottom: var(--gallery-v2-offset);
+  }
+
+  .gallery-v2__item:nth-child(2n) {
+    transform: translateY(var(--gallery-v2-offset));
+  }
+}

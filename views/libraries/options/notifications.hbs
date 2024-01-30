@@ -1,0 +1,109 @@
+<div class="flex justify-between padding-x-md margin-y-sm items-center">
+    <h1 class="text-lg hbs-ui__text">Notifications</h1>
+
+    <div class="language-picker margin-left-auto language-picker--flags js-language-picker"
+        data-trigger-class="btn bg js-tab-focus">
+        <form id="LANG" action="" class="language-picker__form">
+            <label for="hbs-ui__languages-input" class="hbs-ui__text">Select your language</label>
+
+            <select name="language-picker-select" id="hbs-ui__languages-input">
+                <option lang="en" class="hbs-ui__text" value="english"{{#if location.english.isSelected}} selected{{/if}}>English</option>
+                <option lang="de" class="hbs-ui__text" value="deutsch"{{#if location.deutsch.isSelected}} selected{{/if}}>Deutsch</option>
+                <option lang="fr" class="hbs-ui__text" value="francais"{{#if location.francais.isSelected}} selected{{/if}}>Français</option>
+                <option lang="it" class="hbs-ui__text" value="italiano"{{#if location.italiano.isSelected}} selected{{/if}}>Italiano</option>
+            </select>
+        </form>
+    </div>
+</div>
+
+<section class="radius-md padding-md">
+    <div class="padding-md bg shadow-xs radius-md">
+        <div class="tbl settings-tbl text-sm">
+            <table class="tbl__table" aria-label="Table Example">
+                <thead class="tbl__header sr-only">
+                    <tr class="tbl__row">
+                        <th class="tbl__cell hbs-ui__text text-left" scope="col">Notification</th>
+                        <th class="tbl__cell hbs-ui__text text-right" scope="col">Enable/disable option</th>
+                    </tr>
+                </thead>
+
+                <tbody class="tbl__body">
+                    <tr class="tbl__row">
+                        <td class="tbl__cell" role="cell">
+                            <p class="hbs-ui__text">Push Notifications</p>
+                        </td>
+
+                        <td class="tbl__cell" role="cell">
+                            <div class="flex items-center justify-end">
+                                <span title="This option is disabled and will be enabled soon."
+                                    class="text-xs hbs-ui__text color-contrast-medium margin-right-sm">
+                                    Disabled
+                                </span>
+
+                                <div class="switch opacity-50%">
+                                    <input class="switch__input" disabled type="checkbox"
+                                        id="switch-push-notifications">
+                                    <label class="switch__label hbs-ui__text" for="switch-push-notifications" aria-hidden="true">Push
+                                        notifications</label>
+                                    <div class="switch__marker" aria-hidden="true"></div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr class="tbl__row">
+                        <td class="tbl__cell" role="cell">
+                            <p class="hbs-ui__text">SMS Notifications</p>
+                        </td>
+
+                        <td class="tbl__cell" role="cell">
+                            <div class="flex items-center justify-end">
+                                <span title="This option is disabled and will be enabled soon."
+                                    class="text-xs hbs-ui__text color-contrast-medium margin-right-sm">
+                                    Disabled
+                                </span>
+
+                                <div class="switch opacity-50%">
+                                    <input class="switch__input" disabled type="checkbox" id="switch-sms-notifications">
+                                    <label class="switch__label hbs-ui__text" for="switch-sms-notifications" aria-hidden="true">SMS
+                                        notifications</label>
+                                    <div class="switch__marker" aria-hidden="true"></div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr class="tbl__row">
+                        <td class="tbl__cell" role="cell">
+                            <p class="hbs-ui__text">Email Notifications</p>
+                        </td>
+
+                        <td class="tbl__cell" role="cell">
+                            <div class="flex items-center justify-end">
+                                <span
+                                    title="This option is required in order to allow you to use our Forgot your password? services."
+                                    class="text-xs hbs-ui__text color-primary margin-right-sm">
+                                    Required
+                                </span>
+
+                                <div class="switch opacity-50%">
+                                    <input class="switch__input" disabled type="checkbox" checked
+                                        id="email-notifications">
+                                    <label class="switch__label hbs-ui__text" for="email-notifications" aria-hidden="true">Email
+                                        notifications</label>
+                                    <div class="switch__marker" aria-hidden="true"></div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="border-top border-contrast-lower padding-top-md text-right">
+        <button title="Save your settings with the updated information." class="btn hbs-ui__text btn--primary btn--sm">
+            <i class="fas fa-save"></i>
+        </button>
+    </div>
+</section>

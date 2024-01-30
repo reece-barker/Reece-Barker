@@ -1,0 +1,88 @@
+/* -------------------------------- 
+
+File#: _1_card-v3
+Title: Card v3
+Descr: Container of information used as teasers for further content, often displayed in a gallery of related items
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+.card-v3 {
+  background-color: var(--color-contrast-lower);
+}
+
+.card-v3__link {
+  text-decoration: none;
+  display: block; // fallback
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  color: inherit;
+}
+
+.card-v3__img {
+  img {
+    display: block;
+    width: 100%;
+  }
+}
+
+.card-v3__content {
+  padding: var(--space-sm);
+}
+
+.card-v3__label {
+  font-size: var(--text-sm);
+  margin-bottom: var(--space-xs);
+  color: var(--color-contrast-medium);
+}
+
+.card-v3__footer {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-sm);
+  margin-top: auto;
+
+  span { // text
+    display: inline-block;
+    font-size: var(--text-sm);
+    will-change: transform;
+    transform: translateY(20%);
+    opacity: 0;
+    transition: transform .3s, opacity .3s;
+  }
+
+  .icon {
+    display: block;
+    color: inherit;
+  }
+
+  &::before { // animated bottom line
+    content: '';
+    width: 100%;
+    height: 3px;
+    background-color: var(--color-primary);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transform-origin: left center;
+    transform: scaleX(0);
+    transition: transform .3s var(--ease-in-out);
+  }
+}
+
+.card-v3:hover {  
+  .card-v3__footer {
+    span {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    &::before {
+      transform: scaleX(1);
+    }
+  }
+}

@@ -1,0 +1,28 @@
+/* -------------------------------- 
+
+File#: _2_grid-switch
+Title: Grid Switch
+Descr: A grid/list layout switcher
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+.grid-switch {
+  .btns {
+    --btns-button-radius: var(--radius-md);
+    --btns-button-padding-x: var(--space-xs);
+    --btns-button-padding-y: var(--space-xs);
+  }
+}
+
+// if JS = enabled
+.js {
+  .grid-switch {
+    opacity: 0;
+    transition: opacity .5s;
+  }
+
+  .grid-switch--is-visible {
+    opacity: 1;
+  }
+}

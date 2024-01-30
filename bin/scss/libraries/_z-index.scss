@@ -1,0 +1,11 @@
+// --------------------------------
+
+// How to add custom z-index classes
+
+// --------------------------------
+
+@for $z-index from 1 through 25 {
+    .z-index-#{$z-index} {
+        z-index: #{$z-index};
+    }
+}

@@ -1,0 +1,221 @@
+/* -------------------------------- 
+
+File#: _1_expandable-table
+Title: Expandable Table
+Descr: A table whose rows expand to reveal additional information
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+// >>> style affecting all (block + expanded) versions 👇
+.ex-table {
+  position: relative;
+  z-index: 1;
+  border-collapse: separate;
+}
+
+.ex-table__btn {
+  // controls visibility of additional content
+  background-color: var(--color-contrast-lower);
+
+  &:active {
+    background-color: var(--color-contrast-low);
+  }
+}
+
+.ex-table__btn-icon {
+  // arrow icon
+  position: relative;
+  display: block;
+  margin: 0 auto;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    width: 2px; // icon stroke width
+    height: 80%;
+    background: currentColor;
+    top: 0;
+    transform-origin: 50% 100%;
+    will-change: transform;
+    transition: transform 0.2s;
+  }
+
+  &::before {
+    left: 50%;
+    transform: rotate(-45deg);
+  }
+
+  &::after {
+    left: calc(50% - 2px / 2); // 2px = icon stroke width 👆
+    transform: rotate(45deg);
+  }
+}
+
+.ex-table__more-content {
+  // additional content - hidden by default
+  display: none;
+  text-align: left;
+}
+
+.ex-table__row--show-more-content {
+  // additional content = visible
+  .ex-table__more-content {
+    display: block;
+  }
+
+  .ex-table__btn-icon {
+    // animate icon
+    &::before {
+      transform: translateY(-80%) rotate(-135deg);
+    }
+
+    &::after {
+      transform: translateY(-80%) rotate(135deg);
+    }
+  }
+}
+// <<< end style affecting all versions
+
+// >>> block version only (mobile) 👇
+.ex-table:not(.ex-table--expanded) {
+  border-spacing: 0 var(--space-md); // row gap
+  margin-top: calc(-2 * var(--space-md)); // set spacing variable = row gap ☝️
+
+  .ex-table__header {
+    // hide table header - but keep it accessible to SR
+    @include srHide;
+  }
+
+  .ex-table__cell {
+    display: block;
+    padding: var(--space-sm);
+    width: 100%;
+    text-align: left;
+    border: 1px solid var(--color-contrast-low);
+    border-bottom-width: 0;
+  }
+
+  .ex-table__row {
+    .ex-table__cell:last-child {
+      border-bottom-width: 1px;
+    }
+  }
+
+  .ex-table__label {
+    // inline labels -> visible when table header is hidden
+    display: block;
+    font-weight: bold;
+    color: var(--color-contrast-higher);
+    margin-bottom: var(--space-xxs);
+  }
+
+  .ex-table__btn {
+    border-radius: var(--radius-md);
+    background-color: var(--color-contrast-low);
+    padding: var(--space-xs);
+    width: 100%;
+  }
+
+  .ex-table__btn-icon {
+    width: 1em;
+    height: 1em;
+  }
+
+  .ex-table__more-content {
+    padding: var(--space-md) 0 0;
+  }
+}
+// <<< end block version
+
+// >>> expanded version only (desktop) 👇 -> show standard rows and cols
+.ex-table--expanded {
+  .ex-table__header {
+    .ex-table__cell {
+      // header cell style
+      font-weight: bold;
+      color: var(--color-contrast-higher);
+    }
+  }
+
+  .ex-table__cell {
+    padding: var(--space-xs) var(--space-sm) var(--space-xs) 0;
+    border-bottom: 1px solid var(--color-contrast-low);
+  }
+
+  .ex-table__row {
+    .ex-table__cell:last-child {
+      padding-right: 0;
+    }
+  }
+
+  .ex-table__label {
+    // hide inline labels
+    display: none;
+  }
+
+  .ex-table__btn {
+    width: 40px;
+    height: 40px;
+    background-color: var(--color-contrast-low);
+    border-radius: 50%;
+  }
+
+  .ex-table__btn-icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .ex-table__more-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--color-bg);
+    padding: var(--space-md) 0;
+    border-bottom: 1px solid var(--color-contrast-low);
+  }
+
+  .ex-table__row--show-more-content {
+    .ex-table__cell {
+      border-bottom-color: var(--color-bg); // hide border bottom color
+    }
+  }
+}
+// <<< end expanded version
+
+// detect when the table needs to switch from the mobile layout to an expanded one - used in JS
+[class*="ex-table--expanded"]::before {
+  display: none;
+}
+
+@each $breakpoint, $value in $breakpoints {
+  .ex-table--expanded\@#{$breakpoint}::before {
+    content: "collapsed";
+    @include breakpoint(#{$breakpoint}) {
+      content: "expanded";
+    }
+  }
+}
+
+.js {
+  .ex-table {
+    opacity: 0; // hide table while it is initialized in JS
+  }
+
+  .ex-table--loaded {
+    opacity: 1;
+  }
+}
+
+html:not(.js) {
+  .ex-table__btn {
+    display: none;
+  }
+
+  .ex-table__more-content {
+    display: block;
+    padding: 0;
+  }
+}

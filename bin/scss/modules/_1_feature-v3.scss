@@ -1,0 +1,48 @@
+/* -------------------------------- 
+
+File#: _1_feature-v3
+Title: Feature v3
+Descr: Content group containing text + media element that outsets its container at a specific viewport size
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+.feature-v3 {}
+
+@each $mq in 'sm' 'md' 'lg' { // define the feature-v3--media-outset@{mq} style at different media queries
+  .feature-v3--media-outset\@#{$mq} {
+    overflow: hidden;
+  }
+
+  @include breakpoint(#{$mq}) {
+    .feature-v3--media-outset\@#{$mq} .feature-v3__grid {
+      align-items: stretch;
+    }
+
+    .feature-v3--media-outset\@#{$mq} .feature-v3__media {
+      position: relative;
+      height: 100%;
+
+      > * {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        max-width: none;
+        width: auto;
+      }
+    }
+  }
+
+  // --invert -> invert order of feature items at specific breakpoints
+  @include breakpoint(#{$mq}) {
+    .feature-v3--media-outset\@#{$mq}.feature-v3--invert\@#{$mq} .feature-v3__grid > *:last-child {
+      order: -1;
+      
+      .feature-v3__media > * {
+        left: auto;
+        right: 0
+      }
+    }
+  }
+}

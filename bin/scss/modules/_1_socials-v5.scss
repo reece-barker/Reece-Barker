@@ -1,0 +1,52 @@
+/* -------------------------------- 
+
+File#: _1_socials-v5
+Title: Socials v5
+Descr: Section with newsletter form and links to social media accounts
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+.socials-v5 {
+  position: relative;
+  z-index: 1;
+}
+
+.socials-v5__btn {
+  display: inline-flex;
+
+  --btn-size: 40px;
+  width: var(--btn-size);
+  height: var(--btn-size);
+
+  background: var(--color-contrast-lower);
+  border-radius: 50%;
+  transition: .2s;
+
+  .icon {
+    display: block;
+    margin: auto;
+    color: var(--color-contrast-high); // icon color
+    transition: color .2s;
+  }
+
+  &:hover {
+    background-color: var(--color-bg);
+    box-shadow: var(--shadow-sm);
+
+    .icon {
+      color: var(--color-primary);
+    }
+  }
+}
+
+@include breakpoint(md) {
+  .socials-v5 {
+    background: linear-gradient(90deg, var(--color-bg) 50%, var(--color-contrast-lower) 50%);
+  }
+  
+  .socials-v5__btn {
+    --btn-size: 48px;
+    background-color: var(--color-bg);
+  }
+}

@@ -1,0 +1,284 @@
+<div class="flex justify-between padding-x-md margin-y-sm items-center">
+    <h1 class="hbs-ui__text text-lg">Information</h1>
+
+    <div id="language-picker" class="language-picker margin-left-auto language-picker--flags js-language-picker"
+        data-trigger-class="btn bg js-tab-focus">
+        <form id="LANG" action="" class="language-picker__form">
+            <label class="hbs-ui__text" for="hbs-ui__languages-input">Select your language</label>
+
+            <select name="language-picker-select" id="hbs-ui__languages-input">
+                <option lang="en" class="hbs-ui__text" value="english" {{#if cly.english.isSelected}} selected{{/if}}>
+                    English</option>
+                <option lang="de" class="hbs-ui__text" value="deutsch" {{#if cly.deutsch.isSelected}} selected{{/if}}>
+                    Deutsch</option>
+                <option lang="fr" class="hbs-ui__text" value="francais" {{#if cly.francais.isSelected}} selected{{/if}}>
+                    Français</option>
+                <option lang="it" class="hbs-ui__text" value="italiano" {{#if cly.italiano.isSelected}} selected{{/if}}>
+                    Italiano</option>
+            </select>
+        </form>
+    </div>
+</div>
+
+<section class="radius-md padding-md">
+    <p class="hbs-ui__text sr-only bg padding-md shadow-xs radius-md margin-bottom-sm">
+        Acolytes is currently working on making the Information options section fully functional, please be patient.
+    </p>
+
+    <form>
+        <div class="bg padding-md shadow-xs radius-md">
+            <fieldset class="margin-bottom-md">
+                <div class="grid gap-sm">
+                    <div>
+                        <label class="form-label margin-bottom-xxs" for="input-subject">Let us know what you
+                            think?</label>
+                        <input class="form-control width-100%" type="text" name="input-subject" required minlength="20"
+                            maxlength="80" id="input-subject">
+                    </div>
+
+                    <div>
+                        <div class="character-count js-character-count">
+                            <label class="form-label margin-bottom-xxs" for="input-description">Description</label>
+
+                            <textarea class="form-control width-100% js-character-count__input" name="input-description"
+                                required id="input-description" minlength="120" maxlength="250"></textarea>
+
+                            <div class="flex justify-between margin-top-xxxs">
+                                <p class="text-xs color-contrast-medium">If you want us to understand you properly, be
+                                    sure to leave a description.</p>
+
+                                <div class="character-count__helper character-count__helper--dynamic text-sm"
+                                    aria-live="polite" aria-atomic="true">
+                                    You have <span class="js-character-count__counter"></span> characters left
+                                </div>
+                            </div>
+
+                            <div
+                                class="character-count__helper character-count__helper--static text-sm margin-top-xxxs">
+                                Max
+                                250 characters</div>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset class="margin-bottom-md">
+                <label class="form-label margin-bottom-xxs">How would you rate us?</label>
+
+                <ul id="input-rating" class="flex text-sm flex-wrap gap-md">
+                    <li>
+                        <input onclick="$(this).parent().parent().attr('aria-value', '1')" class="radio" type="radio"
+                            name="radio-button" id="radio-1">
+                        <label for="radio-1"><span>1</span></label>
+                    </li>
+
+                    <li>
+                        <input onclick="$(this).parent().parent().attr('aria-value', '2')" class="radio" type="radio"
+                            name="radio-button" id="radio-2">
+                        <label for="radio-2"><span>2</span></label>
+                    </li>
+
+                    <li>
+                        <input onclick="$(this).parent().parent().attr('aria-value', '3')" class="radio" type="radio"
+                            name="radio-button" id="radio-3">
+                        <label for="radio-3"><span>3</span></label>
+                    </li>
+
+                    <li>
+                        <input onclick="$(this).parent().parent().attr('aria-value', '4')" class="radio" type="radio"
+                            name="radio-button" id="radio-4">
+                        <label for="radio-4"><span>4</span></label>
+                    </li>
+
+                    <li>
+                        <input onclick="$(this).parent().parent().attr('aria-value', '5')" class="radio" type="radio"
+                            name="radio-button" id="radio-5">
+                        <label for="radio-5"><span>5</span></label>
+                    </li>
+                </ul>
+            </fieldset>
+        </div>
+
+        <div class="border-top border-contrast-lower padding-top-md text-right">
+            <button type="submit" title="Submit your Information with the updated information."
+                class="btn hbs-ui__text btn--primary btn--sm">
+                <span class="btn__content-a"><i class="fas fa-paper-plane"></i></span>
+                <span class="btn__content-b">
+                    <svg class="icon icon--is-spinning" aria-hidden="true" viewBox="0 0 16 16">
+                        <title>Loading</title>
+                        <g stroke-width="1" fill="currentColor" stroke="currentColor">
+                            <path d="M.5,8a7.5,7.5,0,1,1,1.91,5" fill="none" stroke="currentColor"
+                                stroke-linecap="round" stroke-linejoin="round"></path>
+                        </g>
+                    </svg>
+                </span>
+            </button>
+        </div>
+    </form>
+
+</section>
+
+
+<script class="hbs-ui__scripts">
+    $(async () => {
+        $('form').on('submit', async (e) => {
+            e.preventDefault();
+
+            $('[type=submit]').toggleClass('btn--state-b');
+
+            $.ajax({
+                type: 'POST',
+                url: '/collaboration/Information',
+                dataType: 'json',
+                contentType: 'application/x-www-form-urlencoded',
+                data: {
+                    subject: document.querySelector('#input-subject').value,
+                    description: document.querySelector('#input-description').value,
+                    rating: document.querySelector('#input-rating').getAttribute(
+                        'aria-value'),
+                },
+                beforeSend: async (xhr) => {
+                    console.log(
+                        'You have requested to submit your Information with Acolytes.'
+                    );
+                },
+                error: async (err) => {
+                    $('[type=submit]').toggleClass('btn--state-b');
+
+                    if (err) {
+                        return console.error(err);
+                    }
+                },
+                success: async (args) => {
+                    const {
+                        err,
+                        _id,
+                        xhr
+                    } = args;
+
+                    $('[type=submit]').toggleClass('btn--state-b');
+
+                    if (err) {
+                        return await (async (err) => {
+                            const {
+                                elements,
+                                xhr,
+                                async
+                            } = err;
+
+                            if (async) {
+                                return await elements.forEach(async (
+                                    _id, i, elements) => {
+                                    if (!document
+                                        .querySelector(_id)
+                                    ) {
+
+                                        return;
+                                    }
+
+                                    const element = document
+                                        .querySelector(_id);
+
+                                    element.classList.add(
+                                        'form-control--error'
+                                    );
+
+                                    element
+                                        .addEventListener(
+                                            'focus', async (
+                                                e) => {
+                                                if (e
+                                                    .target
+                                                    .closest(
+                                                        'input'
+                                                    )
+                                                    .classList
+                                                    .contains(
+                                                        'form-control--error'
+                                                    )
+                                                ) {
+                                                    e.target
+                                                        .closest(
+                                                            'input'
+                                                        )
+                                                        .classList
+                                                        .remove(
+                                                            'form-control--error'
+                                                        );
+                                                }
+                                            });
+
+                                    if (xhr) {
+                                        element
+                                            .setAttribute(
+                                                'placeholder',
+                                                xhr[_id]);
+                                    }
+                                });
+                            }
+
+                            elements.forEach((_id, i, elements) => {
+                                if (!document.querySelector(
+                                        _id)) {
+
+                                    return;
+                                }
+
+                                const element = document
+                                    .querySelector(_id);
+
+                                element.classList.add(
+                                    'form-control--error');
+
+                                element.addEventListener(
+                                    'focus', (e) => {
+                                        if (e.target
+                                            .closest(
+                                                'input')
+                                            .classList
+                                            .contains(
+                                                'form-control--error'
+                                            )) {
+                                            e.target
+                                                .closest(
+                                                    'input')
+                                                .classList
+                                                .remove(
+                                                    'form-control--error'
+                                                );
+                                        }
+                                    });
+
+                                if (xhr) {
+                                    element.setAttribute(
+                                        'placeholder', xhr[
+                                            _id]);
+                                }
+                            });
+                        })(err);
+                    }
+
+                    localStorage.setItem('_id', _id);
+
+                    if (xhr) {
+                        const {
+                            uuid,
+                            url,
+                            async
+                        } = xhr;
+
+                        if (uuid) {
+                            sessionStorage.setItem('uuid', uuid);
+
+                            if (async) {
+                                return await window.location.replace(url);
+                            }
+
+                            window.location.replace(url);
+                        }
+                    }
+                }
+            });
+        });
+    });
+</script>

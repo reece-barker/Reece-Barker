@@ -1,0 +1,192 @@
+/* -------------------------------- 
+
+File#: _1_row-table
+Title: Row Oriented Table
+Descr: Data tables used to organize information, with a specific layout for cases where each row is a meaningful unit
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+// >>> style affecting all (collapsed + expanded) versions 👇
+.row-table {
+  position: relative;
+  z-index: 1;
+}
+
+.row-table__cell { // cell style
+  padding: var(--space-sm);
+}
+
+.row-table__cell--th { // header cells
+  font-weight: bold;
+  color: var(--color-contrast-higher);
+}
+
+.row-table__list { // copy or row items and labels - created in JS inside the body th element
+  display: none;
+}
+// <<< end style affecting all versions
+
+// >>> expanded version only (desktop) 👇
+.row-table:not(.row-table--collapsed) {
+  border-bottom: 2px solid var(--color-contrast-low);
+
+  .row-table__header {
+    .row-table__row {
+      background-color: var(--color-bg);
+    }
+  
+    .row-table__cell {
+      position: relative;
+      background-color: inherit;
+      box-shadow: 0 2px 0 var(--color-contrast-low);
+      z-index: 10;
+    }
+  }
+
+  // sticky header
+  .row-table__header--sticky {
+    .row-table__cell {
+      position: sticky;
+      top: 0;
+    }
+  }
+
+  .row-table__body {
+    .row-table__row:nth-child(odd) {
+      background-color: var(--color-contrast-lower);
+    }
+  }
+  
+  .row-table__input { // input used for keyboard navigation - never visible, created in JS
+    display: none;
+  }
+}
+
+// <<< end expanded version
+
+// >>> collapsed version only (mobile) 👇
+.row-table--collapsed { // class added in JS
+  border-collapse: separate;
+  border-spacing: 0 var(--space-xxs); // row gap
+  margin-top: calc(-2 * var(--space-xxs)); // set spacing variable = row gap ☝️
+
+  .row-table__header,
+  .row-table__cell:not(:first-child) { // hide header and all cells except first - but keep them accessible to SR
+    position: absolute;
+    top: 0;
+    left: 0;
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: inset(50%);
+    width: 1px;
+    height: 1px;
+    padding: 0;
+  }
+
+  .row-table__cell:first-child { // first cell - accordion control
+    position: relative;
+    background-color: var(--color-contrast-lower);
+    border-radius: var(--radius-md);
+    width: 100%;
+  }
+  
+  .row-table__th-inner { // wrapper of first cell label + icon
+    font-size: var(--text-md);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .row-table__th-icon {
+    position: relative;
+    height: 24px;
+    width: 24px;
+    --row-table-arrow-width: 2px;
+
+    &::before, &::after { // arrow icon
+      content: '';
+      position: absolute;
+      top: calc(50% - 6px);
+      width: var(--row-table-arrow-width);
+      height: 12px;
+      background-color: currentColor;
+      transform-origin: 50% 100%;
+      transition: transform .3s;
+    }
+  
+    &::before {
+      right: 50%;
+      transform: translateX(50%) rotate(-45deg);
+    }
+  
+    &::after {
+      right: calc(50% + var(--row-table-arrow-width)/2);
+      transform: translateX(50%) rotate(45deg);
+    }
+  }
+
+  .row-table__list { // list created inside first cell
+    margin-top: var(--space-sm);
+    line-height: var(--body-line-height);
+  }
+
+  .row-table__item { // single list item
+    display: flex;
+    justify-content: space-between;
+    font-weight: normal; // reset
+    color: var(--color-contrast-high);
+    border-top: 1px solid var(--color-contrast-low);
+    text-align: right;
+    padding: var(--space-sm) 0;
+  }
+  
+  .row-table__label { // list item label
+    color: var(--color-contrast-higher);
+    font-weight: bold;
+    margin-right: var(--space-md);
+    text-align: left;
+  }
+
+  .row-table__cell--show-list { // show list when click on cell control
+    .row-table__th-icon::before {
+      transform: translateX(50%) translateY(-80%) rotate(-135deg);
+    }
+
+    .row-table__th-icon::after {
+      transform: translateX(50%) translateY(-80%) rotate(135deg);
+    }
+
+    .row-table__list {
+      display: block;
+    }
+  }
+
+  .row-table__input {
+    position: absolute;
+    pointer-events: none;
+    height: 0;
+    width: 0;
+    opacity: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  .row-table__input:focus + .row-table__th-inner {
+    color: var(--color-primary);
+  }
+}
+// <<< end collapsed version
+
+// used in JS - detect when the table needs to switch from an expanded layout to a merged one
+[class*="row-table--expanded"]::before {
+  display: none;
+  content: 'expanded';
+}
+
+@each $breakpoint, $value in $breakpoints {
+  @include breakpoint(#{$breakpoint}) {
+    .row-table--expanded\@#{$breakpoint}::before {
+      content: 'merged';
+    }
+  }
+}

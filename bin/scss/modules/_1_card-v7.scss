@@ -1,0 +1,29 @@
+/* -------------------------------- 
+
+File#: _1_card-v7
+Title: Card v7
+Descr: Container of information used as teasers for further content, often displayed in a gallery of related items
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+.card-v7 {}
+
+.card-v7__img-link {
+  text-decoration: none;
+  display: block;
+  overflow: hidden;
+
+  img {
+    display: block;
+    width: 100%;
+    will-change: transform;
+    transition: transform .3s;
+  }
+
+  &:hover {
+    img {
+      transform: scale(1.15);
+    }
+  }
+}

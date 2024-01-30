@@ -1,0 +1,24 @@
+/* -------------------------------- 
+
+File#: _2_pricing-table-v2
+Title: Pricing Table v2
+Descr: A table used to compare prices and features of different products
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+.p-table-v2 {
+  *[data-plan="month"] {
+    display: none;
+  }
+}
+
+.p-table-v2--monthly-plan { // class controlled by radio switcher
+  *[data-plan="year"] {
+    display: none;
+  }
+
+  *[data-plan="month"] {
+    display: inline;
+  }
+}

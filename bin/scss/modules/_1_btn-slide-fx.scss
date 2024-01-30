@@ -1,0 +1,160 @@
+/* -------------------------------- 
+
+File#: _1_btn-slide-fx
+Title: Button Slide Effect
+Descr: Button w/ animated background that slides-in on :hover
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+.btn--slide-fx {
+  position: relative;
+  overflow: hidden;
+
+  .btn__label, .icon {
+    position: relative;
+    z-index: 2;
+  }
+
+  &::before { // sliding background
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-contrast-higher);
+    z-index: 1;
+    transform: scaleX(0) scaleY(1);
+  }
+}
+
+.btn--slide-fx:not(.js-btn--slide-fx),
+.btn--slide-fx.btn-slide-fx-animate {
+  &::before {
+    transform-origin: right center;
+    transition: transform .3s;
+  }
+}
+
+.btn--slide-fx:not(.js-btn--slide-fx):hover,
+.btn--slide-fx.btn-slide-fx-hover {
+  &::before {
+    transform: scaleX(1) scaleY(1);
+    transform-origin: left center;
+  }
+}
+
+.btn--slide-fx-from-right:not(.js-btn--slide-fx),
+.btn--slide-fx-from-right.btn-slide-fx-animate {
+  &::before {
+    transform-origin: left center;
+  }
+}
+
+.btn--slide-fx-from-right:not(.js-btn--slide-fx):hover,
+.btn--slide-fx-from-right.btn-slide-fx-hover {
+  &::before {
+    transform-origin: right center;
+  }
+}
+
+.btn--slide-fx-from-bottom,
+.btn--slide-fx-from-top {
+  &::before {
+    transform: scaleX(1) scaleY(0);
+  }
+}
+
+.btn--slide-fx-from-bottom:not(.js-btn--slide-fx):hover,
+.btn--slide-fx-from-top:not(.js-btn--slide-fx):hover,
+.btn--slide-fx-from-bottom.btn-slide-fx-hover
+.btn--slide-fx-from-top.btn-slide-fx-hover {
+  &::before {
+    transform: scaleX(1) scaleY(1);
+  }
+}
+
+.btn--slide-fx-from-bottom:not(.js-btn--slide-fx),
+.btn--slide-fx-from-bottom.btn-slide-fx-animate {
+  &::before {
+    transform-origin: center top;
+  }
+}
+
+.btn--slide-fx-from-bottom:not(.js-btn--slide-fx):hover,
+.btn--slide-fx-from-bottom.btn-slide-fx-hover {
+  &::before {
+    transform-origin: center bottom;
+  }
+}
+
+.btn--slide-fx-from-top:not(.js-btn--slide-fx),
+.btn--slide-fx-from-top.btn-slide-fx-animate { 
+  &::before {
+    transform-origin: center bottom;
+  }
+}
+
+.btn--slide-fx-from-top:not(.js-btn--slide-fx):hover,
+.btn--slide-fx-from-top.btn-slide-fx-hover {
+  &::before {
+    transform-origin: center top;
+  }
+}
+
+.btn--slide-fx-to-left, 
+.btn--slide-fx-to-right,
+.btn--slide-fx-to-top, 
+.btn--slide-fx-to-bottom {
+  &::before {
+    transform: scaleX(1) scaleY(1);
+  }
+}
+
+.btn--slide-fx-to-left.btn-slide-fx-hover-out, 
+.btn--slide-fx-to-right.btn-slide-fx-hover-out {
+  &::before {
+    transform: scaleX(0) scaleY(1);
+  }
+}
+
+.btn--slide-fx-to-top.btn-slide-fx-hover-out, 
+.btn--slide-fx-to-bottom.btn-slide-fx-hover-out {
+  &::before {
+    transform: scaleX(1) scaleY(0);
+  }
+}
+
+.btn--slide-fx-to-left.btn-slide-fx-animate::before {
+  transform-origin: left center;
+}
+
+.btn--slide-fx-to-right.btn-slide-fx-animate::before {
+  transform-origin: right center;
+}
+
+.btn--slide-fx-to-top.btn-slide-fx-animate::before {
+  transform-origin: center top;
+}
+
+.btn--slide-fx-to-bottom.btn-slide-fx-animate::before {
+  transform-origin: center bottom;
+}
+
+
+.btn--slide-fx-replace-label { // replace label with icon
+  .icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform .3s .1s, opacity .3s;
+  }
+
+  &:hover .icon {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}

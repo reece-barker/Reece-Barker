@@ -1,0 +1,15 @@
+/* -------------------------------- 
+
+File#: _4_intro
+Title: Intro
+Descr: Intro section including the main header and a hero component
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+.intro {
+  padding-top: var(--mega-nav-height); // update variable according to the header component you're using
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}

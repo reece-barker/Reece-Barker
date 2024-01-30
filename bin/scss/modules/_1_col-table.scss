@@ -1,0 +1,198 @@
+/* -------------------------------- 
+
+File#: _1_col-table
+Title: Column Oriented Table
+Descr: Data table for cases where each column is a meaningful unit
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+// >>> style affecting all (collapsed + expanded) versions 👇
+.cl-table {
+  position: relative;
+  z-index: 1;
+}
+
+.cl-table__cell { // cell style
+  padding: var(--space-sm);
+}
+
+.cl-table__cell--th { // header cells
+  font-weight: bold;
+  color: var(--color-contrast-higher);
+}
+
+.cl-table__header .cl-table__cell {
+  position: relative;
+  z-index: 10;
+}
+
+.cl-table__list { // copy of row items and labels - created in JS inside thead col cells
+  display: none;
+}
+// <<< end style affecting all versions
+
+// >>> expanded version only (desktop) 👇
+.cl-table:not(.cl-table--collapsed) {
+  border-bottom: 2px solid var(--color-contrast-low);
+
+  .cl-table__header {
+    .cl-table__row {
+      background-color: var(--color-bg);
+    }
+  
+    .cl-table__cell {
+      position: relative;
+      background-color: inherit;
+      box-shadow: 0 2px 0 var(--color-contrast-low);
+      z-index: 10;
+    }
+  }
+
+  .cl-table__body {
+    .cl-table__row:nth-child(odd) {
+      background-color: var(--color-contrast-lower);
+    }
+  }
+
+  .cl-table__input { // input used for keyboard navigation - never visible, created in JS
+    display: none;
+  }
+
+  // sticky header
+  .cl-table__header--sticky {
+    .cl-table__cell {
+      position: sticky;
+      top: 0;
+    }
+  }
+}
+// <<< end expanded version
+
+// >>> collapsed version only (mobile) 👇
+.cl-table--collapsed { // class added in JS
+
+  .cl-table__body { // visually hide table body - keep accessible to SR
+    @include srHide;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
+  .cl-table__cell[aria-hidden="true"] { // hide header cells used for presentation purpose
+    display: none;
+  }
+
+  .cl-table__row {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cl-table__cell {
+    position: relative;
+    background-color: var(--color-contrast-lower);
+    border-radius: var(--radius-md);
+    width: 100%;
+    margin-bottom: var(--space-xxs);
+  }
+
+  .cl-table__th-inner { // wrapper of col cell label + icon
+    font-size: var(--text-md);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .cl-table__th-icon { // arrow icon
+    position: relative;
+    height: 24px;
+    width: 24px;
+    --col-table-arrow-width: 2px;
+
+    &::before, &::after { // arrow icon
+      content: '';
+      position: absolute;
+      top: calc(50% - 6px);
+      width: var(--col-table-arrow-width);
+      height: 12px;
+      background-color: currentColor;
+      transform-origin: 50% 100%;
+      transition: transform .3s;
+    }
+  
+    &::before {
+      right: 50%;
+      transform: translateX(50%) rotate(-45deg);
+    }
+  
+    &::after {
+      right: calc(50% + var(--col-table-arrow-width)/2);
+      transform: translateX(50%) rotate(45deg);
+    }
+  }
+
+  .cl-table__list {
+    margin-top: var(--space-sm);
+    line-height: var(--body-line-height);
+  }
+
+  .cl-table__item { // single list item inside .cl-table__list
+    display: flex;
+    justify-content: space-between;
+    font-weight: normal; // reset
+    color: var(--color-contrast-high);
+    border-top: 1px solid var(--color-contrast-low);
+    text-align: right;
+    padding: var(--space-sm) 0;
+  }
+  
+  .cl-table__label { // list item label
+    color: var(--color-contrast-higher);
+    font-weight: bold;
+    margin-right: var(--space-md);
+    text-align: left;
+  }
+
+  .cl-table__cell--show-list { // show list when click on cell control
+    .cl-table__th-icon::before {
+      transform: translateX(50%) translateY(-80%) rotate(-135deg);
+    }
+
+    .cl-table__th-icon::after {
+      transform: translateX(50%) translateY(-80%) rotate(135deg);
+    }
+
+    .cl-table__list {
+      display: block;
+    }
+  }
+
+  .cl-table__input {
+    position: absolute;
+    pointer-events: none;
+    height: 0;
+    width: 0;
+    opacity: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  .cl-table__input:focus + .cl-table__th-inner {
+    color: var(--color-primary);
+  }
+}
+// <<< end collapsed version
+
+// used in JS - detect when the table needs to switch from an expanded layout to a merged one
+[class*="cl-table--expanded"]::before {
+  display: none;
+  content: 'collapsed';
+}
+
+@each $breakpoint, $value in $breakpoints {
+  @include breakpoint(#{$breakpoint}) {
+    .cl-table--expanded\@#{$breakpoint}::before {
+      content: 'expanded';
+    }
+  }
+}

@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta property="og:email" content="reecenbarker@gmail.com" />
+        <meta name="description" content="A portfolio of all of Reece Barker's projects and achievements for potential employers.">
+        <meta property="og:url" content="https://www.reece-barker.co/">
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="Portfolio for Reece Barker">
+        <meta property="og:description" content="A portfolio of all of Reece Barker's projects and achievements for potential employers.">
+        <meta property="og:image" content="{{URL 'utils/img/svg/favicon.svg'}}">
+        <meta name="twitter:card" content="{{URL 'utils/img/svg/favicon.svg'}}">
+        <meta property="twitter:url" content="https://www.reece-barker.co/">
+        <meta name="twitter:title" content="Portfolio for Reece Barker">
+        <meta name="twitter:description" content="A portfolio of all of Reece Barker's projects and achievements for potential employers.">
+        <meta name="twitter:image" content="{{URL 'utils/img/svg/favicon.svg'}}">
+        <script>
+            document.getElementsByTagName("html")[0].className += " js";
+        </script>
+        <link rel="icon" type="image/svg+xml" href="{{URL 'utils/img/svg/favicon.svg'}}">
+        <link rel="alternate icon" href="{{URL 'utils/img/ico/favicon.ico'}}" type="image/ico">
+        <link id="css" rel="stylesheet" href="{{URL 'utils/scss/.dir/~css.css'}}">
+        <script src="https://kit.fontawesome.com/21df1375d2.js" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="//cdn.jsdelivr.net/jquery.scrollto/2.1.2/jquery.scrollTo.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+        <script>
+            const socket = io({
+                transports: ['websocket'],
+                upgrade: false,
+                reconnection: true
+            });
+
+            this.socketio = {
+                connection: {
+                    socket: socket,
+                    state: false,
+                    reconnection: {
+                        interval: 10000,
+                        state: false,
+                        cb: async () => {
+                            setTimeout(async () => {
+                                if (!this.socketio.connection.state) {
+                                    $.get('/utils/ts', async () => {
+                                        this.socketio.connection.state = true;
+                                        window.location.href = unescape(window.location.pathname);
+                                    });
+                                    retryConnectOnFailure(this.socketio.connection.reconnection.interval);
+                                }
+                            }, this.socketio.connection.reconnection.interval);
+                        }
+                    }
+                },
+            };
+
+            socket.on('connect', async () => {
+                this.socketio.connection.state = true;
+                clearTimeout(this.socketio.connection.reconnection.state);
+            });
+
+            socket.on('disconnect', async () => {
+                this.socketio.connection.state = false;
+                this.socketio.connection.reconnection.cb();
+            });
+
+            socket.connect();
+            this.socketio.connection.reconnection.cb();
+        </script>
+        <script>
+            if (!('CSS' in window) || !CSS.supports('color', 'var(--color-var)')) {
+                var cfStyle = document.getElementById('css');
+                if (cfStyle) {
+                    var href = cfStyle.getAttribute('href');
+                    href = href.replace('~css.css', '~css.min.css');
+                    cfStyle.setAttribute('href', href);
+                }
+            }
+        </script>
+        <title>Reece Barker</title>
+    </head>
+
+    <body>
+        <noscript>
+            {{> '1' h1='Bad Request' p='You must have javascript enabled to view this page.'}}
+        </noscript>
+
+        <div class="hbs-ui js-hbs-ui">
+            <main class="hbs-ui__body position-relative overflow-auto">
+
+                {{{body}}}
+
+            </main>
+
+            <div class="circle-loader hbs-ui__body--is-hidden hbs-ui__body--v2 circle-loader--v3" role="alert">
+                <p class="circle-loader__label">Content is loading...</p>
+                <div aria-hidden="true">
+                    <div class="circle-loader__circle circle-loader__circle--1st"></div>
+                    <div class="circle-loader__circle circle-loader__circle--2nd"></div>
+                </div>
+            </div>
+        </div>
+
+        <script id="js" src="{{URL 'utils/js/.dir/~js.js'}}"></script>
+        <script id="Utils" src="{{URL 'utils/js/libraries/Utils.js'}}"></script>
+    </body>
+
+</html>

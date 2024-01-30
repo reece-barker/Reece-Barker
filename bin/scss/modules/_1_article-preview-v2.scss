@@ -1,0 +1,75 @@
+/* -------------------------------- 
+
+File#: _1_article-preview-v2
+Title: Article Preview v2
+Descr: Blog post excerpt, containing a link to the article page
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+.story-v2 {}
+
+.story-v2__meta {
+  a {
+    color: var(--color-contrast-high);
+    transition: .2s;
+
+    &:hover {
+      color: var(--color-primary);
+    }
+  }
+
+  span[role="separator"] {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    vertical-align: middle;
+    background-color: var(--color-contrast-low);
+    border-radius: 50%;
+    margin: 0 var(--space-xxxs);
+  }
+}
+
+.story-v2__headline {
+  a {
+    color: var(--color-contrast-higher);
+    text-decoration: underline;
+    background-repeat: no-repeat;
+    background-image: linear-gradient(transparent 50%, alpha(var(--color-primary), 0.2) 50%);
+    background-size: 0% 100%;
+    will-change: background-size;
+    transition: background-size .3s var(--ease-in-out);
+
+    &:hover {
+      background-size: 100% 100%;
+    }
+  }
+}
+
+.story-v2__excerpt {
+  color: var(--color-contrast-medium);
+}
+
+.story-v2__img {
+  display: block;
+  transition: opacity .2s;
+
+  &:hover {
+    opacity: 0.85;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+  }
+}
+
+// --featured
+@include breakpoint(md) {
+  .story-v2--featured {
+    .story-v2__excerpt {
+      max-width: 70%;
+      margin-left: auto;
+    }
+  }
+}

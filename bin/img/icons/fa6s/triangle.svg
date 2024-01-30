@@ -1,0 +1,6 @@
+
+                <svg version="1.0" id="triangle" xmlns="http://www.w3.org/2000/svg" width="{{width}}px" height="{{height}}px"
+                    viewBox="0 0 512 512">
+                    <path d="M506 396C523 424 502 459 469 459H43C10 459 -11 424 6 396L219 32C235 4 277 4 293 32L506 396Z" />
+                </svg>
+            

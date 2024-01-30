@@ -1,0 +1,251 @@
+/* -------------------------------- 
+
+File#: _3_drop-menu
+Title: Drop Menu
+Descr: An animated dropdown navigation
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+.drop-menu {
+  --drop-menu-item-height: 40px;
+  --drop-menu-gap-y: 4px; // (⚠️ use px unit) vertical gap between the menu and its control
+  --drop-menu-transition-duration: 0.3s;
+  --drop-menu-width-desktop: 300px; // width on desktop
+
+  display: inline-block;
+  background-color: var(--color-bg);
+  box-shadow: var(--shadow-md);
+
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 100%;
+  z-index: var(--zindex-fixed-element);
+
+  pointer-events: none;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+
+  transform: translateY(10px);
+  transform-origin: center top;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity var(--drop-menu-transition-duration), visibility 0s var(--drop-menu-transition-duration),
+    transform var(--drop-menu-transition-duration) var(--ease-out);
+
+  // used in JS to detect when the drop menu needs to switch from the mobile layout to the desktop one
+  &::before {
+    display: none;
+    content: "mobile";
+  }
+}
+
+.drop-menu--is-visible {
+  pointer-events: auto;
+
+  transform: translateY(0);
+  visibility: visible;
+  opacity: 1;
+  transition: opacity var(--drop-menu-transition-duration),
+    transform var(--drop-menu-transition-duration) var(--ease-out);
+}
+
+.drop-menu__inner {
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+  flex-shrink: 0;
+}
+
+// close btn - mobile only
+.drop-menu__close-btn {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  height: var(--drop-menu-item-height);
+  text-align: center;
+  background-color: var(--color-bg);
+  box-shadow: var(--shadow-md);
+  flex-shrink: 0;
+  transition: 0.3s;
+  margin-top: auto;
+
+  position: sticky;
+  z-index: 1;
+  bottom: 0;
+
+  &:hover {
+    box-shadow: var(--shadow-sm);
+  }
+}
+
+.drop-menu__list .drop-menu__list {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+
+  // hide sub menu
+  visibility: hidden;
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+.drop-menu__list {
+  transition: var(--drop-menu-transition-duration) var(--ease-out);
+
+  &.drop-menu__list--in,
+  &.drop-menu__list--out {
+    visibility: visible;
+    opacity: 1;
+    transform: translateX(0%);
+  }
+
+  &.drop-menu__list--out {
+    > li > .drop-menu__search,
+    > li > .drop-menu__btn,
+    > li > .drop-menu__link {
+      transform: translateX(-100%);
+      opacity: 0;
+      pointer-events: none;
+      visibility: hidden;
+    }
+  }
+}
+
+// menu items
+.drop-menu__search-input,
+.drop-menu__btn,
+.drop-menu__link {
+  height: var(--drop-menu-item-height);
+  line-height: var(--drop-menu-item-height);
+  width: 100%;
+  padding: 0 var(--space-xs);
+}
+
+.drop-menu__search,
+.drop-menu__search-input,
+.drop-menu__btn,
+.drop-menu__link {
+  transition: background 0.2s, color 0.2s, transform var(--drop-menu-transition-duration) var(--ease-out),
+    opacity var(--drop-menu-transition-duration), visibility var(--drop-menu-transition-duration);
+}
+
+// search
+.drop-menu__search {
+  position: relative;
+}
+
+.drop-menu__search-input {
+  padding-left: calc(var(--space-xs) + 1em + var(--space-xxxs)); // 1em = icon size
+
+  &::-webkit-search-decoration,
+  &::-webkit-search-cancel-button,
+  &::-webkit-search-results-button,
+  &::-webkit-search-results-decoration {
+    -webkit-appearance: none;
+  }
+
+  &::-ms-clear,
+  &::-ms-reveal {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus + .drop-menu__search-icon {
+    color: var(--color-primary);
+  }
+}
+
+.drop-menu__search-icon {
+  position: absolute;
+  left: var(--space-xs);
+  top: calc(50% - 0.5em);
+  pointer-events: none;
+  transition: 0.2s;
+}
+
+.drop-menu--searching .drop-menu__search-item ~ * {
+  display: none; // hide menu items during search
+}
+
+// sub menu trigger + link
+.drop-menu__btn,
+.drop-menu__link {
+  cursor: pointer;
+  min-width: 0;
+
+  > * {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &:focus {
+    outline: none;
+    color: var(--color-primary);
+  }
+
+  &:hover {
+    background-color: alpha(var(--color-contrast-higher), 0.05);
+  }
+
+  &:active {
+    background-color: alpha(var(--color-contrast-higher), 0.1);
+  }
+}
+
+// sub menu trigger
+.drop-menu__btn {
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+// link
+.drop-menu__link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+// autocomplete search list
+.drop-menu:not(.drop-menu--searching) .drop-menu__search-list {
+  display: none;
+}
+
+.drop-menu__search-list {
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+@include breakpoint(sm) {
+  .drop-menu {
+    min-height: 0;
+    max-width: var(--drop-menu-width-desktop);
+    border-radius: var(--radius-md);
+
+    &::before {
+      content: "desktop";
+    }
+  }
+
+  .drop-menu__inner {
+    width: 100%;
+  }
+
+  .drop-menu__close-btn {
+    display: none;
+  }
+}

@@ -1,0 +1,32 @@
+/* -------------------------------- 
+
+File#: _1_floating-label
+Title: Floating Label
+Descr: Input element w/ placeholder that morphs into a label
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+.js {
+  .floating-label {
+    position: relative;
+    
+    .form-label {
+      position: absolute;
+      top: -2px; // label margin bottom
+      transition: transform .2s;
+      transform: translateY(-80%);
+      margin: 0;
+
+      // hide
+      clip: rect(1px, 1px, 1px, 1px);
+      clip-path: inset(50%);
+    }
+    
+    .form-label--floating {
+      clip: auto;
+      clip-path: none;
+      transform: translateY(-100%);
+    }
+  }
+}

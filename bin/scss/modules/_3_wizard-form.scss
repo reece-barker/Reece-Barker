@@ -1,0 +1,61 @@
+/* -------------------------------- 
+
+File#: _3_wizard-form
+Title: Wizard Form
+Descr: Multi-step form
+Usage: codyhouse.co/license
+
+-------------------------------- */
+.wiz-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.wiz-form, .wiz-form__body {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.wiz-form__body {
+  flex-grow: 1;
+}
+
+.wiz-form__footer {
+  flex-shrink: 0;
+}
+
+.wiz-form__step {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  transition: transform .3s var(--ease-out), opacity .3s;
+}
+
+.wiz-form__step--prev,
+.wiz-form__step--next {
+  opacity: 0;
+  visibility: hidden;
+  transition: transform .3s var(--ease-out), opacity .3s, visibility 0s .3s;
+}
+
+.wiz-form__step--prev {
+  transform: translateX(-40px);
+}
+
+.wiz-form__step--next {
+  transform: translateX(40px);
+}
+
+// --fixed height
+.wiz-form--fixed-height {
+  height: 480px;
+
+  @include breakpoint(md) {
+    height: 620px;
+  }
+}

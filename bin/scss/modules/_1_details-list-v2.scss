@@ -1,0 +1,51 @@
+/* -------------------------------- 
+
+File#: _1_details-list-v2
+Title: Details List v2
+Descr: Pairs of related information displayed in a list
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+.details-list-v2 {}
+
+.details-list-v2__item {
+  padding: var(--space-md) 0;
+  border-bottom: 1px solid var(--color-contrast-low);
+
+  > * {
+    margin-bottom: var(--space-xxs); // vertical spacing
+  }
+
+  dd:last-of-type {
+    margin-bottom: 0;
+  }
+}
+
+.details-list-v2__dt {
+  font-weight: bold;
+}
+
+.details-list-v2__dd { 
+  line-height: 1.4;
+}
+
+@include breakpoint(md) {
+  @supports (grid-area: auto) {
+    .details-list-v2--cols {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+
+      .details-list-v2__item {
+        padding: var(--space-md);
+        text-align: center;
+        border-bottom-width: 0px; // reset
+        border-right: 1px solid var(--color-contrast-low);
+  
+        &:last-child {
+          border-right-width: 0;
+        }
+      }
+    }
+  }
+}

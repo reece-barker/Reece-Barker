@@ -1,0 +1,34 @@
+/* -------------------------------- 
+
+File#: _1_code-snippet
+Title: Code Snippet
+Descr: A block of preformatted text, containing computer code
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+code {
+  background-color: var(--color-contrast-lower);
+  font-family: monospace;
+  padding: var(--space-xxxxs) var(--space-xxxs);
+
+  &::selection {
+    background-color: var(--color-contrast-high);
+    color: var(--color-bg);
+  }
+}
+
+
+.code-snippet {
+  background-color: var(--color-contrast-lower);
+  border-radius: var(--radius-md);
+
+  code {
+    background-color: transparent;
+    line-height: 1.45;
+    font-size: var(--text-sm);
+    display: block;
+    padding: var(--space-md);
+    overflow-x: auto;
+  }
+}

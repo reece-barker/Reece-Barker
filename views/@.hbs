@@ -1,0 +1,1292 @@
+<style>
+:where(.ad5-media-wrapper-16\:9) {
+  position: relative;
+  height: 0;
+}
+
+.ad5-media-wrapper-16\:9 {
+  padding-bottom: 56.25%;
+}
+
+.ad5-media-wrapper-16\:9 > * {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.ad5-media-wrapper-16\:9 > *:not(iframe) {
+  object-fit: cover;
+}
+
+@media (min-width: 90rem) {
+  .ad5-text-component__block--outset {
+    width: calc(100% + 12rem);  
+  }
+
+  .ad5-text-component__block--outset img {
+    display: block;width: 100%;
+  }
+
+  .ad5-text-component__block--outset:not(.ad5-text-component__block--right) {
+    margin-left: -6rem;
+  }
+
+  .ad5-text-component__block--right.ad5-text-component__block--outset {
+    margin-right: -6rem;
+  }
+}
+
+.ad5-gap-xs {
+  gap: var(--ad5-space-xs);
+}
+
+.ad5-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+}
+
+.ad5-grid > * {
+  min-width: 0;
+  grid-column-end: span 12;
+}
+
+@media (min-width: 48rem) {
+  .ad5-text-component__block--left, .ad5-text-component__block--right {
+    width: 45%;
+  }
+
+  .ad5-text-component__block--left img, .ad5-text-component__block--right img {
+    display: block;
+    width: 100%;
+  }
+
+  .ad5-text-component__block--left {
+   float: left;
+   margin-right: calc(var(--ad5-space-sm) * var(--ad5-space-multiplier, 1));
+  }
+
+  .ad5-text-component__block--right {
+   float: right;
+    margin-left: calc(var(--ad5-space-sm) * var(--ad5-space-multiplier, 1));
+  }
+}
+
+@media (min-width: 90rem) {
+  .ad5-text-component__block--left, .ad5-text-component__block--right {
+    width: 50%;
+  }
+}
+
+.ad5-text-center {
+  text-align: center;
+}
+
+.ad5-text-gap-md {
+  --ad5-space-multiplier: 1.25;
+}
+
+.ad5-line-height-lg {
+  line-height: 1.58;
+}
+
+.ad5-text-component :where(h1, h2, h3, h4) {
+  line-height: var(--ad5-heading-line-height, 1.2);
+  margin-top: calc(var(--ad5-space-md) * var(--ad5-space-multiplier, 1));
+  margin-bottom: calc(var(--ad5-space-sm) * var(--ad5-space-multiplier, 1));
+}
+
+.ad5-text-component :where(p, blockquote, ul li, ol li) {
+  line-height: var(--ad5-body-line-height, 1.4);
+}
+
+.ad5-text-component :where(ul, ol, p, blockquote, .ad5-text-component__block) {
+  margin-bottom: calc(var(--ad5-space-sm) * var(--ad5-space-multiplier, 1));
+}
+
+.ad5-text-component :where(ul, ol) {
+  padding-left: 1.25em;
+}
+
+.ad5-text-component ul :where(ul, ol), .ad5-text-component ol :where(ul, ol) {
+  padding-left: 1em;
+  margin-bottom: 0;
+}
+
+.ad5-text-component ul {
+  list-style-type: disc;
+}
+
+.ad5-text-component ol {
+  list-style-type: decimal;
+}
+
+.ad5-text-component img {
+  display: block;
+  margin: 0 auto;
+}
+
+.ad5-text-component figcaption {
+  margin-top: calc(var(--ad5-space-xs) * var(--ad5-space-multiplier, 1));
+  font-size: var(--ad5-text-sm);
+  text-align: center;}
+
+.ad5-text-component em {
+  font-style: italic;
+}
+
+.ad5-text-component strong {
+  font-weight: bold;
+}
+
+.ad5-text-component s {
+  text-decoration: line-through;
+}
+
+.ad5-text-component u {
+  text-decoration: underline;
+}
+
+.ad5-text-component mark {
+  background-color: hsla(var(--ad5-color-accent-hsl), 0.2);
+  color: inherit;
+}
+
+.ad5-text-component blockquote {
+  padding-left: 1em;
+  border-left: 4px solid hsl(var(--ad5-color-contrast-lower-hsl));
+  font-style: italic;
+}
+
+.ad5-text-component hr {
+  margin: calc(var(--ad5-space-md) * var(--ad5-space-multiplier, 1)) auto;
+  background: hsl(var(--ad5-color-contrast-lower-hsl));
+  height: 1px;
+}
+
+.ad5-text-component > *:first-child {
+  margin-top: 0;
+}
+
+.ad5-text-component > *:last-child {
+  margin-bottom: 0;
+}
+
+.ad5-text-component.ad5-line-height-xs {
+  --ad5-heading-line-height: 1;
+  --ad5-body-line-height: 1.1;
+}
+
+.ad5-text-component.ad5-line-height-sm {
+  --ad5-heading-line-height: 1.1;
+  --ad5-body-line-height: 1.2;
+}
+
+.ad5-text-component.ad5-line-height-md {
+  --ad5-heading-line-height: 1.15;
+  --ad5-body-line-height: 1.4;
+}
+
+.ad5-text-component.ad5-line-height-lg {
+  --ad5-heading-line-height: 1.22;
+  --ad5-body-line-height: 1.58;
+}
+
+.ad5-text-component.ad5-line-height-xl {
+  --ad5-heading-line-height: 1.3;
+  --ad5-body-line-height: 1.72;
+}
+
+.ad5-max-width-adaptive-sm {
+  max-width: 32rem;
+}
+
+@media(min-width: 48rem) {
+  .ad5-max-width-adaptive-sm {
+    max-width: 48rem;
+  }
+}
+
+.ad5-container {
+  width: calc(100% - 2*var(--ad5-space-md));
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ad5-radius-lg {
+  border-radius: 0.5em;
+}
+
+.ad5-width-100\% {
+  width: 100%;
+}
+
+.ad5-block {
+  display: block;
+}
+
+.ad5-margin-bottom-lg {
+  margin-bottom: var(--ad5-space-lg);
+}
+
+.ad5-max-width-lg {
+  max-width: 80rem;
+}
+
+.ad5-color-contrast-medium {
+  --ad5-color-o: 1;
+  color: hsla(var(--ad5-color-contrast-medium-hsl), var(--ad5-color-o, 1));
+}
+
+.ad5-text-sm {
+  font-size: var(--ad5-text-sm);
+}
+
+.ad5-text-base {
+  font-size: var(--ad5-text-base);
+}
+
+.ad5-text-gap-2xs {
+  --ad5-space-multiplier: 0.25;
+}
+
+.ad5-justify-center {
+  justify-content: center;
+}
+
+.ad5-flex {
+  display: flex;
+}
+
+.ad5-text-md {
+  font-size: var(--ad5-text-md);
+}
+
+.ad5-margin-bottom-md {
+  margin-bottom: var(--ad5-space-md);
+}
+
+.ad5-max-width-xs {
+  max-width: 38rem;
+}
+
+.ad5-padding-y-lg {
+  padding-top: var(--ad5-space-lg);
+  padding-bottom: var(--ad5-space-lg);
+}
+
+.ad5-col-6 {
+  grid-column-end: span 6;
+}
+
+    .articles-v3 {
+
+    }
+
+.articles-v3__list-grid { /* gap between articles */
+  display: grid;
+  gap: 4.5rem;
+}
+
+.articles-v3__item-grid { /* single post */
+  display: grid;
+  align-items: start;
+  gap: 1rem;
+  padding: 10px;
+  border-radius: 10px;
+  /*background-color: var(--color-contrast-lower);*/
+}
+
+.articles-v3__item-grid > * {
+  min-width: 0;
+}
+
+.articles-v3__img-wrapper {
+  display: block;
+  transition: opacity 0.3s;
+}
+
+.articles-v3__img-wrapper:hover {
+  opacity: 0.85;
+}
+
+.articles-v3__img-wrapper img {
+  display: block;
+  border-radius: 0.375em;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.articles-v3__headline {
+  font-size: 2.125rem;
+  margin-top: 25px;
+}
+
+.articles-v3__headline a {
+  color: var(--color-contrast-high);
+  text-decoration: none;
+}
+
+.articles-v3__headline a:hover {
+  text-decoration: underline;
+}
+
+.articles-v3__description {
+  margin: 1rem 0;
+  color: hsl(225, 4%, 47%);
+  line-height: 1.58;
+}
+
+.articles-v3__author {
+  display: grid;
+  grid-template-columns: 3em 1fr;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.articles-v3__author-img {
+  display: block;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  overflow: hidden;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.articles-v3__author-img img {
+  display: block;
+  width: inherit;
+  height: inherit;
+}
+
+.articles-v3__author-img:hover {
+  transform: scale(1.1);
+}
+
+.articles-v3__author-info {
+  font-size: 0.9375rem;
+  line-height: 1.2;
+}
+
+.articles-v3__author-name {
+  font-weight: bold;
+  color: var(--color-contrast-high);
+  text-decoration: none;
+}
+
+.articles-v3__author-name:hover {
+  text-decoration: underline;
+}
+
+.articles-v3__date {
+  color: hsl(225, 4%, 47%);
+}
+
+@media (min-width: 64rem) {
+  .articles-v3__list-grid {
+    gap: 2rem;
+  }
+
+  .articles-v3__item-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+}
+
+@media (min-width: 85.5rem) {
+  .articles-v3__list-grid {
+    gap: 3rem;
+  }
+
+  .articles-v3__item-grid {
+    grid-template-columns: 7fr 5fr;
+    gap: 3rem;
+  }
+}
+
+/* -------------------------------- 
+
+Utilities 
+
+-------------------------------- */
+
+.cd-container {
+  width: calc(100% - 3rem);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cd-max-width-adaptive-lg {
+  max-width: 32rem;
+}
+
+@media (min-width: 64rem) {
+  .cd-max-width-adaptive-lg {
+    max-width: 64rem;
+  }
+}
+
+@media (min-width: 85.5rem) {
+  .cd-max-width-adaptive-lg {
+    max-width: 80rem;
+  }
+}
+</style>
+
+<div class="position-relative" style="background-color: var(--color-bg);">
+    <header class="mega-nav mega-nav--mobile mega-nav--desktop@md position-absolute width-100% js-mega-nav">
+        <div class="mega-nav__container">
+            <a href="/" class="mega-nav__logo">
+                <svg width="30" height="30" viewBox="0 0 30 30">
+                    <title>Go to homepage</title>
+                    <circle cx="15" cy="15" r="15" fill="var(--color-contrast-lower)" />
+                    <path fill="var(--color-contrast-higher)" d="M25.607,4.393,4.393,25.607A15,15,0,0,0,25.607,4.393Z" />
+                </svg>
+            </a>
+
+            <!-- 👇 icon buttons --mobile -->
+            <div class="mega-nav__icon-btns mega-nav__icon-btns--mobile">
+                <a href="#0" class="mega-nav__icon-btn">
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <title>Go to account settings</title>
+                        <g class="icon__group" fill="none" stroke="currentColor" stroke-linecap="square"
+                            stroke-miterlimit="10" stroke-width="2">
+                            <circle cx="12" cy="6" r="4" />
+                            <path d="M12 13a8 8 0 00-8 8h16a8 8 0 00-8-8z" />
+                        </g>
+                    </svg>
+                </a>
+
+                <button class="reset mega-nav__icon-btn mega-nav__icon-btn--search js-tab-focus"
+                    aria-label="Toggle search" aria-controls="mega-nav-search">
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <g class="icon__group" fill="none" stroke="currentColor" stroke-linecap="square"
+                            stroke-miterlimit="10" stroke-width="2">
+                            <path d="M4.222 4.222l15.556 15.556" />
+                            <path d="M19.778 4.222L4.222 19.778" />
+                            <circle cx="9.5" cy="9.5" r="6.5" />
+                        </g>
+                    </svg>
+                </button>
+
+                <button class="reset mega-nav__icon-btn mega-nav__icon-btn--menu js-tab-focus" aria-label="Toggle menu"
+                    aria-controls="mega-nav-navigation">
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <g class="icon__group" fill="none" stroke="currentColor" stroke-linecap="square"
+                            stroke-miterlimit="10" stroke-width="2">
+                            <path d="M1 6h22" />
+                            <path d="M1 12h22" />
+                            <path d="M1 18h22" />
+                        </g>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="mega-nav__nav js-mega-nav__nav" id="mega-nav-navigation" role="navigation" aria-label="Main">
+                <div class="mega-nav__nav-inner">
+                    <ul class="mega-nav__items">
+                        <li class="mega-nav__label">Menu</li>
+
+                        <!-- 👇 layout 1 -> tabbed content -->
+                        <li style="opacity: 0;" class="mega-nav__item js-mega-nav__item">
+                            <button class="reset mega-nav__control js-mega-nav__control js-tab-focus">
+                                Products
+                                <i class="mega-nav__arrow-icon" aria-hidden="true">
+                                    <svg class="icon" viewBox="0 0 16 16">
+                                        <g class="icon__group" fill="none" stroke="currentColor" stroke-linecap="square"
+                                            stroke-miterlimit="10" stroke-width="2">
+                                            <path d="M2 2l12 12" />
+                                            <path d="M14 2L2 14" />
+                                        </g>
+                                    </svg>
+                                </i>
+                            </button>
+
+                            <div class="mega-nav__sub-nav-wrapper">
+                                <div class="mega-nav__sub-nav mega-nav__sub-nav--layout-1">
+                                    <!-- 👇 links - visible on mobile -->
+                                    <ul class="mega-nav__sub-items">
+                                        <li class="mega-nav__sub-item">
+                                            <a href="#0" class="mega-nav__sub-link">
+                                                <span class="flex items-center gap-xs">
+                                                    <img class="block width-lg height-lg radius-50% object-cover"
+                                                        src="../../../app/assets/img/mega-site-nav-img-1.jpg"
+                                                        alt="Image description">
+                                                    <i>Product One</i>
+                                                </span>
+                                            </a>
+                                        </li>
+
+                                        <li class="mega-nav__sub-item">
+                                            <a href="#0" class="mega-nav__sub-link">
+                                                <span class="flex items-center gap-xs">
+                                                    <img class="block width-lg height-lg radius-50% object-cover"
+                                                        src="../../../app/assets/img/mega-site-nav-img-2.jpg"
+                                                        alt="Image description">
+                                                    <i>Product Two</i>
+                                                </span>
+                                            </a>
+                                        </li>
+
+                                        <li class="mega-nav__sub-item">
+                                            <a href="#0" class="mega-nav__sub-link">
+                                                <span class="flex items-center gap-xs">
+                                                    <img class="block width-lg height-lg radius-50% object-cover"
+                                                        src="../../../app/assets/img/mega-site-nav-img-3.jpg"
+                                                        alt="Image description">
+                                                    <i>Product Three</i>
+                                                </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+
+                                    <!-- 👇 tabs - visible on desktop -->
+                                    <div class="mega-nav__tabs grid gap-lg js-tabs" data-tabs-layout="vertical">
+                                        <ul class="col-4 mega-nav__tabs-controls js-tabs__controls"
+                                            aria-label="Select a product">
+                                            <li>
+                                                <a href="#tabProduct1" class="mega-nav__tabs-control js-tab-focus"
+                                                    aria-selected="true">
+                                                    <span class="flex items-center gap-xs">
+                                                        <img class="block width-lg height-lg radius-50% object-cover"
+                                                            src="../../../app/assets/img/mega-site-nav-img-1.jpg"
+                                                            alt="Image description">
+
+                                                        <i class="margin-right-xxxs">Product One</i>
+
+                                                        <svg class="icon icon--xs margin-left-auto" viewBox="0 0 16 16"
+                                                            aria-hidden="true">
+                                                            <path d="M5,2l6,6L5,14" fill="none" stroke="currentColor"
+                                                                stroke-linecap="square" stroke-miterlimit="10"
+                                                                stroke-width="1" /></svg>
+                                                    </span>
+                                                </a>
+                                            </li>
+
+                                            <li>
+                                                <a href="#tabProduct2" class="mega-nav__tabs-control js-tab-focus"
+                                                    aria-selected="true">
+                                                    <span class="flex items-center gap-xs">
+                                                        <img class="block width-lg height-lg radius-50% object-cover"
+                                                            src="../../../app/assets/img/mega-site-nav-img-2.jpg"
+                                                            alt="Image description">
+
+                                                        <i class="margin-right-xxxs">Product Two</i>
+
+                                                        <svg class="icon icon--xs margin-left-auto" viewBox="0 0 16 16"
+                                                            aria-hidden="true">
+                                                            <path d="M5,2l6,6L5,14" fill="none" stroke="currentColor"
+                                                                stroke-linecap="square" stroke-miterlimit="10"
+                                                                stroke-width="1" /></svg>
+                                                    </span>
+                                                </a>
+                                            </li>
+
+                                            <li>
+                                                <a href="#tabProduct3" class="mega-nav__tabs-control js-tab-focus"
+                                                    aria-selected="true">
+                                                    <span class="flex items-center gap-xs">
+                                                        <img class="block width-lg height-lg radius-50% object-cover"
+                                                            src="../../../app/assets/img/mega-site-nav-img-3.jpg"
+                                                            alt="Image description">
+
+                                                        <i class="margin-right-xxxs">Product Three</i>
+
+                                                        <svg class="icon icon--xs margin-left-auto" viewBox="0 0 16 16"
+                                                            aria-hidden="true">
+                                                            <path d="M5,2l6,6L5,14" fill="none" stroke="currentColor"
+                                                                stroke-linecap="square" stroke-miterlimit="10"
+                                                                stroke-width="1" /></svg>
+                                                    </span>
+                                                </a>
+                                            </li>
+                                        </ul>
+
+                                        <div class="col-8 js-tabs__panels">
+                                            <section id="tabProduct1" class="mega-nav__tabs-panel js-tabs__panel">
+                                                <a href="#0" class="mega-nav__tabs-img margin-bottom-md">
+                                                    <img class="block width-100%"
+                                                        src="../../../app/assets/img/mega-site-nav-img-1.jpg"
+                                                        alt="Image description">
+                                                </a>
+
+                                                <div class="text-component">
+                                                    <h1 class="text-xl">Product One</h1>
+                                                    <p class="color-contrast-medium">Lorem ipsum dolor sit amet
+                                                        consectetur adipisicing elit. Amet, quaerat.</p>
+                                                    <p class="flex gap-xxs">
+                                                        <a href="#0" class="btn btn--subtle">Learn More</a>
+                                                        <a href="#0" class="btn btn--primary">Buy</a>
+                                                    </p>
+                                                </div>
+                                            </section>
+
+                                            <section id="tabProduct2" class="mega-nav__tabs-panel js-tabs__panel">
+                                                <a href="#0" class="mega-nav__tabs-img margin-bottom-md">
+                                                    <img class="block width-100%"
+                                                        src="../../../app/assets/img/mega-site-nav-img-2.jpg"
+                                                        alt="Image description">
+                                                </a>
+
+                                                <div class="text-component">
+                                                    <h1 class="text-xl">Product Two</h1>
+                                                    <p class="color-contrast-medium">Lorem ipsum dolor sit amet
+                                                        consectetur adipisicing elit. Amet, quaerat.</p>
+                                                    <p class="flex gap-xxs">
+                                                        <a href="#0" class="btn btn--subtle">Learn More</a>
+                                                        <a href="#0" class="btn btn--primary">Buy</a>
+                                                    </p>
+                                                </div>
+                                            </section>
+
+                                            <section id="tabProduct3" class="mega-nav__tabs-panel js-tabs__panel">
+                                                <a href="#0" class="mega-nav__tabs-img margin-bottom-md">
+                                                    <img class="block width-100%"
+                                                        src="../../../app/assets/img/mega-site-nav-img-3.jpg"
+                                                        alt="Image description">
+                                                </a>
+
+                                                <div class="text-component">
+                                                    <h1 class="text-xl">Product Three</h1>
+                                                    <p class="color-contrast-medium">Lorem ipsum dolor sit amet
+                                                        consectetur adipisicing elit. Amet, quaerat.</p>
+                                                    <p class="flex gap-xxs">
+                                                        <a href="#0" class="btn btn--subtle">Learn More</a>
+                                                        <a href="#0" class="btn btn--primary">Buy</a>
+                                                    </p>
+                                                </div>
+                                            </section>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- 👇 layout 2 -> multiple lists -->
+                        <li style="opacity: 0;" class="mega-nav__item js-mega-nav__item">
+                            <button class="reset mega-nav__control js-mega-nav__control js-tab-focus">
+                                Lists
+                                <i class="mega-nav__arrow-icon" aria-hidden="true">
+                                    <svg class="icon" viewBox="0 0 16 16">
+                                        <g class="icon__group" fill="none" stroke="currentColor" stroke-linecap="square"
+                                            stroke-miterlimit="10" stroke-width="2">
+                                            <path d="M2 2l12 12" />
+                                            <path d="M14 2L2 14" />
+                                        </g>
+                                    </svg>
+                                </i>
+                            </button>
+
+                            <div class="mega-nav__sub-nav-wrapper">
+                                <div class="mega-nav__sub-nav mega-nav__sub-nav--layout-2">
+                                    <ul class="mega-nav__sub-items">
+                                        <li class="mega-nav__label">Clothing</li>
+                                        <li class="mega-nav__sub-item"><a href="#0" class="mega-nav__sub-link">All
+                                                Clothing</a></li>
+                                        <li class="mega-nav__sub-item"><a href="#0" class="mega-nav__sub-link">Coats</a>
+                                        </li>
+                                        <li class="mega-nav__sub-item"><a href="#0"
+                                                class="mega-nav__sub-link">Dresses</a></li>
+                                        <li class="mega-nav__sub-item"><a href="#0"
+                                                class="mega-nav__sub-link">Jackets</a></li>
+                                        <li class="mega-nav__sub-item"><a href="#0" class="mega-nav__sub-link">Jeans</a>
+                                        </li>
+                                    </ul>
+
+                                    <ul class="mega-nav__sub-items">
+                                        <li class="mega-nav__label">Shoes</li>
+                                        <li class="mega-nav__sub-item"><a href="#0" class="mega-nav__sub-link">All
+                                                Shoes</a></li>
+                                        <li class="mega-nav__sub-item"><a href="#0"
+                                                class="mega-nav__sub-link">Trainers</a></li>
+                                        <li class="mega-nav__sub-item"><a href="#0" class="mega-nav__sub-link">Heels</a>
+                                        </li>
+                                        <li class="mega-nav__sub-item"><a href="#0" class="mega-nav__sub-link">Boots</a>
+                                        </li>
+                                        <li class="mega-nav__sub-item"><a href="#0" class="mega-nav__sub-link">Ankle
+                                                Boots</a></li>
+                                    </ul>
+
+                                    <ul class="mega-nav__sub-items">
+                                        <li class="mega-nav__label">Sports</li>
+                                        <li class="mega-nav__sub-item"><a href="#0" class="mega-nav__sub-link">All
+                                                Sports</a></li>
+                                        <li class="mega-nav__sub-item"><a href="#0"
+                                                class="mega-nav__sub-link">Basketball</a></li>
+                                        <li class="mega-nav__sub-item"><a href="#0"
+                                                class="mega-nav__sub-link">Fitness</a></li>
+                                        <li class="mega-nav__sub-item"><a href="#0"
+                                                class="mega-nav__sub-link">Football</a></li>
+                                        <li class="mega-nav__sub-item"><a href="#0" class="mega-nav__sub-link">Golf</a>
+                                        </li>
+                                        <li class="mega-nav__sub-item"><a href="#0"
+                                                class="mega-nav__sub-link">Running</a></li>
+                                        <li class="mega-nav__sub-item"><a href="#0"
+                                                class="mega-nav__sub-link">Swimming</a></li>
+                                    </ul>
+
+                                    <ul class="mega-nav__sub-items">
+                                        <li class="mega-nav__label">Accessories</li>
+                                        <li class="mega-nav__sub-item"><a href="#0" class="mega-nav__sub-link">All
+                                                Accessories</a></li>
+                                        <li class="mega-nav__sub-item"><a href="#0" class="mega-nav__sub-link">Bags</a>
+                                        </li>
+                                        <li class="mega-nav__sub-item"><a href="#0"
+                                                class="mega-nav__sub-link">Jewellery</a></li>
+                                        <li class="mega-nav__sub-item"><a href="#0"
+                                                class="mega-nav__sub-link">Watches</a></li>
+                                        <li class="mega-nav__sub-item"><a href="#0"
+                                                class="mega-nav__sub-link">Scarves</a></li>
+                                    </ul>
+
+                                    <div class="mega-nav__card width-100% max-width-xs margin-x-auto">
+                                        <a href="#0" class="block radius-lg overflow-hidden">
+                                            <figure class="aspect-ratio-4:3">
+                                                <img class="block width-100%"
+                                                    src="../../../app/assets/img/mega-site-nav-img-1.jpg"
+                                                    alt="Image description">
+                                            </figure>
+                                        </a>
+
+                                        <div class="margin-top-sm">
+                                            <h3 class="text-base"><a href="#0" class="mega-nav__card-title">Browse all
+                                                    →</a></h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- 👇 layout 3 -> gallery -->
+                        <li style="opacity: 0;" class="mega-nav__item js-mega-nav__item">
+                            <button class="reset mega-nav__control js-mega-nav__control js-tab-focus">
+                                Gallery
+                                <i class="mega-nav__arrow-icon" aria-hidden="true">
+                                    <svg class="icon" viewBox="0 0 16 16">
+                                        <g class="icon__group" fill="none" stroke="currentColor" stroke-linecap="square"
+                                            stroke-miterlimit="10" stroke-width="2">
+                                            <path d="M2 2l12 12" />
+                                            <path d="M14 2L2 14" />
+                                        </g>
+                                    </svg>
+                                </i>
+                            </button>
+
+                            <div class="mega-nav__sub-nav-wrapper">
+                                <div class="mega-nav__sub-nav mega-nav__sub-nav--layout-3">
+                                    <div class="mega-nav__card">
+                                        <a href="#0" class="block radius-lg overflow-hidden">
+                                            <figure class="aspect-ratio-4:3">
+                                                <img class="block width-100%"
+                                                    src="../../../app/assets/img/mega-site-nav-img-4.jpg"
+                                                    alt="Image description">
+                                            </figure>
+                                        </a>
+
+                                        <div class="margin-top-sm">
+                                            <h3 class="text-base"><a href="#0" class="mega-nav__card-title">Clothing</a>
+                                            </h3>
+                                        </div>
+                                    </div>
+
+                                    <div class="mega-nav__card">
+                                        <a href="#0" class="block radius-lg overflow-hidden">
+                                            <figure class="aspect-ratio-4:3">
+                                                <img class="block width-100%"
+                                                    src="../../../app/assets/img/mega-site-nav-img-5.jpg"
+                                                    alt="Image description">
+                                            </figure>
+                                        </a>
+
+                                        <div class="margin-top-sm">
+                                            <h3 class="text-base"><a href="#0" class="mega-nav__card-title">Shoes</a>
+                                            </h3>
+                                        </div>
+                                    </div>
+
+                                    <div class="mega-nav__card">
+                                        <a href="#0" class="block radius-lg overflow-hidden">
+                                            <figure class="aspect-ratio-4:3">
+                                                <img class="block width-100%"
+                                                    src="../../../app/assets/img/mega-site-nav-img-6.jpg"
+                                                    alt="Image description">
+                                            </figure>
+                                        </a>
+
+                                        <div class="margin-top-sm">
+                                            <h3 class="text-base"><a href="#0" class="mega-nav__card-title">Home</a>
+                                            </h3>
+                                        </div>
+                                    </div>
+
+                                    <div class="mega-nav__card">
+                                        <a href="#0" class="block radius-lg overflow-hidden">
+                                            <figure class="aspect-ratio-4:3">
+                                                <img class="block width-100%"
+                                                    src="../../../app/assets/img/mega-site-nav-img-7.jpg"
+                                                    alt="Image description">
+                                            </figure>
+                                        </a>
+
+                                        <div class="margin-top-sm">
+                                            <h3 class="text-base"><a href="#0"
+                                                    class="mega-nav__card-title">Accessories</a></h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- 👇 layout 4 -> single list -->
+                        <li style="opacity: 0;" class="mega-nav__item js-mega-nav__item">
+                            <button class="reset mega-nav__control js-mega-nav__control js-tab-focus">
+                                Support
+                                <i class="mega-nav__arrow-icon" aria-hidden="true">
+                                    <svg class="icon" viewBox="0 0 16 16">
+                                        <g class="icon__group" fill="none" stroke="currentColor" stroke-linecap="square"
+                                            stroke-miterlimit="10" stroke-width="2">
+                                            <path d="M2 2l12 12" />
+                                            <path d="M14 2L2 14" />
+                                        </g>
+                                    </svg>
+                                </i>
+                            </button>
+
+                            <div class="mega-nav__sub-nav-wrapper">
+                                <div class="mega-nav__sub-nav mega-nav__sub-nav--layout-4">
+                                    <ul class="mega-nav__sub-items">
+                                        <li class="mega-nav__label">Help &amp; Support</li>
+                                        <li class="mega-nav__sub-item"><a href="#0"
+                                                class="mega-nav__sub-link">Documentation</a></li>
+                                        <li class="mega-nav__sub-item"><a href="#0" class="mega-nav__sub-link">Questions
+                                                &amp; Answers</a></li>
+                                        <li class="mega-nav__sub-item"><a href="#0" class="mega-nav__sub-link">Contact
+                                                us</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li style="opacity: 0;" class="mega-nav__label">Other</li>
+
+                        <!-- 👇 link -->
+                        <li style="opacity: 0;" class="mega-nav__item">
+                            <a href="#0" class="mega-nav__control">Link</a>
+                        </li>
+                    </ul>
+
+                    <ul class="mega-nav__items">
+                        <!-- 👇 icon buttons --desktop -->
+                        <li class="mega-nav__icon-btns mega-nav__icon-btns--desktop">
+                            {{#if users}}
+                            <div class="dropdown inline-block js-dropdown">
+                                <div class="mega-nav__icon-btn dropdown__wrapper inline-block">
+                                    <a href="#0"
+                                        class="flex height-100% width-100% flex-center dropdown__trigger js-dropdown__trigger">
+                                        <svg version="1.0" class="color-change-2" id="user" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 448 512"><path d="M313.6 288c-28.7 0-42.5 16-89.6 16-47.1 0-60.8-16-89.6-16C60.2 288 0 348.2 0 422.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-41.6c0-74.2-60.2-134.4-134.4-134.4zM416 464c0 8.8-7.2 16-16 16H48c-8.8 0-16-7.2-16-16v-41.6C32 365.9 77.9 320 134.4 320c19.6 0 39.1 16 89.6 16 50.4 0 70-16 89.6-16 56.5 0 102.4 45.9 102.4 102.4V464zM224 256c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm0-224c52.9 0 96 43.1 96 96s-43.1 96-96 96-96-43.1-96-96 43.1-96 96-96z" /></svg>
+                                    </a>
+
+                                    <ul class="dropdown__menu js-dropdown__menu" aria-label="submenu">
+                                        <li><a href="/dashboard" class="dropdown__item">Dashboard</a></li>
+                                        <li><a href="/notifications" class="dropdown__item">Notifications</a></li>
+                                        <li><a href="/activity" class="dropdown__item">Activity</a></li>
+                                        <li class="dropdown__separator" role="separator"></li>
+                                        <li><a href="/options/account" class="dropdown__item">Options</a></li>
+                                        <li><a href="/login?alt=true" class="dropdown__item"><svg version="1.0" class="color-change-2" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512"><path d="M48 64h132c6.6 0 12 5.4 12 12v8c0 6.6-5.4 12-12 12H48c-8.8 0-16 7.2-16 16v288c0 8.8 7.2 16 16 16h132c6.6 0 12 5.4 12 12v8c0 6.6-5.4 12-12 12H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48zm279 19.5l-7.1 7.1c-4.7 4.7-4.7 12.3 0 17l132 131.4H172c-6.6 0-12 5.4-12 12v10c0 6.6 5.4 12 12 12h279.9L320 404.4c-4.7 4.7-4.7 12.3 0 17l7.1 7.1c4.7 4.7 12.3 4.7 17 0l164.5-164c4.7-4.7 4.7-12.3 0-17L344 83.5c-4.7-4.7-12.3-4.7-17 0z" /></svg></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            {{/if}}
+                        </li>
+
+                        <!-- 👇 button -->
+                        <li class="mega-nav__item">
+                            <a href="/login" class="reset mega-nav__icon-btn js-tab-focus"
+                                aria-label="Go to login" aria-controls="mega-nav-sign-in">
+                                <svg version="1.0" xmlns="http://www.w3.org/2000/svg" style="filter: invert(20%) sepia(50%) saturate(5445%) hue-rotate(337deg) brightness(92%) contrast(90%);" width="20" height="20" viewBox="0 0 512 512"><path d="M184 83.5l164.5 164c4.7 4.7 4.7 12.3 0 17L184 428.5c-4.7 4.7-12.3 4.7-17 0l-7.1-7.1c-4.7-4.7-4.7-12.3 0-17l132-131.4H12c-6.6 0-12-5.4-12-12v-10c0-6.6 5.4-12 12-12h279.9L160 107.6c-4.7-4.7-4.7-12.3 0-17l7.1-7.1c4.6-4.7 12.2-4.7 16.9 0zM512 400V112c0-26.5-21.5-48-48-48H332c-6.6 0-12 5.4-12 12v8c0 6.6 5.4 12 12 12h132c8.8 0 16 7.2 16 16v288c0 8.8-7.2 16-16 16H332c-6.6 0-12 5.4-12 12v8c0 6.6 5.4 12 12 12h132c26.5 0 48-21.5 48-48z" /></svg>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 👇 search -->
+            <div class="mega-nav__search js-mega-nav__search" id="mega-nav-search">
+                <div class="mega-nav__search-inner">
+                    <input class="form-control width-100%" type="reset search" name="megasite-search"
+                        id="megasite-search" placeholder="Search..." aria-label="Search">
+
+                    <div class="margin-top-lg">
+                        <p class="mega-nav__label">Quick Links</p>
+
+                        <ul>
+                            <li><a href="#0" class="mega-nav__quick-link">Find a Store</a></li>
+                            <li><a href="#0" class="mega-nav__quick-link">Your Orders</a></li>
+                            <li><a href="#0" class="mega-nav__quick-link">Documentation</a></li>
+                            <li><a href="#0" class="mega-nav__quick-link">Questions &amp; Answers</a></li>
+                            <li><a href="#0" class="mega-nav__quick-link">Contact Us</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="intro padding-y-xxl position-relative z-index-1">
+        <div class="container padding-y-xxl max-width-adaptive-sm position-relative z-index-2">
+            <div class="text-sm opacity-60% margin-bottom-xxs">v0.4</div>
+
+            <div class="text-component margin-bottom-sm">
+                <h1>Hi, It's nice to see you!</h1>
+                <p>Dynamics are important when designing for the web, not only that but how we develop and build upon those who go to designing the web is even more important. Introducing our new educational courses focused on helping younger audiences to get involved and inspired by the tech world and general web development.</p>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-sm">
+                <a href="/register" class="btn btn--primary">Get started</a>
+                <a href="/legals/frequently-asked-questions" class="color-inherit">Learn more</a>
+            </div>
+        </div>
+
+            <section class="diagonal-section diagonal-section--flip-xstyle= margin-bottom-xxl" style="background-color: var(--color-contrast-lower);">
+        <div class="container max-width-adaptive-sm padding-y-xl">
+
+        </div>
+    </section>
+
+    <div>
+          <header class="container max-width-md margin-bottom-lg">
+    <div class="text-component text-center line-height-lg text-gap-md margin-bottom-md">
+      <h1>Pricing</h1>
+      <p class="color-contrast-medium text-md">If you are interested in my websites and would like one made for your own business, below you will find my pricing for specific packages.</p>
+    </div>
+  </header>
+
+        <div class="padding-x-lg p-table">
+  <div class="grid gap-sm">
+    <div class="p-table__item col-4@md">
+      <div class="margin-bottom-2xs">
+        <h4 class="p-table__title">Standard</h4>
+      </div>
+
+      <div class="p-table__price margin-bottom-sm"><span>€100</span></div>
+
+      <ul class="p-table__features margin-bottom-md">
+        <li>Max 1000 Users</li>
+        <li>Login/Register Feature</li>
+        <li>2x Custom Features</li>
+        <li>24/7 Support</li>
+      </ul>
+
+      <div class="margin-top-auto"><a href="/login" class="btn btn--primary btn--md width-100%">Login</a></div>
+    </div>
+
+    <div class="p-table__item p-table__item--popular col-4@md">
+      <div class="flex justify-between items-center margin-bottom-2xs">
+        <h4 class="p-table__title">Professional</h4>
+        <span class="p-table__badge">Popular</span>
+      </div>
+
+      <div class="p-table__price margin-bottom-sm"><span>€250</span></div>
+
+      <ul class="p-table__features margin-bottom-md">
+        <li>Max 3000 Users</li>
+        <li>Login/Register Feature</li>
+        <li>Third-Party Integration</li>
+        <li>Custom Domain</li>
+        <li>SSL Certificate</li>
+        <li>Custom Design</li>
+        <li>10x Custom Features</li>
+        <li>24/7 Support</li>
+      </ul>
+
+      <div class="margin-top-auto"><a href="/login" class="btn btn--primary btn--md width-100%">Login</a></div>
+    </div>
+
+    <div class="p-table__item col-4@md">
+      <div class="margin-bottom-2xs">
+        <h4 class="p-table__title">Enterprise</h4>
+      </div>
+
+      <div class="p-table__price margin-bottom-sm"><span>€400</span></div>
+
+      <ul class="p-table__features margin-bottom-md">
+        <li>5000+ Users</li>
+        <li>Custom Login/Register Feature</li>
+        <li>Third-Party Integration</li>
+        <li>Custom Domain</li>
+        <li>SSL Certificate</li>
+        <li>Custom Design</li>
+        <li>Unlimited Custom Features</li>
+        <li>Priority 24/7 Support</li>
+      </ul>
+
+      <div class="margin-top-auto"><a href="/login" class="btn btn--primary btn--md width-100%">Login</a></div>
+    </div>
+  </div>
+</div>
+</div>
+
+            <section class="diagonal-section diagonal-section--flip-x margin-y-xxl" style="background-color: var(--color-contrast-lower);">
+        <div class="container max-width-adaptive-sm padding-y-xl">
+
+        </div>
+    </section>
+
+    <div style="height: 100%; width: 100%;" class="color-contrast-low padding-sm border-radius radius-md">
+          <header class="container max-width-md margin-bottom-lg">
+    <div class="text-component text-center line-height-lg text-gap-md margin-bottom-md">
+      <h1>Recent Projects</h1>
+      <p class="color-contrast-medium text-md">Below you will find a few of my most recent projects, some of which have been produced for clients, given approval to share with you.</p>
+    </div>
+  </header>
+
+        <section class="articles-v3">
+{{#each projects}}
+  <div class="cd-container cd-max-width-adaptive-lg">
+    <ul class="articles-v3__list-grid">
+      <li class="articles-v3__item-grid">
+        <a href="{{this.url}}" class="articles-v3__img-wrapper">
+          <img src="{{URL 'utils/img/projects/'}}{{this.number}}.png" alt="Image description">
+        </a>
+  
+        <div>
+          <h2 class="articles-v3__headline"><a href="{{this.url}}">{{this.title}}</a></h2>
+          
+          <p class="articles-v3__description" style="word-wrap: break-word;">{{this.description}}</p>
+  
+          <div class="articles-v3__author">
+            <a href="#0" class="articles-v3__author-img">
+              <img src="/utils/img/jpg/me.jpg" alt="Author picture">
+            </a>
+      
+            <div class="articles-v3__author-info">
+              <p><a href="#0" class="articles-v3__author-name" rel="author">{{this.author}}</a></p>
+              <p class="articles-v3__date"><time>{{this.date}}</time> &mdash; Approved</p>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>{{/each}}
+</section>
+</div>
+
+        <figure class="bg-decoration-v2 z-index-1" aria-hidden="true">
+            <svg class="bg-decoration-v2__svg color-contrast-higher opacity-10%" viewBox="0 0 1920 450" fill="none">
+                <g opacity="1" fill="currentColor" stroke="none">
+                    <circle cx="1544" cy="287" r="2" />
+                    <circle cx="1544" cy="303" r="2" />
+                    <circle cx="1544" cy="319" r="2" />
+                    <circle cx="1544" cy="335" r="2" />
+                    <circle cx="1544" cy="351" r="2" />
+                    <circle cx="1544" cy="367" r="2" />
+                    <circle cx="1544" cy="383" r="2" />
+                    <circle cx="1544" cy="399" r="2" />
+                    <circle cx="1544" cy="415" r="2" />
+                    <circle cx="1544" cy="431" r="2" />
+                    <circle cx="1560" cy="287" r="2" />
+                    <circle cx="1560" cy="303" r="2" />
+                    <circle cx="1560" cy="319" r="2" />
+                    <circle cx="1560" cy="335" r="2" />
+                    <circle cx="1560" cy="351" r="2" />
+                    <circle cx="1560" cy="367" r="2" />
+                    <circle cx="1560" cy="383" r="2" />
+                    <circle cx="1560" cy="399" r="2" />
+                    <circle cx="1560" cy="415" r="2" />
+                    <circle cx="1560" cy="431" r="2" />
+                    <circle cx="1576" cy="287" r="2" />
+                    <circle cx="1576" cy="303" r="2" />
+                    <circle cx="1576" cy="319" r="2" />
+                    <circle cx="1576" cy="335" r="2" />
+                    <circle cx="1576" cy="351" r="2" />
+                    <circle cx="1576" cy="367" r="2" />
+                    <circle cx="1576" cy="383" r="2" />
+                    <circle cx="1576" cy="399" r="2" />
+                    <circle cx="1576" cy="415" r="2" />
+                    <circle cx="1576" cy="431" r="2" />
+                    <circle cx="1592" cy="287" r="2" />
+                    <circle cx="1592" cy="303" r="2" />
+                    <circle cx="1592" cy="319" r="2" />
+                    <circle cx="1592" cy="335" r="2" />
+                    <circle cx="1592" cy="351" r="2" />
+                    <circle cx="1592" cy="367" r="2" />
+                    <circle cx="1592" cy="383" r="2" />
+                    <circle cx="1592" cy="399" r="2" />
+                    <circle cx="1592" cy="415" r="2" />
+                    <circle cx="1592" cy="431" r="2" />
+                    <circle cx="1608" cy="287" r="2" />
+                    <circle cx="1624" cy="287" r="2" />
+                    <circle cx="1640" cy="287" r="2" />
+                    <circle cx="1656" cy="287" r="2" />
+                    <circle cx="1672" cy="287" r="2" />
+                    <circle cx="1688" cy="287" r="2" />
+                    <circle cx="1608" cy="303" r="2" />
+                    <circle cx="1624" cy="303" r="2" />
+                    <circle cx="1640" cy="303" r="2" />
+                    <circle cx="1656" cy="303" r="2" />
+                    <circle cx="1672" cy="303" r="2" />
+                    <circle cx="1688" cy="303" r="2" />
+                    <circle cx="1608" cy="319" r="2" />
+                    <circle cx="1624" cy="319" r="2" />
+                    <circle cx="1640" cy="319" r="2" />
+                    <circle cx="1656" cy="319" r="2" />
+                    <circle cx="1672" cy="319" r="2" />
+                    <circle cx="1688" cy="319" r="2" />
+                    <circle cx="1608" cy="335" r="2" />
+                    <circle cx="1624" cy="335" r="2" />
+                    <circle cx="1640" cy="335" r="2" />
+                    <circle cx="1656" cy="335" r="2" />
+                    <circle cx="1672" cy="335" r="2" />
+                    <circle cx="1688" cy="335" r="2" />
+                    <circle cx="1608" cy="351" r="2" />
+                    <circle cx="1608" cy="367" r="2" />
+                    <circle cx="1608" cy="383" r="2" />
+                    <circle cx="1608" cy="399" r="2" />
+                    <circle cx="1608" cy="415" r="2" />
+                    <circle cx="1608" cy="431" r="2" />
+                    <circle cx="1624" cy="351" r="2" />
+                    <circle cx="1624" cy="367" r="2" />
+                    <circle cx="1624" cy="383" r="2" />
+                    <circle cx="1624" cy="399" r="2" />
+                    <circle cx="1624" cy="415" r="2" />
+                    <circle cx="1624" cy="431" r="2" />
+                    <circle cx="1640" cy="351" r="2" />
+                    <circle cx="1656" cy="351" r="2" />
+                    <circle cx="1672" cy="351" r="2" />
+                    <circle cx="1688" cy="351" r="2" />
+                    <circle cx="1640" cy="367" r="2" />
+                    <circle cx="1656" cy="367" r="2" />
+                    <circle cx="1672" cy="367" r="2" />
+                    <circle cx="1688" cy="367" r="2" />
+                    <circle cx="1640" cy="383" r="2" />
+                    <circle cx="1640" cy="399" r="2" />
+                    <circle cx="1640" cy="415" r="2" />
+                    <circle cx="1640" cy="431" r="2" />
+                    <circle cx="1656" cy="383" r="2" />
+                    <circle cx="1672" cy="383" r="2" />
+                    <circle cx="1688" cy="383" r="2" />
+                    <circle cx="1656" cy="399" r="2" />
+                    <circle cx="1656" cy="415" r="2" />
+                    <circle cx="1656" cy="431" r="2" />
+                    <circle cx="1672" cy="399" r="2" />
+                    <circle cx="1672" cy="415" r="2" />
+                    <circle cx="1672" cy="431" r="2" />
+                    <circle cx="1688" cy="399" r="2" />
+                    <circle cx="1688" cy="415" r="2" />
+                    <circle cx="1688" cy="431" r="2" />
+                    <circle cx="232" cy="37" r="2" />
+                    <circle cx="232" cy="53" r="2" />
+                    <circle cx="232" cy="69" r="2" />
+                    <circle cx="232" cy="85" r="2" />
+                    <circle cx="232" cy="101" r="2" />
+                    <circle cx="232" cy="117" r="2" />
+                    <circle cx="232" cy="133" r="2" />
+                    <circle cx="232" cy="149" r="2" />
+                    <circle cx="232" cy="165" r="2" />
+                    <circle cx="232" cy="181" r="2" />
+                    <circle cx="248" cy="37" r="2" />
+                    <circle cx="248" cy="53" r="2" />
+                    <circle cx="248" cy="69" r="2" />
+                    <circle cx="248" cy="85" r="2" />
+                    <circle cx="248" cy="101" r="2" />
+                    <circle cx="248" cy="117" r="2" />
+                    <circle cx="248" cy="133" r="2" />
+                    <circle cx="248" cy="149" r="2" />
+                    <circle cx="248" cy="165" r="2" />
+                    <circle cx="248" cy="181" r="2" />
+                    <circle cx="264" cy="37" r="2" />
+                    <circle cx="264" cy="53" r="2" />
+                    <circle cx="264" cy="69" r="2" />
+                    <circle cx="264" cy="85" r="2" />
+                    <circle cx="264" cy="101" r="2" />
+                    <circle cx="264" cy="117" r="2" />
+                    <circle cx="264" cy="133" r="2" />
+                    <circle cx="264" cy="149" r="2" />
+                    <circle cx="264" cy="165" r="2" />
+                    <circle cx="264" cy="181" r="2" />
+                    <circle cx="280" cy="37" r="2" />
+                    <circle cx="280" cy="53" r="2" />
+                    <circle cx="280" cy="69" r="2" />
+                    <circle cx="280" cy="85" r="2" />
+                    <circle cx="280" cy="101" r="2" />
+                    <circle cx="280" cy="117" r="2" />
+                    <circle cx="280" cy="133" r="2" />
+                    <circle cx="280" cy="149" r="2" />
+                    <circle cx="280" cy="165" r="2" />
+                    <circle cx="280" cy="181" r="2" />
+                    <circle cx="296" cy="37" r="2" />
+                    <circle cx="312" cy="37" r="2" />
+                    <circle cx="328" cy="37" r="2" />
+                    <circle cx="344" cy="37" r="2" />
+                    <circle cx="360" cy="37" r="2" />
+                    <circle cx="376" cy="37" r="2" />
+                    <circle cx="296" cy="53" r="2" />
+                    <circle cx="312" cy="53" r="2" />
+                    <circle cx="328" cy="53" r="2" />
+                    <circle cx="344" cy="53" r="2" />
+                    <circle cx="360" cy="53" r="2" />
+                    <circle cx="376" cy="53" r="2" />
+                    <circle cx="296" cy="69" r="2" />
+                    <circle cx="312" cy="69" r="2" />
+                    <circle cx="328" cy="69" r="2" />
+                    <circle cx="344" cy="69" r="2" />
+                    <circle cx="360" cy="69" r="2" />
+                    <circle cx="376" cy="69" r="2" />
+                    <circle cx="296" cy="85" r="2" />
+                    <circle cx="312" cy="85" r="2" />
+                    <circle cx="328" cy="85" r="2" />
+                    <circle cx="344" cy="85" r="2" />
+                    <circle cx="360" cy="85" r="2" />
+                    <circle cx="376" cy="85" r="2" />
+                    <circle cx="296" cy="101" r="2" />
+                    <circle cx="296" cy="117" r="2" />
+                    <circle cx="296" cy="133" r="2" />
+                    <circle cx="296" cy="149" r="2" />
+                    <circle cx="296" cy="165" r="2" />
+                    <circle cx="296" cy="181" r="2" />
+                    <circle cx="312" cy="101" r="2" />
+                    <circle cx="312" cy="117" r="2" />
+                    <circle cx="312" cy="133" r="2" />
+                    <circle cx="312" cy="149" r="2" />
+                    <circle cx="312" cy="165" r="2" />
+                    <circle cx="312" cy="181" r="2" />
+                    <circle cx="328" cy="101" r="2" />
+                    <circle cx="344" cy="101" r="2" />
+                    <circle cx="360" cy="101" r="2" />
+                    <circle cx="376" cy="101" r="2" />
+                    <circle cx="328" cy="117" r="2" />
+                    <circle cx="344" cy="117" r="2" />
+                    <circle cx="360" cy="117" r="2" />
+                    <circle cx="376" cy="117" r="2" />
+                    <circle cx="328" cy="133" r="2" />
+                    <circle cx="328" cy="149" r="2" />
+                    <circle cx="328" cy="165" r="2" />
+                    <circle cx="328" cy="181" r="2" />
+                    <circle cx="344" cy="133" r="2" />
+                    <circle cx="360" cy="133" r="2" />
+                    <circle cx="376" cy="133" r="2" />
+                    <circle cx="344" cy="149" r="2" />
+                    <circle cx="344" cy="165" r="2" />
+                    <circle cx="344" cy="181" r="2" />
+                    <circle cx="360" cy="149" r="2" />
+                    <circle cx="360" cy="165" r="2" />
+                    <circle cx="360" cy="181" r="2" />
+                    <circle cx="376" cy="149" r="2" />
+                    <circle cx="376" cy="165" r="2" />
+                    <circle cx="376" cy="181" r="2" />
+                </g>
+                <g stroke="currentColor" stroke-width="2">
+                    <rect x="1568" y="83" width="244" height="244" />
+                    <rect x="124" y="-135" width="244" height="244" />
+                </g>
+            </svg>
+        </figure>
+    </section>
+</div>
+
+<script>
+    //document.body.style.overflowY = 'hidden';
+</script>

@@ -1,0 +1,70 @@
+{
+  "name": "reece-barker.co",
+  "version": "v0.4",
+  "description": "A portfolio of all of Reece Barker's projects and achievements for potential employers.",
+  "main": "www.js",
+  "scripts": {
+    "start": "node www.js",
+    "bundle": "node bundle.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reece-barker/Reece-Barker"
+  },
+  "author": {
+    "name": "Reece Barker",
+    "email": "reecenbarker@gmail.com",
+    "url": "https://www.reece-barker.co/"
+  },
+  "bugs": {
+    "url": "https://github.com/reece-barker/Reece-Barker/issues"
+  },
+  "homepage": "https://github.com/reece-barker/Reece-Barker",
+  "license": "ISC",
+  "dependencies": {
+    "autoprefixer": "^10.4.13",
+    "body-parser": "^1.20.1",
+    "cli-color": "^2.0.3",
+    "cli-cursor": "^4.0.0",
+    "cli-spinners": "^2.7.0",
+    "cli-table": "^0.3.11",
+    "connect-mongodb-session": "^3.1.1",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.0.3",
+    "duplexpair": "^1.0.1",
+    "express": "^4.18.2",
+    "express-crypto": "^1.0.5",
+    "express-handlebars": "^6.0.6",
+    "express-session": "^1.17.3",
+    "express-socket.io-session": "^1.3.5",
+    "fs": "^0.0.1-security",
+    "ftp-srv": "^4.6.2",
+    "ftpd": "^0.2.16",
+    "gulp": "^4.0.2",
+    "gulp-browserify": "^0.5.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-livereload": "^4.0.2",
+    "gulp-postcss": "^9.0.1",
+    "gulp-rename": "^2.0.0",
+    "gulp-sass": "^5.1.0",
+    "gulp-sass-glob": "^1.1.0",
+    "gulp-uglify": "^3.0.2",
+    "https": "^1.0.0",
+    "moment": "^2.29.4",
+    "mongodb-stitch-browser-sdk": "^4.8.0",
+    "node-sass": "^8.0.0",
+    "nodemailer": "^6.8.0",
+    "nodemon": "^2.0.20",
+    "openssl": "^2.0.0",
+    "ora": "^6.1.2",
+    "path": "^0.12.7",
+    "postcss-calc": "^8.2.4",
+    "postcss-css-variables": "^0.18.0",
+    "realm": "^11.3.1",
+    "socket.io": "^4.5.4",
+    "stripe": "^11.3.0",
+    "superagent": "^8.0.6",
+    "uuid": "^9.0.0"
+  }
+}

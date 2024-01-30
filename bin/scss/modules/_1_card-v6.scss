@@ -1,0 +1,80 @@
+/* -------------------------------- 
+
+File#: _1_card-v6
+Title: Card v6
+Descr: Container of information used as teasers for further content, often displayed in a gallery of related items
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+.card-v6 {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+  background-color: var(--color-bg);
+  transition: box-shadow .3s;
+
+  &:hover {
+    box-shadow: var(--shadow-md);
+
+    .card-v6__arrow .icon {
+      animation: card-v6-icon .3s;
+    }
+  }
+}
+
+.card-v6__img {
+  img {
+    display: block;
+    width: 100%;
+  }
+}
+
+.card-v6__content {
+  padding: var(--space-sm);
+}
+
+.card-v6__label {
+  font-size: var(--text-sm);
+  margin-bottom: var(--space-xs);
+  color: var(--color-contrast-medium);
+}
+
+.card-v6__arrow {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 2.4em;
+  height: 2.4em;
+  background-color: alpha(var(--color-black), 0.85);
+  overflow: hidden;
+
+  .icon {
+    font-size: 1.2em; // icon size
+    width: 1em;
+    height: 1em;
+    display: block;
+    position: absolute;
+    left: calc(50% - 0.5em);
+    top: calc(50% - 0.5em);
+    color: var(--color-white);
+  }
+}
+
+@keyframes card-v6-icon {
+  0%, 100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  50% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+
+  51% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+}

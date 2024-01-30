@@ -1,0 +1,43 @@
+/* -------------------------------- 
+
+File#: _1_parallax-image
+Title: Parallax Image
+Descr: Figure element with images floating in a 3D space
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+.parallax-img {}
+
+.parallax-img__assets {
+  position: relative;
+
+  img {
+    display: block;
+    width: 100%;
+  }
+
+  img:not(:first-of-type) {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
+
+.js {
+  .parallax-img {
+    overflow: hidden;
+    perspective: 4000px;
+    opacity: 0; // hide image while it is initialized in JS
+  }
+
+  .parallax-img--loaded {
+    opacity: 1;
+  }
+
+  .parallax-img__assets {
+    transform-style: preserve-3d;
+    transform: translateZ(0);
+    will-change: transform;
+  }
+}

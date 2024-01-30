@@ -1,0 +1,15 @@
+/* -------------------------------- 
+
+File#: _1_customer-logos
+Title: Customer Logos
+Descr: A gallery of trusted companies
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+.customer-logos {}
+
+.customer-logos__logo {
+  display: block;
+  fill: var(--color-contrast-medium);
+}

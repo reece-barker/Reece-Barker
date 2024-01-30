@@ -1,0 +1,102 @@
+/* -------------------------------- 
+
+File#: _1_feature-v12
+Title: Feature v12
+Descr: Feature section containing text that overlaps a background image
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+.feature-v12, .feature-v12__offset-item, .feature-v12__bg-item {
+  position: relative;
+}
+
+.feature-v12, .feature-v12__bg-item {
+  z-index: 1;
+}
+
+.feature-v12__offset-item {
+  z-index: 2;
+}
+
+.feature-v12--left, .feature-v12--right {
+  .feature-v12__offset-item {
+    width: calc(100% + var(--feature-v12-offset, 3em));
+  }
+}
+
+.feature-v12--right {
+  .feature-v12__offset-item {
+    margin-left: calc(-1 * var(--feature-v12-offset, 3em));
+  }
+}
+
+.feature-v12--top {
+  .feature-v12__offset-item {
+    margin-bottom: calc(-1 * var(--feature-v12-offset, 3em));
+  }
+}
+
+.feature-v12--bottom {
+  .feature-v12__offset-item {
+    margin-top: calc(-1 * var(--feature-v12-offset, 3em));
+  }
+}
+
+// offset scale
+$feature-v12-offsets: (
+  xs: 2em,
+  sm: 3em,
+  md: 5em,
+  lg: 8em,
+  xl: 13em
+);
+
+@each $offset, $value in $feature-v12-offsets {
+  .feature-v12--offset-#{$offset} { 
+    --feature-v12-offset: #{$value}; 
+  }
+}
+
+@each $breakpoint, $value in $breakpoints {
+  @include breakpoint(#{$breakpoint}) {
+    .feature-v12--left\@#{$breakpoint}, .feature-v12--right\@#{$breakpoint} {
+      .feature-v12__offset-item {
+        width: calc(100% + var(--feature-v12-offset, 3em));
+        margin: 0;
+      }
+    }
+    
+    .feature-v12--right\@#{$breakpoint} {
+      .feature-v12__offset-item {
+        margin-left: calc(-1 * var(--feature-v12-offset, 3em));
+      }
+    }
+
+    .feature-v12--top\@#{$breakpoint},
+    .feature-v12--bottom\@#{$breakpoint} {
+      .feature-v12__offset-item {
+        width: auto;
+        margin: 0;
+      }
+    }
+    
+    .feature-v12--top\@#{$breakpoint} {
+      .feature-v12__offset-item {
+        margin-bottom: calc(-1 * var(--feature-v12-offset, 3em));
+      }
+    }
+    
+    .feature-v12--bottom\@#{$breakpoint} {
+      .feature-v12__offset-item {
+        margin-top: calc(-1 * var(--feature-v12-offset, 3em));
+      }
+    }
+
+    @each $offset, $value in $feature-v12-offsets {
+      .feature-v12--offset-#{$offset}\@#{$breakpoint} { 
+        --feature-v12-offset: #{$value}; 
+      }
+    }
+  }
+}

@@ -1,0 +1,64 @@
+/* -------------------------------- 
+
+File#: _1_overscroll-section
+Title: Overscroll Section
+Descr: Section overlapping visible content on scroll
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+.overscroll-section {
+  position: relative;
+  --overscroll-section-opacity: 0; // overlay layer opacity - modified using JS
+}
+
+.overscroll-section__sticky-content { // the height of this section should be 100vh or more
+  position: sticky;
+  z-index: 1;
+}
+
+.overscroll-section__scroll-content {
+  position: relative;
+  z-index: 2;
+  transform: translateZ(0); // fix z-index issue on Safari
+
+  &::before, // overlay layer
+  &::after { // top box shadow
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    transform: translateY(-100%);
+    pointer-events: none;
+  }
+
+  &::before { // overlay layer
+    height: 100vh;
+    background: var(--color-black);
+    opacity: var(--overscroll-section-opacity, 0);
+    z-index: 1;
+  }
+
+  &::after { // top box shadow
+    height: 80px;
+    background: 
+      linear-gradient(to top, alpha(var(--color-black), 0.025) 0%, alpha(var(--color-black), 0) 5%), 
+      linear-gradient(to top, alpha(var(--color-black), 0.025) 0%, alpha(var(--color-black), 0) 10%), 
+      linear-gradient(to top, alpha(var(--color-black), 0.025) 0%, alpha(var(--color-black), 0) 20%), 
+      linear-gradient(to top, alpha(var(--color-black), 0.025) 0%, alpha(var(--color-black), 0) 50%),
+      linear-gradient(to top, alpha(var(--color-black), 0.025) 0%, alpha(var(--color-black), 0) 100%);
+  }
+}
+
+// disable overscroll effect
+.overscroll-section--disabled { // this class is added in JS if overscroll-section__sticky-content height < viewport height
+  .overscroll-section__sticky-content {
+    position: static;
+  }
+
+  .overscroll-section__scroll-content::before,
+  .overscroll-section__scroll-content::after {
+    display: none;
+  }
+}

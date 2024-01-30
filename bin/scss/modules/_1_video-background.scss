@@ -1,0 +1,61 @@
+/* -------------------------------- 
+
+File#: _1_video-background
+Title: Responsive Video Background
+Descr: A full-width responsive video background
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+.video-bg {}
+
+.video-bg__media {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+
+  video {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    min-height: 100%;
+    min-width: 100%;
+    height: auto;
+    width: auto;
+    max-width: none;
+
+    @supports(object-fit: cover) {
+      object-fit: cover;
+      height: 100%;
+      width: 100%;
+    }
+
+    @supports (object-fit: cover) and (-ms-ime-align:auto) { 
+      // fix issue on Edge - object-fit not working for video elements
+      height: auto;
+      width: auto;
+    }
+  } 
+
+  img { // video fallback - visible if Reduced Motion is enabled
+    display: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    video {
+      visibility: hidden;
+    }
+    
+    img {
+      display: block;
+      position: absolute;
+      object-fit: cover;
+      height: 100%;
+      width: 100%;
+    }
+  }
+}

@@ -1,0 +1,299 @@
+/* --------------------------------
+
+File#: _1_newsletter-input
+Title: Newsletter Input
+Descr: Animated newsletter input
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+:root {
+  // form control
+  --news-form-input-height: 48px;
+  --news-form-input-padding-x: 18px;
+  --news-form-input-radius: 50em;
+
+  // button
+  --news-form-btn-margin: 4px;
+  --news-form-btn-padding-x: 16px;
+
+  // animated icon
+  --news-form-icon-size: 24px;
+}
+
+.news-form {}
+
+.news-form__wrapper {
+  position: relative;
+}
+
+.news-form__input {
+  background-color: alpha(var(--color-contrast-higher), 0.075);
+  padding: 0 var(--news-form-input-padding-x);
+  border-radius: var(--news-form-input-radius);
+  
+  width: 100%;
+  height: var(--news-form-input-height);
+  
+  transition: .2s;
+
+  &:focus {
+    outline: none;
+    background-color: var(--color-bg);
+    box-shadow: var(--shadow-md), 0 0 0 2px var(--color-primary);
+  }
+}
+
+.news-form__btn { // button disabled state
+  display: inline-block;
+  overflow: hidden;
+
+  position: absolute;
+  top: var(--news-form-btn-margin);
+  right: var(--news-form-btn-margin);
+  height: calc(var(--news-form-input-height) - 2*var(--news-form-btn-margin));
+  padding: 0 var(--news-form-btn-padding-x);
+
+  background-color: alpha(var(--color-contrast-higher), 0.2);
+  color: alpha(var(--color-contrast-higher), 0.9);
+  border-radius: calc(var(--news-form-input-radius) * 0.85);
+  box-shadow: var(--shadow-sm);
+
+  font-size: var(--text-sm);
+  @include fontSmooth;
+  cursor: pointer;
+
+  transition: .2s;
+
+  > * { // text and icon
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform .3s var(--ease-out);
+  }
+
+  > *:last-child { // icon
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: translateY(100%);
+  }
+}
+
+// animated icon
+.news-form__icon {
+  display: block;
+  width: var(--news-form-icon-size);
+  height: var(--news-form-icon-size);
+
+  > * {
+    transform-origin: 50% 50%;
+  }
+}
+
+.news-form__icon-circle {
+  stroke-dashoffset: 160;
+  stroke-dasharray: 32;
+}
+
+.news-form__icon-check {
+  stroke-dashoffset: 30;
+  stroke-dasharray: 30;
+}
+
+.news-form__icon-excl-line {
+  stroke-dashoffset: 14;
+  stroke-dasharray: 14;
+  
+}
+
+.news-form__icon-excl-dot {
+  transform-origin: 12px 21.5px;
+  transform: scale(0);
+}
+
+// form states
+.news-form--enabled{ // if user enters valid email address
+  .news-form__btn { // button active state
+    background-color: var(--color-primary);
+    color: var(--color-white);
+  
+    &:hover {
+      background-color: var(--color-primary-dark);
+    }
+  }
+}
+
+.news-form--loading {
+  .news-form__btn {
+    > *:first-child {
+      transform: translateY(-100%);
+    }
+
+    > *:last-child {
+      transform: translateY(0);
+    }
+  }
+}
+
+.news-form--circle-loop {
+  .news-form__icon-circle {
+    animation: news-input-circle-anim-loader 1s var(--ease-in-out); 
+  }
+}
+
+.news-form--success,
+.news-form--error {
+  .news-form__btn {
+    > * {
+      transition: none;
+    }
+
+    > *:first-child {
+      transform: translateY(-100%);
+    }
+
+    > *:last-child {
+      transform: translateY(0);
+    }
+  }
+}
+
+.news-form--success {
+  .news-form__icon-circle {
+    animation: news-input-circle-anim-success 1s var(--ease-in-out) forwards;
+  }
+
+  .news-form__icon-check {
+    animation: news-input-check-anim-success 0.5s 0.8s var(--ease-in-out) forwards;
+  }
+}
+
+.news-form--error {
+  .news-form__icon-circle {
+    animation: news-input-circle-anim-error 0.8s var(--ease-in-out) forwards;
+  }
+
+  .news-form__icon-excl-line {
+    animation: news-input-line-anim-error 0.3s 0.6s var(--ease-in-out) forwards;
+  }
+
+  .news-form__icon-excl-dot {
+    animation: news-input-dot-anim-error 0.3s 0.9s var(--ease-out) forwards;
+  }
+}
+
+@keyframes news-input-circle-anim-loader {
+  from {
+    transform: rotate(0);
+    stroke-dashoffset: 160;
+  }
+
+  to {
+    stroke-dashoffset: 96;
+    transform: rotate(-180deg);
+  }
+}
+
+@keyframes news-input-circle-anim-success {
+  from {
+    transform: rotate(0);
+    stroke-dashoffset: 160;
+  }
+
+  to {
+    transform: rotate(-180deg);
+    stroke-dashoffset: 96;
+  }
+}
+
+@keyframes news-input-circle-anim-error {
+  from {
+    transform: rotate(0);
+    stroke-dashoffset: 160;
+  }
+
+  to {
+    transform: rotate(-90deg);
+    stroke-dashoffset: 96;
+  }
+}
+
+@keyframes news-input-check-anim-success {
+  from {
+    stroke-dashoffset: 30;
+  }
+
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes news-input-line-anim-error {
+  from {
+    stroke-dashoffset: 14;
+  }
+
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes news-input-dot-anim-error {
+  from {
+    transform: translateY(-4px) scale(0);
+  }
+
+  to {
+    transform: translateY(0) scale(1);
+  }
+}
+
+// feedback success/error message
+.news-form__msg {
+  position: absolute;
+  z-index: var(--zindex-popover);
+  top: calc(14px + var(--news-form-input-height));
+  left: 5%;
+  width: 90%;
+  border-top-left-radius: 0;
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: opacity .3s, visibility 0s .3s, transform .3s var(--ease-out);
+
+  &::before { // triangle
+    content: '';
+    width: 12px;
+    height: 10px;
+    background-color: inherit;
+
+    position: absolute;
+    left: 0;
+    bottom: calc(100% - 1px);
+    clip-path: polygon(0% 0%, 100% 100%, 0% 100%);
+  }
+}
+
+.news-form__msg--success {
+  background-color: var(--color-success-lighter);
+  color: var(--color-contrast-higher);
+}
+
+.news-form__msg--error {
+  background-color: var(--color-error-lighter);
+  color: var(--color-white);
+  @include fontSmooth;
+}
+
+.news-form--success .news-form__msg--success, 
+.news-form--error .news-form__msg--error {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0px);
+  transition: opacity .3s 1s, transform .3s 1s var(--ease-out);
+}

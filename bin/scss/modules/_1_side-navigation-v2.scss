@@ -1,0 +1,220 @@
+/* -------------------------------- 
+
+File#: _1_side-navigation-v2
+Title: Side Navigation v2
+Descr: Collapsible Side Navigation
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+// >>> style affecting both all (collapsed + static) versions 👇
+.sidenav-v2 {
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+.sidenav-v2__control { // control button - all versions
+  width: 100%;
+  padding: var(--space-sm);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sidenav-v2__control-text { // text inside control button - all versions
+  position: relative;
+
+  > * {
+    display: inline-block;
+    transition: opacity .4s, transform .4s var(--ease-out);
+  }
+
+  > *:last-child {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-10px);
+  }
+}
+
+.sidenav-v2__icon-arrow { // arrow icon 
+  .icon__group {
+    will-change: transform;
+    transform-origin: 8px 8px;
+    transition: transform .3s var(--ease-out);
+
+    > * {
+      transform-origin: 8px 8px;
+      stroke-dasharray: 17;
+      transform: translateY(3px);
+      transition: transform .3s, stroke-dashoffset .3s;
+      transition-timing-function: var(--ease-out);
+    }
+
+    > *:first-child {
+      stroke-dashoffset: 8.5;
+    }
+
+    > *:last-child {
+      stroke-dashoffset: 8.5;
+    }
+  }
+}
+
+.sidenav-v2__list:not(:last-child) { // list - all versions
+  margin-bottom: var(--space-sm);
+}
+
+.sidenav-v2__label { // label/separator - all versions
+  margin-bottom: var(--space-xxxxs);
+
+  > * {
+    color: var(--color-contrast-medium);
+    font-size: var(--text-sm);
+  }
+}
+
+.sidenav-v2__link { // link - all versions
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--color-contrast-high);
+  transition: .2s;
+
+  &:hover {
+    background-color: var(--color-contrast-lower);
+  }
+
+  &[aria-current="page"] {
+    background-color: var(--color-contrast-higher);
+    color: var(--color-bg);
+  }
+}
+
+.sidenav-v2__link-text { // text inside links - all versions
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-right: var(--space-xxxs);
+}
+
+.sidenav-v2__counter { // notification counter - all versions
+  display: inline-flex;
+  background-color: alpha(var(--color-contrast-higher), 0.15);
+  font-size: var(--text-xs);
+  padding: var(--space-xxxxs) var(--space-xs);
+  border-radius: 50em;
+  margin-left: auto;
+}
+// <<< end style affecting all versions
+
+// >>> collapsed version only (mobile) 👇
+.sidenav-v2:not(.sidenav-v2--static) {
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg);
+  box-shadow: var(--shadow-sm);
+  transition: .3s;
+
+  &:hover {
+    box-shadow: var(--shadow-md);
+  }
+
+  .sidenav-v2__nav { // navigation - collapsed version only
+    display: none;
+    margin: var(--space-xxs) 0;
+  }
+
+  .sidenav-v2__label { // label - collapsed version only
+    padding-left: var(--space-sm);
+  }
+
+  .sidenav-v2__link { // link - collapsed version only
+    padding: var(--space-xxs) var(--space-sm);
+  }
+
+  &.sidenav-v2--expanded {
+    .sidenav-v2__control-text {
+      > *:first-child {
+        transform: translateY(10px);
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      > *:last-child {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+      }
+    }
+
+    .sidenav-v2__nav {
+      display: block;
+      animation: sidenav-v2-entry-animation .4s var(--ease-out);
+    }
+
+    .sidenav-v2__icon-arrow .icon__group { // animate arrow icon
+      transform: rotate(-90deg);
+  
+      > *:first-child, *:last-child {
+        stroke-dashoffset: 0;
+        transform: translateY(0px);
+      }
+    }
+  }
+}
+// <<< end collapsed version
+
+// >>> static version only (desktop) 👇
+.sidenav-v2--static {
+  .sidenav-v2__control { // control - static version only
+    display: none;
+  }
+
+  .sidenav-v2__link { // link - static version only
+    padding: var(--space-xxs) var(--space-xs);
+    border-radius: var(--radius-md);
+
+    &[aria-current="page"] {
+      box-shadow: var(--shadow-sm);
+    }
+  }
+}
+// <<< end static version
+
+@keyframes sidenav-v2-entry-animation {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+// no-js support
+html:not(.js) .sidenav-v2 {
+  .sidenav-v2__nav {
+    display: block;
+  }
+}
+
+// used in JS - detect when the side navigation needs to switch from a collapsed to a static version
+[class*="sidenav-v2--static"]::before {
+  display: none;
+  content: 'collapsed';
+}
+
+@each $breakpoint, $value in $breakpoints {
+  @include breakpoint(#{$breakpoint}) {
+    .sidenav-v2--static\@#{$breakpoint}::before {
+      content: 'static';
+    }
+  }
+}

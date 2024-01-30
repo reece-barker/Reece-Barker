@@ -1,0 +1,154 @@
+/* -------------------------------- 
+
+File#: _1_tree
+Title: Tree
+Descr: Multi-level directory of editable items
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+:root {
+  --tree-item-padding-x: var(--space-xxxs);
+  --tree-item-padding-y: var(--space-xxxs);
+
+  // icons
+  --tree-arrow-icon-size: 16px; // arrow icon
+  --tree-arrow-icon-margin-right: 2px;
+
+  --tree-label-icon-size: 16px; // icon indicating node type (e.g., folder, file...)
+  --tree-label-icon-margin-right: 6px;
+
+  // --content-editable (only)
+  --tree-arrow-btn-size: 16px; // button containing arrow
+  --tree-arrow-btn-margin-right: 4px;
+}
+
+.tree {
+  position: relative;
+  z-index: 1;
+}
+
+.tree__nodes .tree__nodes { // indentation level 1
+  display: none; // hide sub nodes
+}
+
+// indentation levels
+$tree-indentation-levels: 3;
+
+@for $i from 1 through $tree-indentation-levels {
+  $selector: ".tree__nodes ";
+  @for $j from 1 through $i {
+    $selector: $selector + '.tree__nodes ';
+  }
+
+  #{$selector} {
+    .tree__item {
+      padding-left: calc(var(--tree-item-padding-x) + (var(--tree-arrow-icon-size) + var(--tree-arrow-icon-margin-right) + var(--tree-label-icon-size) + var(--tree-label-icon-margin-right)) * #{$i});
+    }
+  }
+}
+
+.tree__node--expanded > .tree__nodes {
+  display: block;
+}
+
+.tree__item { // interactive items
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: calc(var(--tree-item-padding-y)/2) var(--tree-item-padding-x);
+  border-radius: var(--radius-md);
+  
+  text-align: left;
+  line-height: 1;
+  color: inherit;
+  text-decoration: none;
+  user-select: none;
+  @include fontSmooth;
+
+  cursor: pointer;
+  transition: .2s;
+
+  &:hover:not(.tree__item--selected) {
+    background-color: alpha(var(--color-contrast-higher), 0.05);
+  }
+
+  &:focus {
+    outline: none;
+    background-color: alpha(var(--color-primary), 0.15);
+
+    &:hover {
+      background-color: alpha(var(--color-primary), 0.2);
+    }
+  }
+}
+
+.tree__item--selected { // --content-editable (only)
+  background-color: var(--color-primary);
+  color: var(--color-white);
+
+  .icon {
+    color: var(--color-white);
+  }
+}
+
+.tree__item--editing { // --content-editable (only)
+  background-color: var(--color-bg);
+  box-shadow: inset 0 0 0 2px var(--color-primary);
+  color: var(--color-contrast-high);
+  user-select: auto;
+
+  .icon {
+    color: inherit;
+  }
+
+  .tree__label:focus {
+    box-shadow: none;
+  }
+}
+
+// icons
+.tree__arrow-icon, .tree__arrow-icon-spacer {
+  width: var(--tree-arrow-icon-size);
+  height: var(--tree-arrow-icon-size);
+  margin-right: var(--tree-arrow-icon-margin-right);
+  transition: transform .2s;
+}
+
+.tree__node--expanded > .tree__item .tree__arrow-icon {
+  transform: rotate(90deg);
+}
+
+.tree__label-icon {
+  width: var(--tree-label-icon-size);
+  height: var(--tree-label-icon-size);
+  margin-right: var(--tree-label-icon-margin-right);
+}
+
+.tree__arrow-btn { // --content-editable (only)
+  display: inline-flex;
+  width: var(--tree-arrow-btn-size);
+  height: var(--tree-arrow-btn-size);
+  margin-right: var(--tree-arrow-btn-margin-right);
+
+  border-radius: 50%;
+  transition: .2s;
+
+  .tree__arrow-icon {
+    margin: auto !important;
+  }
+
+  &:hover {
+    background-color: alpha(var(--color-contrast-higher), 0.15);
+  }
+}
+
+// label (node text content)
+.tree__label {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-grow: 1;
+  height: 100%;
+  padding: calc(var(--tree-item-padding-y)/2) 0;
+}

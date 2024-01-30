@@ -1,0 +1,716 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta property="og:email" content="reecenbarker@gmail.com" />
+        <meta name="description" content="A portfolio of all of Reece Barker's projects and achievements for potential employers.">
+        <meta property="og:url" content="https://www.reece-barker.co/">
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="Portfolio for Reece Barker">
+        <meta property="og:description" content="A portfolio of all of Reece Barker's projects and achievements for potential employers.">
+        <meta property="og:image" content="{{URL 'utils/img/svg/favicon.svg'}}">
+        <meta name="twitter:card" content="{{URL 'utils/img/svg/favicon.svg'}}">
+        <meta property="twitter:url" content="https://www.reece-barker.co/">
+        <meta name="twitter:title" content="Portfolio for Reece Barker">
+        <meta name="twitter:description" content="A portfolio of all of Reece Barker's projects and achievements for potential employers.">
+        <meta name="twitter:image" content="{{URL 'utils/img/svg/favicon.svg'}}">
+        <script>document.getElementsByTagName("html")[0].className += " js";</script>
+        <link rel="icon" type="image/svg+xml" href="{{URL 'utils/img/svg/favicon.svg'}}">
+        <link rel="alternate icon" href="{{URL 'utils/img/ico/favicon.ico'}}" type="image/ico">
+        <link id="css" rel="stylesheet" href="{{URL 'utils/scss/.dir/~css.css'}}">
+        <script src="https://kit.fontawesome.com/21df1375d2.js" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="//translate.google.com/translate_a/element.js?cb=language_picker"></script>
+        <script src="//cdn.jsdelivr.net/jquery.scrollto/2.1.2/jquery.scrollTo.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+        <script>
+            /*const socket = io({
+                transports: ['websocket'],
+                upgrade: false,
+                reconnection: true
+            });
+
+            this.socketio = {
+                connection: {
+                    socket: socket,
+                    state: false,
+                    reconnection: {
+                        interval: 10000,
+                        state: false,
+                        cb: async () => {
+                            setTimeout(async () => {
+                                if (!this.socketio.connection.state) {
+                                    $.get('/api/ts', async () => {
+                                        this.socketio.connection.state = true;
+                                        window.location.href = unescape(window.location
+                                            .pathname);
+                                    });
+                                    retryConnectOnFailure(this.socketio.connection.reconnection.interval);
+                                }
+                            }, this.socketio.connection.reconnection.interval);
+                        }
+                    }
+                },
+            };
+
+            socket.on('connect', async () => {
+                this.socketio.connection.state = true;
+                clearTimeout(this.socketio.connection.reconnection.state);
+            });
+
+            socket.on('disconnect', async () => {
+                this.socketio.connection.state = false;
+                this.socketio.connection.reconnection.cb();
+            });
+
+            socket.connect();
+            this.socketio.connection.reconnection.cb();*/
+        </script>
+        <script>
+            if (!('CSS' in window) || !CSS.supports('color', 'var(--color-var)')) {
+                var cfStyle = document.getElementById('css');
+                if (cfStyle) {
+                    var href = cfStyle.getAttribute('href');
+                    href = href.replace('~css.css', '~css.min.css');
+                    cfStyle.setAttribute('href', href);
+                }
+            }
+        </script>
+        <title>Reece Barker</title>
+    </head>
+
+    <body>
+        <noscript>
+            {{> '1' h1='Bad Request' p='You must have javascript enabled to view this page.'}}
+        </noscript>
+
+        <div class="app-ui hbs-ui js-hbs-ui overflow-hidden js-app-ui">
+            <header class="app-ui__header shadow-xs padding-x-md padding-x-0@md">
+                <div class="app-ui__logo-wrapper padding-x-sm@md">
+                    <a href="/" style="width: 30px;" class="app-ui__logo cursor-pointer">
+                        <svg width="30" height="30" viewBox="0 0 30 30" fill="var(--color-contrast-higher)">
+                            <title>Acolytes</title>
+                            <circle cx="15" cy="15" r="15" fill="var(--color-contrast-lower)" />
+                            <path d="M25.607,4.393,4.393,25.607A15,15,0,0,0,25.607,4.393Z" />
+                        </svg>
+                    </a>
+                </div>
+
+                <button class="reset app-ui__menu-btn cursor-pointer hide@md js-app-ui__menu-btn js-tab-focus"
+                    aria-label="Toggle menu" aria-controls="app-ui-navigation">
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <g class="icon__group" fill="none" stroke="currentColor" stroke-linecap="square"
+                            stroke-miterlimit="10" stroke-width="2">
+                            <path d="M1 6h22" />
+                            <path d="M1 12h22" />
+                            <path d="M1 18h22" />
+                        </g>
+                    </svg>
+                </button>
+
+                <div class="display@md flex flex-grow height-100% items-center justify-between padding-x-sm">
+                    <form id="search"
+                        class="expandable-search autocomplete position-relative text-sm@md js-autocomplete js-expandable-search"
+                        data-autocomplete-dropdown-visible-class="autocomplete--results-visible">
+                        <label class="form-label sr-only margin-bottom-xxs" for="autocomplete-input"></label>
+
+                        <div class="position-relative">
+                            <input
+                                class="reset expandable-search__input js-expandable-search__input js-autocomplete__input"
+                                type="text" name="autocomplete-input" id="autocomplete-input" placeholder="Search"
+                                autocomplete="off">
+
+                            <div class="autocomplete__loader sr-only position-absolute top-0 right-0 padding-right-sm height-100% flex items-center"
+                                aria-hidden="true">
+                                <div class="circle-loader circle-loader--v1">
+                                    <div class="circle-loader__circle"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a class="reset expandable-search__btn">
+                            <svg class="icon" viewBox="0 0 20 20">
+                                <title class="hbs-ui__text cursor-pointer">Search</title>
+                                <g fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="2">
+                                    <circle cx="8" cy="8" r="6" />
+                                    <line x1="12.243" y1="12.243" x2="18" y2="18" />
+                                </g>
+                            </svg>
+                        </a>
+
+                        <div class="autocomplete__results  js-autocomplete__results">
+                            <ul id="autocomplete1" class="autocomplete__list js-autocomplete__list">
+                                <li
+                                    class="autocomplete__item padding-y-xs padding-x-sm text-truncate js-autocomplete__item is-hidden">
+                                </li>
+                            </ul>
+                        </div>
+
+                        <p class="sr-only" aria-live="polite" aria-atomic="true"><span
+                                class="js-autocomplete__aria-results">0</span> results found.</p>
+                    </form>
+
+                    {{#if users}}
+                        <div class="flex gap-xxxs">
+                            <a href="#notifications" data-p-tour-target="1"
+                                class="app-ui__header-btn position-relative js-tab-focus" aria-controls="notifications">
+                                <svg class="icon" viewBox="0 0 448 512" class="fa-bell fa-w-14 fa-3x">
+                                    <path fill="currentColor"
+                                        d="M224 512c35.32 0 63.97-28.65 63.97-64H160.03c0 35.35 28.65 64 63.97 64zm215.39-149.71c-19.32-20.76-55.47-51.99-55.47-154.29 0-77.7-54.48-139.9-127.94-155.16V32c0-17.67-14.32-32-31.98-32s-31.98 14.33-31.98 32v20.84C118.56 68.1 64.08 130.3 64.08 208c0 102.3-36.15 133.53-55.47 154.29-6 6.45-8.66 14.16-8.61 21.71.11 16.4 12.98 32 32.1 32h383.8c19.12 0 32-15.6 32.1-32 .05-7.55-2.61-15.27-8.61-21.71z">
+                                    </path>
+                                </svg>
+
+                                {{#if (hasLength [users._options.notifications, 1]) }}
+                                    <span class="app-ui__notification-indicator"><i class="sr-only">You have
+                                            {{getLength users._options.notifications}}
+                                            notifications</i></span>
+                                {{/if}}
+                            </a>
+
+                            <a href="/options/account" class="app-ui__header-btn js-tab-focus">
+                                <i class="fas icon fa-cog">
+                                    <title>Options</title>
+                                </i>
+                            </a>
+
+                            <div id="notifications" class="popover notif-popover bg radius-md shadow-md js-popover"
+                                role="dialog">
+                                <header
+                                    class="bg bg-opacity-90% backdrop-blur-10 text-sm padding-sm shadow-xs position-sticky top-0 z-index-2">
+                                    <div data-p-tour-target="2" class="flex justify-between items-baseline">
+                                        <h1 class="text-md hbs-ui__text">Notifications</h1>
+                                        <a class="hbs-ui__text notification_close noselect">Clear</a>
+                                    </div>
+                                </header>
+
+                                <ul id="notifications_list" class="notif text-sm">
+                                    <li id="notifications_none"
+                                        class="notif__item notifs-ui__disabled {{#if (hasLength users._options.notifications)}} sr-only{{/if}}">
+                                        <a class="notif__link flex padding-sm" href="#0">
+                                            <figure class="notif__figure margin-right-xs color-primary"
+                                                aria-hidden="true">
+                                                <svg width="30" height="30" viewBox="0 0 30 30" class="icon"
+                                                    fill="var(--color-contrast-higher)">
+                                                    <title>Acolytes</title>
+                                                    <circle cx="15" cy="15" r="15" fill="var(--color-contrast-lower)" />
+                                                    <path
+                                                        d="M 25.607 4.393 L 4.393 25.607 A 15 15 0 0 0 25.607 4.393 Z M 19 11 A 1 1 0 0 0 12 18" />
+                                                </svg>
+                                            </figure>
+
+                                            <div class="flex-grow margin-right-xs">
+                                                <div>
+                                                    <span class="sr-only">Acolytes</span>
+                                                    <p class="hbs-ui__text">You haven't received any new notifications.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+
+                                    {{#each users._options.notifications}}
+                                        <li class="notif__item notif_needs_closing">
+                                            <a class="notif__link flex padding-sm" href="#0">
+                                                <figure class="notif__figure margin-right-xs color-primary"
+                                                    aria-hidden="true">
+                                                    <svg width="30" height="30" viewBox="0 0 30 30" class="icon"
+                                                        fill="var(--color-contrast-higher)">
+                                                        <title>{{this.authors.username}}</title>
+                                                        <circle cx="15" cy="15" r="15"
+                                                            fill="var(--color-contrast-lower)" />
+                                                        <path
+                                                            d="M 25.607 4.393 L 4.393 25.607 A 15 15 0 0 0 25.607 4.393 Z M 19 11 A 1 1 0 0 0 12 18" />
+                                                    </svg>
+                                                </figure>
+
+                                                <div class="flex-grow items-center margin-right-xs">
+                                                    <div>
+                                                        <span class="sr-only">{{this._id}}</span>
+                                                        <span class="sr-only">{{this.authors.username}}</span>
+                                                        <p class="hbs-ui__text">{{{this.notification}}}</p>
+                                                        <p class="text-sm color-contrast-medium margin-top-xxxs">
+                                                            <time>{{getTimes this._moment}}</time></p>
+                                                    </div>
+                                                </div>
+
+                                                <div class="notif__close hbs__notification items-center margin-left-auto" aria-hidden="true">
+                                                    <i aria-controls="notification_info" class="fas margin-left-xxxs noselect icon text-sm fa-info-circle"></i>
+                                                </div>
+
+                                                {{#if (hasTimes this._moment) }}
+                                                    <div class="notif__dot margin-left-auto" aria-hidden="true">
+                                                        <svg class="icon" viewBox="0 0 8 8">
+                                                            <title class="hbs-ui__text">recent notification</title>
+                                                            <path d="M 4 0 A 1 1 0 0 0 4 8 A 1 1 0 0 0 4 0" />
+                                                        </svg>
+                                                    </div>
+                                                {{/if}}
+                                            </a>
+                                        </li>
+                                    {{/each}}
+                                </ul>
+                            </div>
+
+                            <div id="notification_info" class="popover bg padding-sm radius-md shadow-md js-popover js-tab-focus"
+                                role="dialog">
+                                <div class="text-component text-sm">
+                                    <h1 class="text-md">Want to close this?</h1>
+                                    <p>You will need to close your notifications on your personal <a class="noselect"
+                                            href="/notifications">notification centre</a>.</p>
+                                </div>
+                            </div>
+
+                            <div class="dropdown margin-left-xxs inline-block js-dropdown">
+                                <div class="dropdown__wrapper">
+                                    <a data-p-tour-target="3" class="app-ui__user-btn js-dropdown__trigger js-tab-focus"
+                                        href="#profiles?_id={{users._id}}">
+                                        {{#if users._information.img}}
+                                            <img src="{{users._information.img}}" width="60" title="{{users.username}}">
+                                        {{else}}
+                                            <svg width="30" height="30" viewBox="0 0 30 30" class="icon"
+                                                fill="var(--color-contrast-higher)">
+                                                <title>{{users.username}}</title>
+                                                <circle cx="15" cy="15" r="15" fill="var(--color-contrast-lower)" />
+                                                <path
+                                                    d="M 25.607 4.393 L 4.393 25.607 A 15 15 0 0 0 25.607 4.393 Z M 19 11 A 1 1 0 0 0 12 18" />
+                                            </svg>
+                                        {{/if}}
+                                    </a>
+
+                                    <ul class="dropdown__menu js-dropdown__menu" aria-label="dropdown">
+                                        <li>
+                                            <a class="dropdown__item hbs-ui__text"
+                                                href="/options/information">Information</a>
+                                        </li>
+
+                                        <li class="dropdown__sub-wrapper js-dropdown__sub-wrapper">
+                                            <a class="dropdown__item hbs-ui__text" style="cursor: pointer;">
+                                                Legals
+                                                <svg class="icon" aria-hidden="true" viewBox="0 0 12 12">
+                                                    <polyline stroke-width="1" stroke="currentColor" fill="none"
+                                                        stroke-linecap="round" stroke-linejoin="round"
+                                                        points="3.5 0.5 9.5 6 3.5 11.5"></polyline>
+                                                </svg>
+                                            </a>
+
+                                            <ul class="dropdown__menu js-dropdown__menu" aria-label="submenu">
+                                                <li><a class="dropdown__item hbs-ui__text"
+                                                        href="/legals/agreements">Agreements</a></li>
+                                                <li><a class="dropdown__item hbs-ui__text"
+                                                        href="/legals/contact-us">Contact Us</a>
+                                                </li>
+                                                <li><a class="dropdown__item hbs-ui__text"
+                                                        href="/legals/frequently-asked-questions">FAQ</a></li>
+                                                <li><a class="dropdown__item hbs-ui__text"
+                                                        href="/legals/privacy-policy">Privacy
+                                                        Policy</a></li>
+                                                <li><a class="dropdown__item hbs-ui__text"
+                                                        href="/legals/terms-and-conditions">Terms
+                                                        and Conditions</a></li>
+                                            </ul>
+                                        </li>
+
+                                        <li>
+                                            <a class="dropdown__item hbs-ui__text" href="/options/styles">Styles</a>
+                                        </li>
+
+                                        <hr class="dropdown__separator" role="separator">
+
+                                        <li>
+                                            <a class="dropdown__item hbs-ui__text flex-center" href="/login?alt=true">
+                                                <svg version="1.0" xmlns="http://www.w3.org/2000/svg" style="filter: invert(20%) sepia(50%) saturate(5445%) hue-rotate(337deg) brightness(92%) contrast(90%);" width="20" height="20" viewBox="0 0 512 512"><path d="M48 64h132c6.6 0 12 5.4 12 12v8c0 6.6-5.4 12-12 12H48c-8.8 0-16 7.2-16 16v288c0 8.8 7.2 16 16 16h132c6.6 0 12 5.4 12 12v8c0 6.6-5.4 12-12 12H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48zm279 19.5l-7.1 7.1c-4.7 4.7-4.7 12.3 0 17l132 131.4H172c-6.6 0-12 5.4-12 12v10c0 6.6 5.4 12 12 12h279.9L320 404.4c-4.7 4.7-4.7 12.3 0 17l7.1 7.1c4.7 4.7 12.3 4.7 17 0l164.5-164c4.7-4.7 4.7-12.3 0-17L344 83.5c-4.7-4.7-12.3-4.7-17 0z" /></svg>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    {{/if}}
+                </div>
+            </header>
+
+            <div class="app-ui__nav js-app-ui__nav" id="app-ui-navigation">
+                <div class="padding-x-md padding-top-md hide@md">
+                    <div class="search-input search-input--icon-right">
+                        <input class="search-input__input form-control" type="search" name="search-input"
+                            id="search-input" aria-label="Search">
+                        <button class="search-input__btn">
+                            <svg class="icon" viewBox="0 0 24 24">
+                                <title class="hbs-ui__text">Submit</title>
+                                <g stroke-linecap="square" stroke-linejoin="miter" stroke-width="2"
+                                    stroke="currentColor" fill="none" stroke-miterlimit="10">
+                                    <line x1="22" y1="22" x2="15.656" y2="15.656"></line>
+                                    <circle cx="10" cy="10" r="8"></circle>
+                                </g>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <nav class="sidenav padding-y-sm js-sidenav">
+                    <div class="sidenav__label margin-bottom-xxxs">
+                        <span class="text-sm hbs-ui__selection color-contrast-medium text-xs@md"></span>
+                    </div>
+
+                    {{#if users}}
+                        <ul class="sidenav__list">
+                            <li class="sidenav__item">
+                                <a href="/dashboard" class="hbs-ui__selections sidenav__link">
+                                    <i class="fas icon text-sm sidenav__icon fa-tachometer-alt"></i>
+                                    <span class="sidenav__text hbs-ui__text text-sm@md">Dashboard</span>
+                                </a>
+                            </li>
+
+                            <li class="sidenav__item">
+                                <a href="/activity" class="hbs-ui__selections sidenav__link">
+                                    <i class="fas icon text-sm sidenav__icon fa-hiking"></i>
+                                    <span class="sidenav__text hbs-ui__text text-sm@md">Activity</span>
+                                </a>
+                            </li>
+
+                            <li id="collaboration" class="sidenav__item">
+                                <a class="sidenav__link noselect" style="cursor: pointer;">
+                                    <i class="fas icon text-sm sidenav__icon fa-users"></i>
+                                    <span class="sidenav__text hbs-ui__text text-sm@md">Collaboration</span>
+                                </a>
+
+                                <button class="reset sidenav__sublist-control js-sidenav__sublist-control js-tab-focus"
+                                    aria-label="Toggle sub navigation">
+                                    <svg class="icon" viewBox="0 0 12 12">
+                                        <polygon points="4 3 8 6 4 9 4 3" /></svg>
+                                </button>
+
+                                <ul class="sidenav__list">
+                                    <li class="sidenav__item">
+                                        <a href="/collaboration/agenda" class="hbs-ui__selections sidenav__link">
+                                            <i class="fas icon text-sm sidenav__icon fa-calendar-week"></i>
+                                            <span class="sidenav__text hbs-ui__text text-sm@md">Agenda</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="sidenav__item">
+                                        <a href="/collaboration/articles" class="hbs-ui__selections sidenav__link">
+                                            <i class="fas icon text-sm sidenav__icon fa-shapes"></i>
+                                            <span class="sidenav__text hbs-ui__text text-sm@md">Articles</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="sidenav__item">
+                                        <a href="/collaboration/organization" class="hbs-ui__selections sidenav__link">
+                                            <i class="fas icon text-sm sidenav__icon fa-building"></i>
+                                            <span class="sidenav__text hbs-ui__text text-sm@md">Organization</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class="sidenav__item">
+                                <a href="/administration" class="hbs-ui__selections sidenav__link">
+                                    <i class="fas icon text-sm sidenav__icon fa-user-lock"></i>
+                                    <span class="sidenav__text hbs-ui__text text-sm@md">Administration</span>
+                                </a>
+                            </li>
+                        </ul>
+                    {{/if}}
+
+                    {{#if users}}
+                        <div class="sidenav__divider margin-y-xs"></div>
+                    {{/if}}
+
+                    <ul class="sidenav__list">
+                        <li id="legals" class="sidenav__item">
+                            <a class="sidenav__link noselect" style="cursor: pointer;">
+                                <i class="fas icon text-sm sidenav__icon fa-balance-scale-right"></i>
+                                <span class="sidenav__text hbs-ui__text text-sm@md">Legals</span>
+                            </a>
+
+                            <button class="reset sidenav__sublist-control js-sidenav__sublist-control js-tab-focus"
+                                aria-label="Toggle sub navigation">
+                                <svg class="icon" viewBox="0 0 12 12">
+                                    <polygon points="4 3 8 6 4 9 4 3" /></svg>
+                            </button>
+
+                            <ul class="sidenav__list">
+                                <li class="sidenav__item">
+                                    <a href="/legals/agreements" class="hbs-ui__selections legals-agreements sidenav__link">
+                                        <i class="fas icon text-sm sidenav__icon fa-handshake"></i>
+                                        <span class="sidenav__text hbs-ui__text text-sm@md">Agreements</span>
+                                    </a>
+                                </li>
+
+                                <li class="sidenav__item">
+                                    <a href="/legals/contact-us" class="hbs-ui__selections legals-contact-us sidenav__link">
+                                        <i class="fas icon text-sm sidenav__icon fa-paper-plane"></i>
+                                        <span class="sidenav__text hbs-ui__text text-sm@md">Contact Us</span>
+                                    </a>
+                                </li>
+
+                                <li class="sidenav__item">
+                                    <a href="/legals/frequently-asked-questions"
+                                        class="hbs-ui__selections legals-frequently-asked-questions sidenav__link">
+                                        <i class="fas icon text-sm sidenav__icon fa-question"></i>
+                                        <span class="sidenav__text hbs-ui__text text-sm@md">FAQ</span>
+                                    </a>
+                                </li>
+
+                                <li class="sidenav__item">
+                                    <a href="/legals/privacy-policy" class="hbs-ui__selections legals-privacy-policy sidenav__link">
+                                        <i class="fas icon text-sm sidenav__icon fa-user-secret"></i>
+                                        <span class="sidenav__text hbs-ui__text text-sm@md">Privacy Policy</span>
+                                    </a>
+                                </li>
+
+                                <li class="sidenav__item">
+                                    <a href="/legals/terms-and-conditions" class="hbs-ui__selections legals-terms-and-conditions sidenav__link">
+                                        <i class="fas icon text-sm sidenav__icon fa-asterisk"></i>
+                                        <span class="sidenav__text hbs-ui__text text-sm@md">Terms and Conditions</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        {{#if users}}
+                            <li id="options" class="sidenav__item">
+                                <a class="sidenav__link noselect" style="cursor: pointer;">
+                                    <i class="fas icon text-sm sidenav__icon fa-cog"></i>
+                                    <span class="sidenav__text hbs-ui__text text-sm@md">Options</span>
+                                </a>
+
+                                <button class="reset sidenav__sublist-control js-sidenav__sublist-control js-tab-focus"
+                                    aria-label="Toggle sub navigation">
+                                    <svg class="icon" viewBox="0 0 12 12">
+                                        <polygon points="4 3 8 6 4 9 4 3" /></svg>
+                                </button>
+
+                                <ul class="sidenav__list">
+                                    <li class="sidenav__item">
+                                        <a href="/options/account" class="hbs-ui__selections sidenav__link">
+                                            <i class="fas icon text-sm sidenav__icon fa-user-cog"></i>
+                                            <span class="sidenav__text text-sm@md">{{users.username}}</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="sidenav__item">
+                                        <a href="/options/billing" class="hbs-ui__selections sidenav__link">
+                                            <i class="fas icon text-sm sidenav__icon fa-credit-card"></i>
+                                            <span class="sidenav__text hbs-ui__text text-sm@md">Billing</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="sidenav__item">
+                                        <a href="/options/collaboration" class="hbs-ui__selections sidenav__link">
+                                            <i class="fas icon text-sm sidenav__icon fa-users-cog"></i>
+                                            <span class="sidenav__text hbs-ui__text text-sm@md">Collaboration</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="sidenav__item">
+                                        <a href="/options/notifications" class="hbs-ui__selections sidenav__link">
+                                            <i class="fas icon text-sm sidenav__icon fa-bell"></i>
+                                            <span class="sidenav__text hbs-ui__text text-sm@md">Notifications</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="sidenav__item">
+                                        <a href="/options/information" class="hbs-ui__selections sidenav__link">
+                                            <i class="fas icon text-sm sidenav__icon fa-info-circle"></i>
+                                            <span class="sidenav__text hbs-ui__text text-sm@md">Information</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="sidenav__item">
+                                        <a href="/options/styles" class="hbs-ui__selections sidenav__link">
+                                            <i class="fas icon text-sm sidenav__icon fa-paint-brush"></i>
+                                            <span class="sidenav__text hbs-ui__text text-sm@md">Styles</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        {{/if}}
+                    </ul>
+                </nav>
+
+                <div class="margin-top-auto overflow-hidden flex flex-center width-100% margin-bottom-sm padding-md">
+                    <ul class="radio-switch">
+                        <li class="radio-switch__item">
+                            <input class="radio-switch__input sr-only" type="radio" name="radio-switch-name" id="__2">
+                            <label class="radio-switch__label" for="__2"><svg class="icon icon--xs" viewBox="0 0 16 16">
+                                    <title class="hbs-ui__text">Enable light mode</title>
+                                    <path
+                                        d="M7 0h2v2H7zM12.88 1.637l1.414 1.415-1.415 1.413-1.414-1.414zM14 7h2v2h-2zM12.95 14.433l-1.415-1.414 1.414-1.414 1.415 1.413zM7 14h2v2H7zM2.98 14.363L1.566 12.95l1.415-1.414 1.414 1.415zM0 7h2v2H0zM3.05 1.707L4.465 3.12 3.05 4.535 1.636 3.121z" />
+                                    <path d="M8 4C5.8 4 4 5.8 4 8s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4z" />
+                                </svg></label>
+                        </li>
+
+                        <li class="radio-switch__item">
+                            <input class="radio-switch__input sr-only" type="radio" name="radio-switch-name" id="__1"
+                                checked>
+                            <label class="radio-switch__label" for="__1"><svg class="icon icon--xs" viewBox="0 0 16 16">
+                                    <title class="hbs-ui__text">Enable dark mode</title>
+                                    <path
+                                        d="M6,0C2.5,0.9,0,4.1,0,7.9C0,12.4,3.6,16,8.1,16c3.8,0,6.9-2.5,7.9-6C9.9,11.7,4.3,6.1,6,0z">
+                                    </path>
+                                </svg></label>
+                            <div aria-hidden="true" class="radio-switch__marker"></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <main class="app-ui__body position-relative hbs-ui__body padding-md">
+
+                {{{body}}}
+
+            </main>
+
+            <div style="position: fixed;" class="circle-loader hbs-ui__body--is-hidden circle-loader--v3" role="alert">
+                <p class="circle-loader__label">Content is loading...</p>
+                <div aria-hidden="true">
+                    <div class="circle-loader__circle circle-loader__circle--1st"></div>
+                    <div class="circle-loader__circle circle-loader__circle--2nd"></div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            const closer = document.querySelector('.notification_close');
+            const billy_notifs = document.querySelectorAll('.notif_needs_closing');
+            const notifs_list = document.querySelector('#notifications_list');
+            const notifs_none = document.querySelector('#notifications_none');
+
+            if (notifs_list.children.length <= 1) {
+                notifs_none.classList.remove('sr-only');
+            } else {
+                notifs_none.classList.add('sr-only');
+            }
+
+            closer.addEventListener('click', async () => {
+                billy_notifs.forEach(async (item) => {
+                    item.remove();
+                });
+
+                notifs_none.classList.remove('sr-only');
+
+                $.ajax({
+                    type: 'GET',
+                    url: '/api/notifications',
+                    dataType: 'json',
+                    success: async (res) => {
+                        console.log('Done!')
+                    },
+                    error: async (res) => {
+                        return console.error('Unable to remove notification, possible server issue.');
+                    }
+                });
+            });
+        </script>
+
+        <script id="js" src="{{URL 'utils/js/.dir/~js.js'}}"></script>
+        <script id="Utils" src="{{URL 'utils/js/libraries/Utils.js'}}"></script>
+        <script>
+            (function () {
+                var appUi = document.getElementsByClassName('js-app-ui');
+                if (appUi.length > 0) {
+                    var appMenuBtn = appUi[0].getElementsByClassName('js-app-ui__menu-btn');
+                    if (appMenuBtn.length < 1) return;
+                    var appExpandedClass = 'app-ui--nav-expanded';
+                    var firstFocusableElement = false,
+                        // we'll use these to store the node that needs to receive focus when the mobile menu is closed 
+                        focusMenu = false;
+
+                    // toggle navigation on mobile
+                    appMenuBtn[0].addEventListener('click', function (event) {
+                        var openMenu = !Util.hasClass(appUi[0], appExpandedClass);
+                        Util.toggleClass(appUi[0], appExpandedClass, openMenu);
+                        appMenuBtn[0].setAttribute('aria-expanded', openMenu);
+                        if (openMenu) {
+                            firstFocusableElement = getMenuFirstFocusable();
+                            //if (firstFocusableElement) firstFocusableElement
+                            //    .focus(); // move focus to first focusable element
+                        } else if (focusMenu) {
+                            //focusMenu.focus();
+                            focusMenu = false;
+                        }
+                    });
+
+                    // listen for key events
+                    window.addEventListener('keyup', function (event) {
+                        // listen for esc key
+                        if ((event.keyCode && event.keyCode == 27) || (event.key && event.key
+                                .toLowerCase() == 'escape')) {
+                            // close navigation on mobile if open
+                            if (appMenuBtn[0].getAttribute('aria-expanded') == 'true' && isVisible(
+                                    appMenuBtn[0])) {
+                                focusMenu = appMenuBtn[0]; // move focus to menu trigger when menu is close
+                                appMenuBtn[0].click();
+                            }
+                        }
+                        // listen for tab key
+                        if ((event.keyCode && event.keyCode == 9) || (event.key && event.key
+                                .toLowerCase() == 'tab')) {
+                            // close navigation on mobile if open when nav loses focus
+                            if (appMenuBtn[0].getAttribute('aria-expanded') == 'true' && isVisible(
+                                    appMenuBtn[0]) && !document.activeElement.closest('.js-app-ui__nav'))
+                                appMenuBtn[0].click();
+                        }
+                    });
+
+                    // listen for resize
+                    var resizingId = false;
+                    window.addEventListener('resize', function () {
+                        clearTimeout(resizingId);
+                        resizingId = setTimeout(doneResizing, 500);
+                    });
+
+                    function doneResizing() {
+                        if (!isVisible(appMenuBtn[0]) && Util.hasClass(appUi[0], appExpandedClass)) appMenuBtn[0]
+                            .click();
+                    };
+
+                    function getMenuFirstFocusable() {
+                        var mobileNav = appUi[0].getElementsByClassName('js-app-ui__nav');
+                        if (mobileNav.length < 1) return false;
+                        var focusableEle = mobileNav[0].querySelectorAll(
+                                '[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), [tabindex]:not([tabindex="-1"]), [controls], summary'
+                            ),
+                            firstFocusable = false;
+                        for (var i = 0; i < focusableEle.length; i++) {
+                            if (focusableEle[i].offsetWidth || focusableEle[i].offsetHeight || focusableEle[i]
+                                .getClientRects().length) {
+                                firstFocusable = focusableEle[i];
+                                break;
+                            }
+                        }
+
+                        return firstFocusable;
+                    };
+
+                    function isVisible(element) {
+                        return (element.offsetWidth || element.offsetHeight || element.getClientRects().length);
+                    };
+                }
+            }());
+
+            var scrollFx = document.getElementsByClassName('js-scroll-fx');
+            for (var i = 0; i < scrollFx.length; i++) {
+                (function (i) {
+                    var scrollableElement = scrollFx[i].getAttribute('data-scrollable-element');
+                    new window.ScrollFx(scrollFx[i], scrollableElement);
+                })(i);
+            }
+        </script>
+        <script>
+            const notifications = document.querySelector('.notifications_list');
+            const notifications_none = document.querySelector('.notifications_none');
+            
+            if (notifications.children.length > 1) {
+                notifications_none.innerHTML = `You have ${notifications.children.length - 1} notifications that you haven't closed.`;
+            } else {
+                notifications_none.innerHTML = `You haven't received any new notifications.`;
+            }
+        </script>
+    </body>
+
+</html>

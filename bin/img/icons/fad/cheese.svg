@@ -1,0 +1,6 @@
+
+                <svg version="1.0" id="cheese" xmlns="http://www.w3.org/2000/svg" width="{{width}}px" height="{{height}}px"
+                    viewBox="0 0 512 512">
+                    <path d="M299.83 32C418 38.22 512 136.13 512 256H0L278.7 39a32 32 0 0 1 21.13-7z,M512 288v160a32 32 0 0 1-32 32H32a32 32 0 0 1-32-32V288z" />
+                </svg>
+            

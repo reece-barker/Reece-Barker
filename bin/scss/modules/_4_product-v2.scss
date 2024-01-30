@@ -1,0 +1,13 @@
+/* -------------------------------- 
+
+File#: _4_product-v2
+Title: Product v2
+Descr: Product info section with CTA
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+.product-v2 .thumbslide {
+  --thumbslide-thumbnail-auto-size: 90px; // min-width value -> used in JS to auto update the thumbnails width
+  --thumbslide-thumbnail-grid-gap: var(--space-xxxs); // gap among thumbnails
+}

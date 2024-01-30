@@ -1,0 +1,121 @@
+/* -------------------------------- 
+
+File#: _2_multiple-custom-select
+Title: Multiple Custom Select
+Descr: Custom Select Input where multiple options can be selected
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+:root {
+  --multi-select-dropdown-gap: 4px; // distance between select control and custom dropdown
+}
+
+.multi-select {
+  position: relative;
+}
+
+.multi-select__button { // created in JS - custom select control
+  width: 100%;
+}
+
+.multi-select__button--active {
+  // added to the .multi-select__button when at least one option is selected
+}
+
+.multi-select__label { // truncate label inside custom control
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.multi-select__dropdown { // created in JS - custom select dropdown
+  position: absolute;
+  left: 0;
+  top: 100%;
+  min-width: 200px;
+  max-height: 1px; // updated in JS
+  background-color: var(--color-bg);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-xxs) 0;
+  border-radius: var(--radius-md);
+  z-index: var(--zindex-popover);
+  margin-top: var(--multi-select-dropdown-gap);
+  margin-bottom: var(--multi-select-dropdown-gap);
+  overflow: auto;
+
+  // reset spacing and text units - no longer affected by em units
+  @include spaceUnit(1rem);
+  @include textUnit(1rem);
+
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s .2s, opacity .2s;
+}
+
+.multi-select__dropdown--right { // change dropdown position based on the available space
+  right: 0;
+  left: auto;
+}
+
+.multi-select__dropdown--up {
+  bottom: 100%;
+  top: auto;
+}
+
+.multi-select__button[aria-expanded="true"] + .multi-select__dropdown {
+  visibility: visible;
+  opacity: 1;
+  transition: visibility 0s, opacity .2s;
+}
+
+// custom <optgroup> list - include all <option>s if no <optgroup> available 
+.multi-select__list:not(:first-of-type) { 
+  padding-top: var(--space-xxs);
+}
+
+.multi-select__list:not(:last-of-type) {
+  border-bottom: 1px solid var(--color-contrast-low);
+  padding-bottom: var(--space-xxs);
+}
+
+.multi-select__item { // single item inside .select__list
+  display: block;
+  padding: var(--space-xs) var(--space-md) var(--space-xs);
+  color: var(--color-contrast-high);
+  width: 100%;
+  text-align: left;
+  // truncate text
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.multi-select__item--optgroup { // custom <optgroup> label
+  font-size: var(--text-sm);
+  color: var(--color-contrast-medium);
+ }
+
+.multi-select__item--option { // custom <option> label
+  --checkbox-radio-gap: var(--space-xxs); // gap between checkbox button and label
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--color-contrast-lower);
+  }
+
+  span { // truncate text
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+}
+
+html:not(.js) .multi-select__icon {
+  display: none;
+}
+
+// --inset-label
+.multi-select__term + .multi-select__details::before {
+  content: ': ';
+}

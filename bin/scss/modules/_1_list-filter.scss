@@ -1,0 +1,136 @@
+/* -------------------------------- 
+
+File#: _1_list-filter
+Title: List Filter
+Descr: A list of filterable search items
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+:root {
+  --list-filter-height: 240px;
+}
+
+.list-filter {}
+
+.list-filter__form {
+  overflow: hidden;
+}
+
+.list-filter__search {
+  position: relative;
+  width: 100%;
+  z-index: 1;
+
+  &::-webkit-search-decoration,
+  &::-webkit-search-cancel-button,
+  &::-webkit-search-results-button,
+  &::-webkit-search-results-decoration {
+    -webkit-appearance:none;
+  }
+
+  &::-ms-clear,
+  &::-ms-reveal {
+    display: none;
+    width: 0;
+    height: 0; 
+  }
+
+  &:focus {
+    outline: none;
+
+    + .list-filter__focus-marker {
+      opacity: 1;
+    }
+  }
+}
+
+.list-filter__focus-marker {
+  display: block;
+  height: 1em;
+  width: 3px;
+  background-color: var(--color-primary);
+  position: absolute;
+  left: 0;
+  top: calc(50% - 0.5em);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s;
+}
+
+.list-filter__list-wrapper {
+  position: relative;
+  height: var(--list-filter-height);
+}
+
+.list-filter__list {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+
+.list-filter__search,
+.list-filter__item {
+  padding: calc(var(--space-md) * 0.75) var(--space-md);
+}
+
+.list-filter__item {
+  display: flex;
+  align-items: center;
+  cursor: default;
+  transition: background-color .2s;
+
+  &:hover {
+    background-color: alpha(var(--color-contrast-higher), 0.05);
+  }
+}
+
+.list-filter__status {
+  display: block;
+  flex-shrink: 0;
+  --size: 8px;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+
+  .list-filter__item--user-active & {
+    background-color: var(--color-success);
+
+    &::after {
+      content: 'user active';
+      @include srHide;
+    }
+  }
+
+  .list-filter__item--user-pending & {
+    background-color: var(--color-warning);
+
+    &::after {
+      content: 'user pending';
+      @include srHide;
+    }
+  }
+}
+
+.list-filter__action-btn {
+  display: flex;
+  flex-shrink: 0;
+  background-color: var(--color-bg);
+  border: 1px solid alpha(var(--color-contrast-higher), 0.15);
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  transition: .2s;
+
+  .icon {
+    margin: auto;
+  }
+
+  &:hover {
+    border-color: alpha(var(--color-contrast-higher), 0.25);
+  }
+}

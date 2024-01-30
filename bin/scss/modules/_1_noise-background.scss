@@ -1,0 +1,24 @@
+/* -------------------------------- 
+
+File#: _1_noise-background
+Title: Noise Background
+Descr: Noise background effect
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+.noise-bg {
+  pointer-events: none;
+  opacity: 0.35; // control the noise opacity
+  filter: grayscale(100%); // convert to grayscale colors
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    filter: url(#noise-bg-fx);
+  }
+}

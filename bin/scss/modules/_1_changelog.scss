@@ -1,0 +1,47 @@
+/* -------------------------------- 
+
+File#: _1_changelog
+Title: Changelog
+Descr: A list of updates, grouped by release date
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+:root {
+  --changelog-icon-size: 24px;
+  --changelog-icon-text-gap: 12px; // gap between icon and text
+  --changelog-list-line-height: var(--body-line-height);
+}
+
+.changelog {
+  position: relative;
+  z-index: 1;
+}
+
+.changelog__update {
+  display: flex;
+  align-items: flex-start;
+  line-height: var(--changelog-list-line-height);
+}
+
+.changelog__metadata {
+  @include breakpoint(md) {
+    position: sticky;
+    top: var(--space-sm);
+  }
+}
+
+.changelog__icon {
+  width: var(--changelog-icon-size);
+  height: var(--changelog-icon-size);
+  margin-right: var(--changelog-icon-text-gap);
+
+  position: relative;
+  top: calc((1em * var(--changelog-list-line-height) - var(--changelog-icon-size)) / 2);
+}
+
+.changelog__separator {
+  height: 1px;
+  background-color: alpha(var(--color-contrast-higher), 0.15);
+  margin: var(--space-lg) 0;
+}

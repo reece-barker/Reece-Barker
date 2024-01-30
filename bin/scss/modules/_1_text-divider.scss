@@ -1,0 +1,37 @@
+/* -------------------------------- 
+
+File#: _1_text-divider
+Title: Text divider
+Descr: Labelled horizontal divider for text components
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+.text-divider {
+  margin: var(--space-lg) auto;
+  display: flex;
+  text-align: center;
+  align-items: center;
+
+  span {
+    font-size: var(--text-xs);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    padding: 0 var(--space-sm);
+  }
+
+  &::before, &::after {
+    content: '';
+    display: inline-block;
+    height: 1px;
+    width: 20px;
+    flex-grow: 1;
+    background: var(--color-contrast-low);
+    vertical-align: middle;
+  }
+}
+
+.text-component .text-divider {
+  margin: calc(var(--space-md) * var(--text-vspace-multiplier)) auto;
+}

@@ -1,0 +1,222 @@
+/* -------------------------------- 
+
+File#: _1_card-v2
+Title: Card v2
+Descr: Container of information used as teasers for further content, often displayed in a gallery of related items
+Usage: codyhouse.co/license
+
+-------------------------------- */
+/* reset */
+*, *::after, *::before {
+  box-sizing: border-box;
+}
+
+* {
+  font: inherit;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+body {
+  background-color: hsl(0, 0%, 100%);
+  font-family: system-ui, sans-serif;
+  color: hsl(230, 7%, 23%);
+  font-size: 1rem;
+}
+
+h1, h2, h3, h4 {
+  line-height: 1.2;
+  color: hsl(230, 13%, 9%);
+  font-weight: 700;
+}
+
+h1 {
+  font-size: 2.0736rem;
+}
+
+h2 {
+  font-size: 1.728rem;
+}
+
+h3 {
+  font-size: 1.25rem;
+}
+
+h4 {
+  font-size: 1.2rem;
+}
+
+ol, ul, menu {
+  list-style: none;
+}
+
+button, input, textarea, select {
+  background-color: transparent;
+  border-radius: 0;
+  color: inherit;
+  line-height: inherit;
+  appearance: none;
+}
+
+textarea {
+  resize: vertical;
+  overflow: auto;
+  vertical-align: top;
+}
+
+a {
+  color: hsl(250, 84%, 54%);
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+img, video, svg {
+  display: block;
+  max-width: 100%;
+}
+
+@media (min-width: 64rem) {
+  body {
+    font-size: 1.25rem;
+  }
+
+  h1 {
+    font-size: 3.051rem;
+  }
+
+    h2 {
+    font-size: 2.44rem;
+  }
+
+    h3 {
+    font-size: 1.75rem;
+  }
+
+    h4 {
+    font-size: 1.5625rem;
+  }
+}
+
+/* variables */
+:root {
+  /* colors */
+  --cy7-color-primary-hsl: 250, 84%, 54%;
+  --cy7-color-bg-hsl: 0, 0%, 100%;
+  --cy7-color-contrast-high-hsl: 230, 7%, 23%;
+  --cy7-color-contrast-higher-hsl: 230, 13%, 9%;
+  --cy7-color-black-hsl: 230, 13%, 9%;
+  --cy7-color-white-hsl: 0, 0%, 100%;
+
+  /* spacing */
+  --cy7-space-3xs: 0.25rem;
+  --cy7-space-sm: 0.75rem;
+  --cy7-space-md: 1.25rem;
+
+  /* typography */
+  --cy7-text-md: 1.2rem;
+  --cy7-text-base: 1rem;
+  --cy7-text-sm: 0.833rem;
+}
+
+@media(min-width: 64rem){
+  :root {
+    /* spacing */
+    --cy7-space-3xs: 0.375rem;
+    --cy7-space-sm: 1.125rem;
+    --cy7-space-md: 2rem;
+
+    /* typography */
+    --cy7-text-md: 1.5625rem;
+    --cy7-text-base: 1.25rem;
+    --cy7-text-sm: 1rem;
+  }
+}
+
+/* component */
+.card-v2 {
+  position: relative;
+  overflow: hidden;
+}
+.card-v2 img {
+  display: block;
+  width: 100%;
+}
+
+.card-v2__caption {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: linear-gradient(hsla(var(--cy7-color-black-hsl), 0), hsla(var(--cy7-color-black-hsl), 1));
+  background-blend-mode: multiply;
+  color: hsl(var(--cy7-color-white-hsl));
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.35);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.card-v2--blur-fx .card-v2__caption {
+  background: hsla(var(--cy7-color-black-hsl), 0.8);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+}
+
+a.card-v2 {
+  display: block;
+  text-decoration: none;
+  transition: box-shadow 0.2s;
+}
+a.card-v2:hover {
+  box-shadow: 0 0.9px 1.5px rgba(0, 0, 0, 0.03),0 3.1px 5.5px rgba(0, 0, 0, 0.08),0 14px 25px rgba(0, 0, 0, 0.12);
+}
+
+/* utility classes */
+.cy7-opacity-70\% {
+  opacity: 0.7;
+}
+
+.cy7-text-sm {
+  font-size: var(--cy7-text-sm);
+}
+
+.cy7-margin-top-3xs {
+  margin-top: var(--cy7-space-3xs);
+}
+
+.cy7-text-md {
+  font-size: var(--cy7-text-md);
+}
+
+.cy7-text-center {
+  text-align: center;
+}
+
+.cy7-padding-bottom-sm {
+  padding-bottom: var(--cy7-space-sm);
+}
+
+.cy7-padding-top-md {
+  padding-top: var(--cy7-space-md);
+}
+
+.cy7-padding-x-sm {
+  padding-left: var(--cy7-space-sm);
+  padding-right: var(--cy7-space-sm);
+}
+
+.cy7-radius-md {
+  border-radius: 0.25em;
+}
+
+.cy7-padding-sm {
+  padding: var(--cy7-space-sm);
+}
+
+@media(min-width: 64rem){
+  .cy7-text-base\@md {
+    font-size: var(--cy7-text-base);
+  }
+}

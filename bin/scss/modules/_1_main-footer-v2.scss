@@ -1,0 +1,83 @@
+/* -------------------------------- 
+
+File#: _1_main-footer-v2
+Title: Main Footer v2
+Descr: Footer navigation template
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+.footer-v2 {}
+
+.footer-v2__nav-list { // ul
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); // set auto grid -> modify min-width (200px)
+  grid-gap: var(--space-md);
+  justify-content: center;
+}
+
+.footer-v2__nav-item {
+  margin-bottom: var(--space-md);
+
+  > * {
+    margin-bottom: var(--space-xxs); // vertical spacing
+  }
+}
+
+.footer-v2__nav-item a { // nav link
+  color: var(--color-contrast-medium);
+
+  &:hover {
+    color: var(--color-contrast-high);
+  }
+
+  @include breakpoint(md) {
+    font-size: 0.875em;
+  }
+}
+
+.footer-v2__socials {
+  display: flex;
+  justify-content: center;
+  margin-bottom: var(--space-sm);
+
+  a {
+    text-decoration: none;
+    display: inline-block;
+    margin: 0 var(--space-xxxs);
+    color: var(--color-contrast-medium); // icons color
+
+    &:hover {
+      color: var(--color-contrast-high);
+    }
+
+    svg {
+      display: block;
+      width: 1em;
+      height: 1em;
+      color: inherit;
+    }
+  }
+}
+
+.footer-v2__print {
+  font-size: var(--text-sm);
+  color: var(--color-contrast-medium);
+  text-align: center;
+
+  p {
+    margin-bottom: var(--space-sm);
+  }
+
+  a {
+    color: inherit;
+
+    &:hover {
+      color: var(--color-contrast-high);
+    }
+  }
+
+  @include breakpoint(md) {
+    font-size: var(--text-xs);
+  }
+}

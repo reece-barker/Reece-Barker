@@ -1,0 +1,33 @@
+/* -------------------------------- 
+
+File#: _1_sticky-banner
+Title: Sticky Banner
+Descr: A sticky banner that slides in passed a target element or a scrolling offset.
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+.sticky-banner {
+  position: fixed;
+  top: -1px;
+  left: 0;
+  width: 100%;
+  z-index: var(--zindex-fixed-element);
+  transform: translateY(-100%);
+  transition: transform .3s;
+}
+
+// -- bottom variation
+.sticky-banner--bottom {
+  top: auto;
+  bottom: -1px;
+  transform: translateY(100%);
+}
+
+.sticky-banner--visible { // classes added to the banner when visible
+  transform: translateY(0);
+}
+
+.sticky-banner:not(.sticky-banner--visible) {
+  box-shadow: none;
+}

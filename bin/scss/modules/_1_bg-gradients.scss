@@ -1,0 +1,158 @@
+/* -------------------------------- 
+
+File#: _1_bg-gradients
+Title: Background Gradients
+Descr: Customizable background gradients
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+.bg-gradient-1, .bg-gradient-2, .bg-gradient-3, .bg-gradient-4, .bg-gradient-5 {
+  background-repeat: no-repeat;
+  background-position: center;
+
+  @media (prefers-reduced-motion: no-preference) {
+    &[data-bg-animate="on"] {
+      will-change: background-position;
+    }
+  }
+}
+
+.bg-gradient-1 {
+  --bg-gradient-stop-1: #0E131F;
+  --bg-gradient-stop-2: #FF0035;
+  --bg-gradient-stop-3: #38405F;
+
+  background-color: var(--bg-gradient-stop-1);
+  background-image: radial-gradient(ellipse at 90% 30%, var(--bg-gradient-stop-1) 20%, transparent 50%),
+                    radial-gradient(ellipse at 70% 0%, var(--bg-gradient-stop-2) 0%, transparent 50%),
+                    radial-gradient(ellipse at 20% 10%, var(--bg-gradient-stop-3) 10%, transparent 70%),
+                    radial-gradient(ellipse at 50% 100%, var(--bg-gradient-stop-2) 0%, transparent 50%);
+  background-size: 200% 100%;
+
+  @media (prefers-reduced-motion: no-preference) {
+    &[data-bg-animate="on"] {
+      background-size: 400% 200%;
+      background-position: 0% 0%;
+      animation: bg-gradient-anim-1 30s linear infinite;
+    }
+  }
+}
+
+@keyframes bg-gradient-anim-1 {
+  0%, 100% { background-position: 0% 0%; }
+  25% { background-position: 100% 100%; }
+  50% { background-position: 100% 0%; }
+  75% { background-position: 0% 100%; }
+}
+
+.bg-gradient-2 {
+  --bg-gradient-stop-1: #FFFCF2;
+  --bg-gradient-stop-2: #E980FC;
+  --bg-gradient-stop-3: #BCB6FF;
+
+  background-color: var(--bg-gradient-stop-1);
+  background-image: radial-gradient(ellipse at 10% 20%, var(--bg-gradient-stop-2) 0%, transparent 40%),
+                    radial-gradient(ellipse at 50% 0%, var(--bg-gradient-stop-1) 25%, transparent 75%),
+                    radial-gradient(ellipse at 100% 100%, var(--bg-gradient-stop-3) 35%, transparent 70%),
+                    radial-gradient(ellipse at 50% 100%, var(--bg-gradient-stop-1) 20%, transparent 70%);
+  background-size: 120% 200%;
+
+  @media (prefers-reduced-motion: no-preference) {
+    &[data-bg-animate="on"] {
+      background-size: 240% 400%;
+      background-position: 0% 0%;
+      animation: bg-gradient-anim-2 30s linear infinite;
+    }
+  }
+}
+
+@keyframes bg-gradient-anim-2 {
+  0%, 100% { background-position: 0% 0%; }
+  25% { background-position: 100% 100%; }
+  50% { background-position: 100% 0%; }
+  75% { background-position: 0% 100%; }
+}
+
+.bg-gradient-3 {
+  --bg-gradient-stop-1: #30C5FF;
+  --bg-gradient-stop-2: #FFFCF2;
+  --bg-gradient-stop-3: #EB5E28;
+  --bg-gradient-stop-4: #5C946E;
+
+  background-color: var(--bg-gradient-stop-1);
+  background-image: radial-gradient(ellipse at 25% 90%, var(--bg-gradient-stop-4) 10%, transparent 70%),
+                    radial-gradient(ellipse at 55% 90%, var(--bg-gradient-stop-2) 0%, transparent 70%),
+                    radial-gradient(ellipse at 100% 100%, var(--bg-gradient-stop-3) 5%, transparent 60%),
+                    radial-gradient(ellipse at 0% 0%, var(--bg-gradient-stop-4) 15%, transparent 50%),
+                    radial-gradient(ellipse at 100% 0%, var(--bg-gradient-stop-2) 30%, transparent 70%);
+  background-size: 100% 140%;
+
+  @media (prefers-reduced-motion: no-preference) {
+    &[data-bg-animate="on"] {
+      background-size: 200% 280%;
+      background-position: 50% 0%;
+      animation: bg-gradient-anim-3 30s linear infinite;
+    }
+  }
+}
+
+@keyframes bg-gradient-anim-3 {
+  0%, 100% { background-position: 0% 0%; }
+  33% { background-position: 100% 0%; }
+  66% { background-position: 100% 100%; }
+}
+
+.bg-gradient-4 {
+  --bg-gradient-stop-1: #1D1128;
+  --bg-gradient-stop-2: hsla(257, 62%, 32%, 0.7);
+  --bg-gradient-stop-3: hsla(347, 83%, 60%, 0.5);
+  --bg-gradient-stop-4: hsla(175, 51%, 48%, 0.15);
+
+  background-color:var(--bg-gradient-stop-1);
+  background-image: radial-gradient(ellipse at 70% 0%, var(--bg-gradient-stop-2) 0%, transparent 30%),
+                    radial-gradient(circle at 90% 0%, var(--bg-gradient-stop-3) 0%, transparent 30%),
+                    radial-gradient(ellipse at 0% 0%, var(--bg-gradient-stop-4) 0%, transparent 40%),
+                    radial-gradient(circle at 30% 100%, var(--bg-gradient-stop-2) 0%, transparent 40%),
+                    radial-gradient(ellipse at 10% 100%, var(--bg-gradient-stop-3) 0%, transparent 40%),
+                    radial-gradient(ellipse at 100% 100%, var(--bg-gradient-stop-4) 0%, transparent 40%);
+  
+  @media (prefers-reduced-motion: no-preference) {
+    &[data-bg-animate="on"] {
+      background-size: 200% 200%;
+      background-position: 0% 0%;
+      animation: bg-gradient-anim-4 30s linear infinite;
+    }
+  }
+}
+
+@keyframes bg-gradient-anim-4 {
+  0%, 100% { background-position: 0% 0%; }
+  25% { background-position: 100% 0%; }
+  50% { background-position: 100% 100%; }
+  75% { background-position: 0% 100%; }
+}
+
+.bg-gradient-5 {
+  --bg-gradient-stop-1: #e6e5f7;
+  --bg-gradient-stop-2: hsla(333, 69%, 62%, 0.35);
+  --bg-gradient-stop-3: hsla(299, 75%, 30%, 0.32);
+
+  background-color:var(--bg-gradient-stop-1);
+  background-image: radial-gradient(ellipse at 50% 0%, var(--bg-gradient-stop-2) 0%, transparent 30%),
+                    radial-gradient(ellipse at 100% 0%, var(--bg-gradient-stop-3) 0%, transparent 60%);
+  background-size: 200% 100%;
+
+  @media (prefers-reduced-motion: no-preference) {
+    &[data-bg-animate="on"] {
+      background-size: 400% 200%;
+      background-position: 0% 0%;
+      animation: bg-gradient-anim-5 20s linear infinite;
+    }
+  }
+}
+
+@keyframes bg-gradient-anim-5 {
+  0%, 100% { background-position: 0% 0%; }
+  40%, 60% { background-position: 100% 0%; }
+}

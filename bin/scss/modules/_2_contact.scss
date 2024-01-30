@@ -1,0 +1,38 @@
+/* -------------------------------- 
+
+File#: _2_contact
+Title: Contact
+Descr: Contact block w/ info about how to get in touch
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+.contact {
+  position: relative;
+  z-index: 1;
+  
+  .details-list {
+    margin-bottom: var(--space-lg);
+  }
+}
+
+@include breakpoint(md) {
+  @supports (grid-area: auto) {
+    .contact {
+      .details-list {
+        margin-bottom: 0;
+      }
+
+      .google-maps {
+        height: auto; // = height of .details-list
+        padding-bottom: 0;
+      }
+    }
+
+    .contact__grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: var(--space-lg);
+    }
+  }
+}

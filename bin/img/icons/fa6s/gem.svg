@@ -1,0 +1,6 @@
+
+                <svg version="1.0" id="gem" xmlns="http://www.w3.org/2000/svg" width="{{width}}px" height="{{height}}px"
+                    viewBox="0 0 512 512">
+                    <path d="M379 32H133L256 183L379 32ZM512 192L405 51L290 192H512ZM107 51L0 192H222L107 51ZM244 475C247 478 252 480 256 480S265 478 268 475L511 224H1L244 475Z" />
+                </svg>
+            

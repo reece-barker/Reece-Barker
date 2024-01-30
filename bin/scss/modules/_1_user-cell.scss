@@ -1,0 +1,77 @@
+/* -------------------------------- 
+
+File#: _1_user-cell
+Title: User Cell
+Descr: Profile card containing profile image + metadata
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+:root {
+  --user-cell-img-size: 48px;
+}
+
+.user-cell {
+  @include spaceUnit(1rem); // spacing not affected by em units
+  font-size: 1rem; // children font size not affected by global change of body font-size
+
+  background: var(--color-contrast-lower);
+  padding: var(--space-lg);
+  border-radius: var(--radius-md);
+}
+
+.user-cell__img {
+  display: block;
+  border-radius: 50%;
+  width: var(--user-cell-img-size);
+  height: var(--user-cell-img-size);
+  margin-bottom: var(--space-sm);
+}
+
+.user-cell__content {
+  margin-bottom: var(--space-sm);
+}
+
+.user-cell__social-icon {
+  display: block;
+  padding: var(--space-sm);
+  border-radius: 50%;
+  background-color: var(--color-bg);
+  box-shadow: var(--shadow-xs);
+  color: var(--color-contrast-medium);
+  transition: 0.2s;
+
+  .icon {
+    display: block;
+    transition: color 0.2s;
+  }
+
+  &:hover {
+    box-shadow: var(--shadow-md);
+
+    .icon {
+      color: var(--color-primary);
+    }
+  }
+}
+
+@supports (grid-area: auto) {
+  .user-cell {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    grid-gap: var(--space-xxs);
+  }
+
+  .user-cell__body {
+    display: grid;
+    grid-template-columns: var(--user-cell-img-size) 1fr;
+    align-items: center;
+    grid-gap: var(--space-xs);
+  }
+
+  .user-cell__img,
+  .user-cell__content {
+    margin-bottom: 0; // reset
+  }
+}

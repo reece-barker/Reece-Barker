@@ -1,0 +1,175 @@
+/* -------------------------------- 
+
+File#: _1_off-canvas-content
+Title: Off-Canvas Content
+Descr: An off-canvas section used for complementary content
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+:root {
+  --off-canvas-panel-width: 400px;
+  --off-canvas-panel-width-opposite: -400px; // 👆 it should be equal to (--off-screen-panel-width * -1)
+  --off-canvas-animation-duration: 0.4s;
+}
+
+.off-canvas {
+  overflow: hidden;
+}
+
+.off-canvas__main { // main content, pushed out when off-canvas content is visible
+  position: relative;
+  z-index: 2;
+
+  height: 100vh;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+
+  will-change: transform;
+  transition: transform var(--off-canvas-animation-duration) var(--ease-in-out); 
+}
+
+// default
+.off-canvas--visible .off-canvas__main { // off-canvas content = full-width on small devices
+  transform: translateX(100%);
+}
+
+@include breakpoint(xs) { // change tanslate value if off-canvas is not full-width
+  .off-canvas--visible:not(.off-canvas--full-width) .off-canvas__main {
+    transform: translateX(var(--off-canvas-panel-width));
+  }
+}
+
+// --right
+.off-canvas--right.off-canvas--visible .off-canvas__main {
+  transform: translateX(-100%);
+}
+
+@include breakpoint(xs) {
+  .off-canvas--right.off-canvas--visible:not(.off-canvas--full-width) .off-canvas__main {
+    transform: translateX(var(--off-canvas-panel-width-opposite));
+  }
+}
+
+// bottom
+.off-canvas--bottom.off-canvas--visible .off-canvas__main {
+  transform: translateY(-100%);
+}
+
+// top
+.off-canvas--top.off-canvas--visible .off-canvas__main {
+  transform: translateY(100%);
+}
+
+.off-canvas__close-btn { // if JS = disabled, hide panel close button
+  display: none;
+}
+
+// JS = enabled
+.js {
+  .off-canvas__panel {
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    visibility: hidden;
+
+    background-color: var(--color-contrast-lower);
+
+    transition: visibility var(--off-canvas-animation-duration);
+
+    &:focus {
+      outline: none;
+    }
+  }
+  
+  @include breakpoint(xs) {
+    .off-canvas:not(.off-canvas--full-width) .off-canvas__panel {
+      width: var(--off-canvas-panel-width);
+    }
+  }
+
+  .off-canvas__content { // off-canvas panel content
+    height: 100%;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+
+    transform: translateX(-50%);
+    will-change: transform;
+
+    transition: transform var(--off-canvas-animation-duration) var(--ease-in-out);
+  }
+
+  .off-canvas__close-btn {
+    display: block;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: var(--color-bg);
+    box-shadow: var(--shadow-xs);
+    transition: .3s;
+
+    &:hover {
+      box-shadow: var(--shadow-sm);
+    }
+  }
+
+  .off-canvas--visible {
+    .off-canvas__panel {
+      visibility: visible;
+    }
+
+    .off-canvas__content {
+      transform: translateX(0);
+    }
+
+    &.off-canvas--bottom,
+    &.off-canvas--top {
+      transform: translateY(0);
+    }
+  }
+
+  // --right
+  .off-canvas--right {
+    .off-canvas__panel {
+      left: auto;
+      right: 0;
+    }
+
+    &:not(.off-canvas--visible) .off-canvas__content {
+      transform: translateX(50%);
+    }
+  }
+
+  // --bottom
+  .off-canvas--bottom {
+    &:not(.off-canvas--visible) .off-canvas__content {
+      transform: translateY(50px);
+    }
+  }
+
+  // --top
+  .off-canvas--top {
+    &:not(.off-canvas--visible) .off-canvas__content {
+      transform: translateY(-50px);
+    }
+  }
+}
+
+// --full-width
+.off-canvas--full-width {
+  .off-canvas__close-btn {
+    width: 40px;
+    height: 40px;
+  }
+  
+  @include breakpoint(md) {
+    --off-canvas-animation-duration: 0.65s; // increase animation duration if panel is full-screen
+  }
+}

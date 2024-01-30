@@ -1,0 +1,159 @@
+<div class="flex justify-between padding-x-md margin-y-sm items-center">
+    <h1 class="hbs-ui__text text-lg">Notifications</h1>
+
+    <div class="language-picker margin-left-auto language-picker--flags js-language-picker"
+        data-trigger-class="btn bg js-tab-focus">
+        <form id="LANG" action="" class="language-picker__form">
+            <label class="hbs-ui__text" for="hbs-ui__languages-input">Select your language</label>
+
+            <select name="language-picker-select" id="hbs-ui__languages-input">
+                <option lang="en" class="hbs-ui__text" value="english" {{#if location.english.isSelected}} selected{{/if}}>
+                    English</option>
+                <option lang="de" class="hbs-ui__text" value="deutsch" {{#if location.deutsch.isSelected}} selected{{/if}}>
+                    Deutsch</option>
+                <option lang="fr" class="hbs-ui__text" value="francais" {{#if location.francais.isSelected}} selected{{/if}}>
+                    Français</option>
+                <option lang="it" class="hbs-ui__text" value="italiano" {{#if location.italiano.isSelected}} selected{{/if}}>
+                    Italiano</option>
+            </select>
+        </form>
+    </div>
+</div>
+
+<section class="radius-md padding-md">
+    <p class="hbs-ui__text bg padding-md shadow-xs radius-md margin-bottom-sm">
+        Acolytes is currently working on making the Notifications section fully functional, please be patient.
+    </p>
+
+    <div class="bg radius-md shadow-xs">
+        <div class="border-bottom border-contrast-lower padding-md text-right">
+            <div class="flex flex-wrap gap-sm justify-between items-center">
+                <p class="hbs-ui__text" id="new_notifications_none">{{#if (hasLength users._options.notifications)}}You have {{getLength users._options.notifications}} notifications that you haven't closed.{{else}}You haven't received any new notifications.{{/if}}</p>
+            </div>
+        </div>
+
+        <ul id="new_notifications_list" class="notif text-sm">
+
+        </ul>
+    </div>
+</section>
+
+<script class="hbs-ui__scripts">
+    const initNotifs = async () => {
+        const notifications = document.querySelector('#notifications_list');
+        const notifications_none = document.querySelector('#notifications_none');
+
+        const new_notifications = document.querySelector('#new_notifications_list');
+        const new_notifications_none = document.querySelector('#new_notifications_none');
+
+        if (notifications.children.length > 1) {
+            new_notifications_none.innerHTML = `You have ${notifications.children.length - 1} notifications that you haven't closed.`;
+            notifications_none.innerHTML = `You have ${notifications.children.length - 1} notifications that you haven't closed.`;
+        } else {
+            new_notifications_none.innerHTML = `You haven't received any new notifications.`;
+            notifications_none.innerHTML = `You haven't received any new notifications.`;
+        }
+
+        //notifications_none.children.item(0).children.item(1).children.item(0).children.item(1).classList.add('margin-top-xxxs');
+
+        for (var i = 0; i < notifications.children.length; i++) {
+            const _notification = document.createElement('li');
+
+            _notification.setAttribute('class', notifications.children[i].getAttribute('class'));
+
+            let a = notifications.children[i].innerHTML;
+//0,2
+            notifications.children[i].children[0].children[2].innerHTML = `
+                <svg class="icon" viewBox="0 0 8 8">
+                    <title class="hbs-ui__text">close notification</title>
+                    <path d="M 7.35 0.65 c -0.2 -0.2 -0.5 -0.2 -0.7 0 L 4 3.3 L 1.35 0.65 c -0.2 -0.2 -0.5 -0.2 -0.7 0 s -0.2 0.5 0 0.7 L 3.3 4 l -2.65 2.65 c -0.2 0.2 -0.2 0.5 0 0.7 C 0.75 7.45 0.85 7.5 1 7.5 s 0.25 -0.05 0.35 -0.15 L 4 4.7 l 2.65 2.65 c 0.1 0.1 0.25 0.15 0.35 0.15 s 0.25 -0.05 0.35 -0.15 c 0.2 -0.2 0.2 -0.5 0 -0.7 L 4.7 4 l 2.65 -2.65 C 7.55 1.15 7.55 0.85 7.35 0.65 z" />
+                </svg>
+            `;
+
+            let b = notifications.children[i].innerHTML;
+
+            notifications.children[i].innerHTML = a;
+
+            _notification.innerHTML = b;
+
+            if (i !== 0) {
+                _notification.children[0].children[2].addEventListener('click', async (e) => {
+                    e.preventDefault();
+
+                    if (notifications.children.length > 1) {
+                        new_notifications_none.innerHTML = `You have ${notifications.children.length - 2} notifications that you haven't closed.`;
+                        notifications_none.innerHTML = `You have ${notifications.children.length - 2} notifications that you haven't closed.`;
+                    } else {
+                        new_notifications_none.innerHTML = `You haven't received any new notifications.`;
+                        notifications_none.innerHTML = `You haven't received any new notifications.`;
+                    }
+
+                    if (document.getElementsByClassName('notif__dot').length <= 0) { 
+                        if (!document.getElementsByClassName('app-ui__notification-indicator')[0]) { 
+                            return; 
+                        } 
+                        
+                        document.getElementsByClassName('app-ui__notification-indicator')[0].remove();
+                    }
+
+                    if (notifications.children.length <= 1) {
+                        notifications_none.classList.toggle('sr-only');
+                    }
+                });
+            }
+
+            notifications.children[i].children[0].children[2].setAttribute('class', 'notif__close items-center margin-left-auto');
+
+            new_notifications.appendChild(_notification);
+        };
+    };
+
+    initNotifs();
+
+    /*
+    const notifications = document.querySelectorAll('.hbs__notification');
+
+    notifications.forEach(async (e) => {
+        e.onclick = async (el) => {
+            el.preventDefault();
+        
+            $.ajax({
+                type: 'GET',
+                url: '/api/notifications',
+                dataType: 'json',
+                body: {
+                    _id: e.parentElement.children[1].children[0].children[0].innerHTML
+                },
+                success: async (res) => {
+                    console.log(res.body);
+
+                    if (document.getElementById('notifs-ui__list')) {
+                        $(this).parent().parent().remove(); 
+                    }
+                    
+                    if (($(this).parent().parent().parent().children().length - 1) <= 1) {
+                        document.getElementsByClassName('notifs-ui__disabled')[0].classList.toggle('sr-only');
+                    } 
+                    
+                    if (document.getElementById('notif__amount')) {
+                        document.getElementById('notif__amount').innerHTML = ($(this).parent().parent().parent().children().length-2) <= 0 ? `You haven't received any new notifications.` : document.getElementById('notif__amount').innerHTML.replace(/\d/g, $(this).parent().parent().parent().children().length - 2); 
+                    }
+                    
+                    $(this).parent().parent().remove(); 
+                    
+                    if (document.getElementsByClassName('notif__dot').length <= 0) {
+                        if (!document.getElementsByClassName('app-ui__notification-indicator')[0]) {
+                            return;
+                        } 
+                        
+                        document.getElementsByClassName('app-ui__notification-indicator')[0].remove();
+                    }
+                },
+                error: async (res) => {
+                    return console.error(res.err);
+                }
+            });
+        }
+    });
+    */
+</script>

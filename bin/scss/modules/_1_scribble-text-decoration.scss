@@ -1,0 +1,293 @@
+/* -------------------------------- 
+
+File#: _1_scribble-text-decoration
+Title: Scribble Text Decoration
+Descr: A collection of animated scribble text decorations
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+.scribble-text-fx {
+  text-decoration: none;
+  position: relative;
+  z-index: 1;
+}
+
+.scribble-text-fx__label {
+  position: relative;
+  z-index: 2;
+}
+
+.scribble-text-fx__decoration {
+  position: absolute;
+  z-index: 1;
+  display: block;
+  pointer-events: none;
+  max-width: none;
+}
+
+// --v1
+.scribble-text-fx--v1 {
+  .scribble-text-fx__decoration {
+    top: -6px;
+    left: -12px;
+    width: calc(100% + 24px);
+    height: calc(100% + 12px);
+  
+    > * {
+      stroke-width: 2px;
+
+      stroke-dashoffset: 367;
+      stroke-dasharray: 367;
+      
+      transition: stroke-dashoffset .5s var(--ease-in-out);
+    }
+  }
+
+  &:hover {
+    .scribble-text-fx__decoration > * {
+      stroke-dashoffset: 0;
+    }
+  }
+}
+
+// --v2
+.scribble-text-fx--v2 {
+  .scribble-text-fx__decoration {
+    bottom: -5px;
+    left: -10px;
+    width: calc(100% + 20px);
+    height: 8px;
+  
+    > * {
+      stroke-width: 2px;
+
+      stroke-dashoffset: 155;
+      stroke-dasharray: 155;
+
+      transition: stroke-dashoffset .3s var(--ease-in-out);
+    }
+  }
+
+  &:hover {
+    .scribble-text-fx__decoration > * {
+      stroke-dashoffset: 0;
+    }
+  }
+}
+
+// --v3
+.scribble-text-fx--v3 {
+  .scribble-text-fx__decoration {
+    top: 50%;
+    transform: translateY(-50%);
+    left: -15px;
+    width: calc(100% + 30px);
+    height: 8px;
+  
+    > * {
+      stroke-width: 2px;
+      transition: stroke-dashoffset .2s var(--ease-in-out);
+    }
+
+    > *:first-child {
+      stroke-dashoffset: 149;
+      stroke-dasharray: 149;
+    }
+
+    > *:last-child {
+      stroke-dashoffset: 147;
+      stroke-dasharray: 147;
+      transition-delay: .2s;
+    }
+  }
+
+  &:hover {
+    .scribble-text-fx__decoration > * {
+      stroke-dashoffset: 0;
+    }
+  }
+}
+
+// --v4
+.scribble-text-fx--v4 {
+  .scribble-text-fx__decoration {
+    top: 50%;
+    transform: translateY(-50%);
+    right: -46px; // make sure this value is higher than the width value 👇
+    width: 40px;
+    height: auto;
+  
+    > * {
+      stroke-width: 2px;
+      transition: stroke-dashoffset .2s;
+    }
+
+    > *:first-child {
+      stroke-dashoffset: 33;
+      stroke-dasharray: 33;
+      transition-delay: .2s;
+    }
+
+    > *:last-child {
+      stroke-dashoffset: 28;
+      stroke-dasharray: 28;
+      transition-delay: 0s;
+    }
+  }
+
+  &:hover {
+    .scribble-text-fx__decoration {
+      > * {
+        stroke-dashoffset: 0;
+      }
+
+      > *:first-child {
+        transition-delay: 0s;
+      }
+
+      > *:last-child {
+        transition-delay: .2s;
+      }
+    }
+  }
+}
+
+// --v5
+.scribble-text-fx--v5 {
+  .scribble-text-fx__decoration {
+    top: 0;
+    right: 0;
+    width: 22px;
+    height: auto;
+    transform: translate(50%, -50%);
+  
+    > * {
+      stroke-width: 2px;
+
+      stroke-dashoffset: 16;
+      stroke-dasharray: 16;
+
+      transition: stroke-dashoffset .3s;
+    }
+  }
+
+  &:hover {
+    .scribble-text-fx__decoration > * {
+      stroke-dashoffset: 0;
+    }
+  }
+}
+
+// --v6
+.scribble-text-fx--v6 {
+  .scribble-text-fx__decoration {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 65px;
+    height: auto;
+  
+    > * {
+      stroke-width: 2px;
+      transition: stroke-dashoffset .2s var(--ease-in-out);
+    }
+
+    > *:first-child {
+      stroke-dashoffset: 79;
+      stroke-dasharray: 79;
+      transition-delay: .2s;
+    }
+
+    > *:last-child {
+      stroke-dashoffset: 73;
+      stroke-dasharray: 73;
+      transition-delay: 0s;
+    }
+  }
+
+  &:hover {
+    .scribble-text-fx__decoration {
+      > * {
+        stroke-dashoffset: 0;
+      }
+
+      > *:first-child {
+        transition-delay: 0s;
+      }
+
+      > *:last-child {
+        transition-delay: .2s;
+      }
+    }
+  }
+}
+
+// --v7
+.scribble-text-fx--v7 {
+  .scribble-text-fx__decoration {
+    bottom: -5px;
+    left: -10px;
+    width: calc(100% + 20px);
+    height: 10px;
+  
+    > * {
+      stroke-width: 2px;
+
+      stroke-dashoffset: 160;
+      stroke-dasharray: 160;
+
+      transition: stroke-dashoffset .4s var(--ease-in-out);
+    }
+  }
+
+  &:hover {
+    .scribble-text-fx__decoration > * {
+      stroke-dashoffset: 0;
+    }
+  }
+}
+
+// --v8
+.scribble-text-fx--v8 {
+  .scribble-text-fx__decoration {
+    top: 50%;
+    transform: translateY(-50%);
+    right: -34px; // make sure this value is higher than the width value 👇
+    width: 29px;
+    height: auto;
+  
+    > * {
+      stroke-width: 2px;
+      transition: stroke-dashoffset .2s;
+    }
+
+    > *:first-child {
+      stroke-dashoffset: 79;
+      stroke-dasharray: 79;
+      transition-delay: .2s;
+    }
+
+    > *:last-child {
+      stroke-dashoffset: 18;
+      stroke-dasharray: 18;
+      transition-delay: 0s;
+    }
+  }
+
+  &:hover {
+    .scribble-text-fx__decoration {
+      > * {
+        stroke-dashoffset: 0;
+      }
+
+      > *:first-child {
+        transition-delay: 0s;
+      }
+
+      > *:last-child {
+        transition-delay: .2s;
+      }
+    }
+  }
+}

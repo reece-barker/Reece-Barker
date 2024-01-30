@@ -1,0 +1,31 @@
+/* -------------------------------- 
+
+File#: _3_product-color-feature
+Title: Product Color Feature
+Descr: A section displaying the color variations of a product
+Usage: codyhouse.co/license
+
+-------------------------------- */
+.prod-color-feature {
+  --slideshow-height: auto; // set slideshow height
+}
+
+@include breakpoint(md) { // move color swatches inside image section
+  .prod-color-feature {
+    .color-swatches {
+      --color-swatch-size: 24px;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      margin: 0 !important; // reset margin - if util classes
+    }
+
+    .color-swatches__legend {
+      @include srHide;
+    }
+
+    .color-swatches__list {
+      flex-direction: column;
+    }
+  }
+}

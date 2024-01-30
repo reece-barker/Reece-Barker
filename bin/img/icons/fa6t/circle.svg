@@ -1,0 +1,6 @@
+
+                <svg version="1.0" id="circle" xmlns="http://www.w3.org/2000/svg" width="{{width}}px" height="{{height}}px"
+                    viewBox="0 0 512 512">
+                    <path d="M256 32C380 32 480 132 480 256S380 480 256 480S32 380 32 256S132 32 256 32M256 16C123 16 16 123 16 256S123 496 256 496S496 389 496 256S389 16 256 16L256 16Z" />
+                </svg>
+            

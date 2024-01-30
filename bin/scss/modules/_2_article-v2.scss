@@ -1,0 +1,49 @@
+/* -------------------------------- 
+
+File#: _2_article-v2
+Title: Article v2
+Descr: Article template
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+.t-article-v2__cover {
+  height: 200px;
+  background-color: var(--color-contrast-low);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  @include breakpoint(md) {
+    height: 400px;
+  }
+}
+
+.t-article-v2__intro {
+  background-color: var(--color-bg);
+  padding: var(--space-md);
+  margin-top: calc(-1 * var(--space-xxl));
+}
+
+.t-article-v2__divider {
+  display: flex;
+  align-items: center;
+
+  span {
+    display: block;
+    margin: 0 var(--space-xs);
+    height: 10px;
+    width: 10px;
+    transform: rotate(45deg);
+    background-color: var(--color-contrast-low);
+  }
+
+  &::before, &::after {
+    content: '';
+    display: block;
+    height: 1px;
+    width: auto;
+    flex-grow: 1;
+    background-color: var(--color-contrast-lower);
+  }
+}

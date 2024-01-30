@@ -1,0 +1,35 @@
+/* -------------------------------- 
+
+File#: _2_hash-link
+Title: Hash Link
+Descr: Add a hash anchor to heading elements
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+.hash-link {}
+
+.hash-link__anchor {
+  opacity: 0;
+}
+
+.hash-link:hover .hash-link__anchor,
+.hash-link__anchor:focus {
+  opacity: 1;
+}
+
+// --visible
+.hash-link--visible .hash-link__anchor {
+  opacity: 1;
+}
+
+// --left
+.hash-link--left  {
+  position: relative;
+  
+  .hash-link__anchor {
+    position: absolute;
+    left: 0%;
+    transform: translateX(-100%);
+  }
+}

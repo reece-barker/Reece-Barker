@@ -1,0 +1,107 @@
+/* -------------------------------- 
+
+File#: _1_scrolling-animations
+Title: Scrolling Animations
+Descr: Scrolling animations plugin
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+:root {
+  // translate
+  --scroll-fx-translate-x: 0;
+  --scroll-fx-translate-y: 0;
+  --scroll-fx-translate-z: 0;
+  // rotate
+  --scroll-fx-rotate-x: 0;
+  --scroll-fx-rotate-y: 0;
+  --scroll-fx-rotate-z: 0;
+  // skew
+  --scroll-fx-skew-x: 0;
+  --scroll-fx-skew-y: 0;
+  // scale
+  --scroll-fx-scale-x: 1;
+  --scroll-fx-scale-y: 1;
+  // opacity
+  --scroll-fx-opacity: 1;
+}
+
+@mixin scrollFxProps {
+  transform: translate3d(var(--scroll-fx-translate-x), var(--scroll-fx-translate-y), var(--scroll-fx-translate-z)) rotateX(var(--scroll-fx-rotate-x)) rotateY(var(--scroll-fx-rotate-y)) rotateZ(var(--scroll-fx-rotate-z)) skewX(var(--scroll-fx-skew-x)) skewY(var(--scroll-fx-skew-y)) scaleX(var(--scroll-fx-scale-x)) scaleY(var(--scroll-fx-scale-y)) !important;
+  opacity: var(--scroll-fx-opacity) !important;
+}
+
+.js {
+  .scroll-fx {
+    @include scrollFxProps;
+  }
+
+  .scroll-fx.scroll-fx--theme-transition,
+  .scroll-fx.scroll-fx--theme-transition > * {
+    transition: .3s;
+  }
+}
+
+// responsive modifiers
+@each $breakpoint, $value in $breakpoints {
+  @include breakpoint(#{$breakpoint}) {
+    .js {
+      .scroll-fx\@#{$breakpoint} {
+        @include scrollFxProps;
+      }
+
+      .scroll-fx\@#{$breakpoint}.scroll-fx--theme-transition,
+      .scroll-fx\@#{$breakpoint}.scroll-fx--theme-transition > * {
+        transition: .3s;
+      }
+    }
+  }
+}
+
+// 👇 color theme created for the demo (⛔️ delete in production)
+// 🔗 CodyFrame color themes  https://codyhouse.co/ds/docs/framework/colors#themes
+@supports(--css: variables) {
+  [data-theme="demo-dark"] {
+    // main
+    @include defineColorHSL(--color-primary-darker, 319, 78%, 49%);
+    @include defineColorHSL(--color-primary-dark, 319, 78%, 58%);
+    @include defineColorHSL(--color-primary, 319, 78%, 66%);
+    @include defineColorHSL(--color-primary-light, 319, 78%, 72%);
+    @include defineColorHSL(--color-primary-lighter, 319, 78%, 79%);
+
+    @include defineColorHSL(--color-accent-darker, 250, 79%, 56%);
+    @include defineColorHSL(--color-accent-dark, 250, 79%, 60%);
+    @include defineColorHSL(--color-accent, 250, 79%, 65%);
+    @include defineColorHSL(--color-accent-light, 250, 79%, 71%);
+    @include defineColorHSL(--color-accent-lighter, 250, 79%, 76%);
+
+    // color contrasts
+    @include defineColorHSL(--color-bg, 240, 8%, 12%);
+    @include defineColorHSL(--color-contrast-lower, 240, 6%, 15%);
+    @include defineColorHSL(--color-contrast-low, 240, 5%, 24%);
+    @include defineColorHSL(--color-contrast-medium, 240, 3%, 55%);
+    @include defineColorHSL(--color-contrast-high, 240, 10%, 86%);
+    @include defineColorHSL(--color-contrast-higher, 240, 47%, 97%);
+
+    // font rendering
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+// 👇 grid created for the demo (⛔️ delete in production)
+.demo-scroll-fx-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+
+  > *:nth-child(1) {
+    grid-column: 1 / 4;
+    grid-row: 1 / -1;
+  }
+
+  > *:nth-child(2) {
+    grid-column: 3 / 7;
+    grid-row: 2 / 5;
+  }
+}

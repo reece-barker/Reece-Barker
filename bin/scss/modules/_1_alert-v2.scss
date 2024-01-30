@@ -1,0 +1,84 @@
+/* -------------------------------- 
+
+File#: _1_alert-v2
+Title: Alert-v2
+Descr: Feedback message
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+
+.alert-v2 {
+    position: fixed;
+    top: var(--space-md);
+    right: var(--space-md);
+    width: 50%;
+    z-index: var(--zindex-fixed-element);
+  
+    background-color: var(--color-contrast-lower);
+    padding: var(--space-sm);
+    box-shadow: var(--shadow-md);
+    border-radius: var(--radius-md);
+    color: var(--color-contrast-higher);
+    font-size: var(--text-sm);
+  
+    transition: .8s;
+    transform: translateY(-16px);
+    transform-origin: top right;
+    // hide element
+    opacity: 0;
+    visibility: hidden;
+  }
+  
+  .alert-v2__link {
+    color: inherit;
+    text-decoration: underline;
+  }
+  
+  .alert-v2__close-btn {
+    display: inline-block; // flex fallback
+    flex-shrink: 0;
+    margin-left: var(--space-sm);
+  
+    .icon {
+      display: block;
+    }
+  }
+  
+  // themes
+  .alert-v2--success {
+    :first-child {
+      :first-child {
+        .icon {
+          color: var(--color-success-darker);
+        }
+      }
+    }
+  }
+  
+  .alert-v2--error {
+    :first-child {
+      :first-child {
+        .icon {
+          color: var(--color-error-darker);
+        }
+      }
+    }
+  }
+  
+  .alert-v2--warning {
+    :first-child {
+      :first-child {
+        .icon {
+          color: var(--color-warning-darker);
+        }
+      }
+    }
+  }
+  
+  // toggle visibility
+  .alert-v2--is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }

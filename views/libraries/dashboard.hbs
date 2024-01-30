@@ -1,0 +1,244 @@
+<div class="flex justify-between padding-x-md margin-y-sm items-center">
+    <h1 class="hbs-ui__text text-lg">Dashboard</h1>
+
+    <div class="language-picker margin-left-auto language-picker--flags js-language-picker"
+        data-trigger-class="btn bg js-tab-focus">
+        <form class="language-picker__form">
+            <label class="hbs-ui__text" for="hbs-ui__languages-input">Select your language</label>
+
+            <select name="language-picker-select" id="hbs-ui__languages-input">
+                <option lang="en" class="hbs-ui__text" value="english" {{#if opt.english}} selected{{/if}}>
+                    English</option>
+                <option lang="de" class="hbs-ui__text" value="deutsch" {{#if opt.deutsch}} selected{{/if}}>
+                    Deutsch</option>
+                <option lang="fr" class="hbs-ui__text" value="francais" {{#if opt.francais}} selected{{/if}}>
+                    Français</option>
+                <option lang="it" class="hbs-ui__text" value="italiano" {{#if opt.italiano}} selected{{/if}}>
+                    Italiano</option>
+            </select>
+        </form>
+    </div>
+</div>
+
+<section class="radius-md padding-md">
+    <p class="hbs-ui__text bg padding-md shadow-xs radius-md margin-bottom-sm">
+        Acolytes is currently working on making the Dashboard section fully functional, please be patient.
+    </p>
+
+    <div class="banner margin-bottom-sm shadow-xs bg radius-md overflow-hidden">
+        <a href="#0" class="text-decoration-none" aria-label="Shop Now">
+            <div class="grid flex-row-reverse@md">
+                <div class="col-6@md overflow-hidden" aria-hidden="true">
+                    <div class="banner__figure width-100%"
+                        style="background-image: url({{ URL 'utils/img/jpg/placeholders/places.png'}});"></div>
+                </div>
+
+                <div class="col-6@md">
+                    <div class="text-component v-space-md height-100% flex flex-column padding-md padding-lg@md">
+                        <h2>Do you want to show off with our stylish clothes?</h2>
+                        <p class="margin-top-sm margin-top-lg@md"><span class="banner__link"><i>Shop Now</i></span></p>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <div class="grid gap-sm">
+        <!-- alert -->
+        <div class="alert-card bg radius-md padding-md shadow-xs col-12 js-alert-card">
+            <div class="text-component line-height-lg">
+                <h1 class="text-lg flex flex-wrap items-center">
+                    <svg class="block icon icon--md margin-right-xxs color-primary" viewBox="0 0 32 32"
+                        aria-hidden="true">
+                        <circle opacity="0.2" cx="16" cy="16" r="16" />
+                        <path opacity="0.2" d="M25.7,3.3A15.98,15.98,0,0,1,3.3,25.7,15.986,15.986,0,1,0,25.7,3.3Z" />
+                        <circle opacity="0.2" cx="14" cy="9" r="3" />
+                        <circle opacity="0.2" cx="7.5" cy="16.5" r="1.5" />
+                        <circle opacity="0.2" cx="19.5" cy="18.5" r="2.5" /></svg>
+                    <span>Welcome to your Dashboard with Acolytes!</span>
+                </h1>
+
+                <p class="color-contrast-medium">Acolytes does not only provide pay-less services but also provides
+                    extras
+                    for accounts holding a Premium version of Acolytes.</p>
+                <a href="{{URL 'options/billing'}}">Want more info?</a>
+            </div>
+
+            <button class="reset alert-card__close-btn js-tab-focus js-alert-card__close-btn">
+                <svg class="icon icon--xs" viewBox="0 0 16 16">
+                    <title>Hide alert</title>
+                    <g fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="2">
+                        <line x1="1" y1="1" x2="15" y2="15" />
+                        <line x1="15" y1="1" x2="1" y2="15" />
+                    </g>
+                </svg>
+            </button>
+        </div>
+
+        <!-- stats card 1 -->
+        <div class="stats-card bg radius-md padding-md shadow-xs col-6@sm col-3@xl">
+            <div class="flex flex-wrap gap-xxs items-center">
+                <div title="This shows the percentage increase over the recent years.">
+                    <p class="color-contrast-medium">% +</p>
+                </div>
+
+                <div class="flex items-center">
+                    <span
+                        class="inline-block bg-success bg-opacity-20% text-xs padding-x-xxs padding-y-xxxxs radius-full">+33.2%</span>
+                </div>
+            </div>
+
+            <p class="text-xxl font-semibold color-contrast-higher">$5,097</p>
+
+            <div class="chart chart--area" id="stats-card-chart-1">
+                <div class="chart__area js-chart__area">
+                    <!-- chart will be created here using JavaScript-->
+                </div>
+            </div>
+        </div>
+
+        <div class="stats-card bg radius-md padding-md shadow-xs col-6@sm col-3@xl">
+            <div class="flex flex-wrap gap-xxs items-center">
+                <div title="This shows the percentage decrease over the recent years.">
+                    <p class="color-contrast-medium">% -</p>
+                </div>
+
+                <div class="flex items-center">
+                    <span
+                        class="inline-block bg-error bg-opacity-20% text-xs padding-x-xxs padding-y-xxxxs radius-full">-0.2%</span>
+                </div>
+            </div>
+
+            <p class="text-xxl font-semibold color-contrast-higher">$4,134</p>
+
+            <div class="chart chart--area" id="stats-card-chart-2">
+                <div class="chart__area js-chart__area">
+                    <!-- chart will be created here using JavaScript-->
+                </div>
+            </div>
+        </div>
+
+        <!-- stats card 3 -->
+        <div class="stats-card bg radius-md padding-md shadow-xs col-6@sm col-3@xl">
+            <div class="flex flex-wrap gap-xxs items-center">
+                <div>
+                    <p class="color-contrast-medium">Finished</p>
+                </div>
+
+                <div class="flex items-center">
+                    <span
+                        class="inline-block bg-warning bg-opacity-20% text-xs padding-x-xxs padding-y-xxxxs radius-full">+1.7%</span>
+                </div>
+            </div>
+
+            <p class="text-xxl font-semibold color-contrast-higher">$5,097</p>
+
+            <div class="chart chart--area" id="stats-card-chart-3">
+                <div class="chart__area js-chart__area">
+                    <!-- chart will be created here using JavaScript-->
+                </div>
+            </div>
+        </div>
+
+        <!-- stats card 4 -->
+        <div class="stats-card bg radius-md padding-md shadow-xs col-6@sm col-3@xl">
+            <div class="flex flex-wrap gap-xxs items-center">
+                <div>
+                    <p class="color-contrast-medium">Unfinished</p>
+                </div>
+
+                <div class="flex items-center">
+                    <span
+                        class="inline-block bg-success bg-opacity-20% text-xs padding-x-xxs padding-y-xxxxs radius-full">+7.5%</span>
+                </div>
+            </div>
+
+            <p class="text-xxl font-semibold color-contrast-higher">27min</p>
+
+            <div class="chart chart--area" id="stats-card-chart-4">
+                <div class="chart__area js-chart__area">
+                    <!-- chart will be created here using JavaScript-->
+                </div>
+            </div>
+        </div>
+
+        <!-- column chart  -->
+        <div class="bg radius-md padding-md shadow-xs col-12">
+            <div class="margin-bottom-md">
+                <div class="flex flex-wrap gap-xxs items-center">
+                    <div>
+                        <p class="color-contrast-medium margin-bottom-xs">Percentages</p>
+                        <p class="color-contrast-medium text-xs margin-bottom-md">
+                            This graph shows the changes in percentage over the specified dates.
+                        </p>
+                    </div>
+
+                    <div class="flex items-center">
+                        <span
+                            class="inline-block bg-success bg-opacity-20% text-xs padding-x-xxs padding-y-xxxxs radius-full">+3.5%</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chart chart--column" id="column-chart-3">
+                <div class="chart__area js-chart__area">
+                    <!-- chart will be created here using JavaScript-->
+                </div>
+
+                <div class="margin-top-lg">
+                    <ul class="flex flex-wrap flex-center gap-md" aria-hidden="true">
+                        <li class="flex items-center">
+                            <span class="chart__bullet bg-primary margin-right-xxs"></span>
+                            <span class="text-sm">+%</span>
+                        </li>
+
+                        <li class="flex items-center">
+                            <span class="chart__bullet bg-contrast-high margin-right-xxs"></span>
+                            <span class="text-sm">-%</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- percentage bar -->
+        <div class="bg radius-md padding-md shadow-xs col-12">
+            <p class="color-contrast-medium margin-bottom-xs">Actives</p>
+            <p class="color-contrast-medium text-xs margin-bottom-md">
+                This graph shows the active contributors completing the most invoices over the past month.
+            </p>
+
+            <div class="pct-bar flex-grow flex flex-column js-pct-bar">
+                <div class="pct-bar__bg js-pct-bar__bg margin-bottom-md" aria-hidden="true">
+                    <!-- bar fill is created in JS  -->
+                </div>
+
+                <ul class="grid gap-xs">
+                    <li class="flex items-center">
+                        <span class="pct-bar__bullet bg-primary margin-right-xxs" aria-hidden="true"></span>
+                        <span class="text-sm">1 (<i class="js-pct-bar__value"
+                                data-pct-bar-bg="bg-primary">20%</i>)</span>
+                    </li>
+
+                    <li class="flex items-center">
+                        <span class="pct-bar__bullet bg-contrast-low margin-right-xxs" aria-hidden="true"></span>
+                        <span class="text-sm">2 (<i class="js-pct-bar__value"
+                                data-pct-bar-bg="bg-contrast-low">15%</i>)</span>
+                    </li>
+
+                    <li class="flex items-center">
+                        <span class="pct-bar__bullet bg-contrast-higher margin-right-xxs" aria-hidden="true"></span>
+                        <span class="text-sm">3 (<i class="js-pct-bar__value"
+                                data-pct-bar-bg="bg-contrast-higher">15%</i>)</span>
+                    </li>
+
+                    <li class="flex items-center">
+                        <span class="pct-bar__bullet bg-accent margin-right-xxs" aria-hidden="true"></span>
+                        <span class="text-sm">4 (<i class="js-pct-bar__value"
+                                data-pct-bar-bg="bg-accent">50%</i>)</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>

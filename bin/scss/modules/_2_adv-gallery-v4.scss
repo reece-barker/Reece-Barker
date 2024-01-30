@@ -1,0 +1,18 @@
+/* -------------------------------- 
+
+File#: _2_adv-gallery-v4
+Title: Advanced Gallery v4
+Descr: Advanced image gallery template
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+.adv-gallery-v4 {
+  position: relative;
+  z-index: 1;
+
+  &.masonry {
+    --masonry-grid-gap: 0px;
+    --masonry-col-auto-size: 400px; // col min-width value -> used in JS to auto-update the masonry cols width
+  }
+}

@@ -1,0 +1,118 @@
+/* -------------------------------- 
+
+File#: _2_anim-cards
+Title: Animated Cards
+Descr: A collection of cards that slides over time
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+:root {
+  --anim-cards-width: 280px; // single card width
+  --anim-cards-gap: var(--space-md);  // gap
+}
+
+@supports(--css: variables) {
+  :root {
+    @include breakpoint(sm) {
+      --anim-cards-width: 400px;
+    }
+
+    @include breakpoint(md) {
+      --anim-cards-width: 550px;
+    }
+  }
+}
+
+// default style
+.anim-cards {
+  overflow: hidden;
+  margin-top: var(--anim-cards-gap);
+  margin-bottom: var(--anim-cards-gap);
+}
+
+.anim-cards__list {
+  display: flex;
+  overflow: auto;
+}
+
+.anim-cards__item {
+  float: left; // flex fallback
+  width: var(--anim-cards-width);
+  flex-shrink: 0;
+  margin-right: var(--anim-cards-gap);
+}
+
+.anim-cards-control { // pause/play button
+  display: inline-flex;
+  width: 40px;
+  height: 40px;
+  background-color: alpha(var(--color-contrast-higher), 0.75);
+  border-radius: 50%;
+  transition: .2s;
+
+  i { // icon
+    position: relative;
+    display: block;
+    width: 16px;
+    height: 16px;
+    margin: auto;
+    color: var(--color-bg); // icon color
+
+    &::before, &::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background-color: currentColor;
+      transition: clip-path .2s var(--ease-out);
+    }
+
+    &::before {
+      clip-path: polygon(1px 1px, 5px 1px, 5px calc(100% - 1px), 1px calc(100% - 1px));
+    }
+
+    &::after {
+      clip-path: polygon(calc(100% - 5px) 1px, calc(100% - 1px) 1px, calc(100% - 1px) calc(100% - 1px), calc(100% - 5px) calc(100% - 1px));
+    }
+  }
+
+  &:hover {
+    cursor: pointer;
+    background-color: alpha(var(--color-contrast-higher), 0.95);
+  }
+
+  &[aria-pressed="true"] {
+    i {
+      &::before {
+        clip-path: polygon(2px 0%, 100% 50%, 100% 50%, 2px 100%);
+      }
+  
+      &::after {
+        clip-path: polygon(calc(100% - 5px) calc(100% - 1px), calc(100% - 1px) calc(100% - 1px), calc(100% - 1px) calc(100% - 1px), calc(100% - 5px) calc(100% - 1px));
+      }
+    }
+  }
+}
+
+// js enabled style
+.js {
+  // anim-cards--anim-off class turns off translate animation (added in js if reduced-motion option is on)
+  .anim-cards:not(.anim-cards--anim-off) .anim-cards__list { 
+    overflow: visible;
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+
+  .anim-cards--reverse:not(.anim-cards--anim-off) .anim-cards__list{
+    flex-direction: row-reverse;
+  }
+}
+
+// hide control button if js is disabed
+html:not(.js) .anim-cards-control {
+  display: none;
+}

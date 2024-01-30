@@ -1,0 +1,225 @@
+/* -------------------------------- 
+
+File#: _2_svg-slideshow
+Title: SVG Image Slideshow
+Descr: Show a collection of images one at a time, using SVG clipping effects to transition between items
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+:root {
+  // controls
+  --svg-slideshow-btn-width: 1.6em; 
+  --svg-slideshow-btn-height: 3.2em;
+  --svg-slideshow-btn-icon-size: 1.6em;
+  --svg-slideshow-btn-offset: var(--space-xs); // gap between button and slideshow edges
+}
+
+.svg-slideshow {
+  position: relative;
+  z-index: 1;
+}
+
+.svg-slideshow__control { // slideshow arrow controls
+  display: none;
+}
+
+.js {
+  .svg-slideshow {
+    opacity: 0; // hide slideshow while it is initialized in JS
+    transition: opacity 0.2s;
+  }
+
+  .svg-slideshow--loaded {
+    opacity: 1;
+  }
+
+  .svg-slideshow__item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    background-color: transparent; // make sure mask effect is always visible
+    opacity: 0;
+
+    svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+    }
+
+    img {
+      display: block;
+      opacity: 0;
+    }
+
+    svg image {
+      opacity: 1; // fix issue on IE browsers
+    }
+  }
+
+  .svg-slideshow__item--selected { // visible slide
+    position: relative;
+    z-index: 2;
+    opacity: 1;
+  }
+  
+  .svg-slideshow__item--animating { // new selected slide - class added in JS during the slide transition
+    z-index: 3;
+    opacity: 1;
+  }
+
+  // touch swipe enabled
+  .svg-slideshow[data-swipe="on"] .svg-slideshow__item {
+    user-select: none;
+
+    image {
+      pointer-events: none;
+    }
+  }
+
+  .svg-slideshow[data-swipe="on"] .svg-slideshow__control {
+    display: none; // hide arrows on mobile if swipe is enabled
+  }
+
+  .svg-slideshow__control {
+    display: block;
+    position: absolute;
+    z-index: 4;
+    top: 50%;
+    transform: translateY(-50%);
+  
+    &:first-of-type {
+      left: var(--svg-slideshow-btn-offset);
+    }
+  
+    &:last-of-type {
+      right: var(--svg-slideshow-btn-offset);
+    }
+  }
+
+  @include breakpoint(md) {
+    .svg-slideshow[data-swipe="on"] .svg-slideshow__control {
+      display: block; // show arrow controls
+    }
+  }
+}
+
+.svg-slideshow__btn {
+  display: block;
+  background-color: alpha(var(--color-black), 0.75); // IE fallback
+  height: var(--svg-slideshow-btn-height);
+  width: var(--svg-slideshow-btn-width);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background .2s, transform 0.2s;
+
+  &:hover {
+    background-color: alpha(var(--color-contrast-higher), 0.85);
+
+    .icon {
+      color: var(--color-bg);
+    }
+  }
+
+  .svg-slideshow:not(.svg-slideshow--is-animating) &:active { // active effect
+    transform: scale(0.95);
+  }
+
+  .icon {
+    display: block;
+    width: var(--svg-slideshow-btn-icon-size);
+    height: var(--svg-slideshow-btn-icon-size);
+    margin: 0 auto;
+    transition: color .2s;
+    color: var(--color-white); // IE fallback
+  }
+
+  @supports (grid-area: auto) {
+    background-color: transparent; // button color
+  
+    .icon {
+      color: var(--color-contrast-higher); // icon color
+    }
+  }
+}
+
+// slideshow dots navigation - created in JS
+.svg-slideshow__navigation {
+  position: absolute;
+  z-index: 4;
+  bottom: 0;
+  width: 100%;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+}
+
+.svg-slideshow__nav-item {
+  display: inline-block; // flex fallback
+  margin: 0 var(--space-xxxs);
+
+  button { // dot
+    display: block;
+    position: relative;
+    font-size: 8px; // dot size
+    color: var(--color-contrast-high); // dot color
+    height: 1em;
+    width: 1em;
+    border-radius: 50%;
+    background-color: currentColor;
+    opacity: 0.4;
+    cursor: pointer;
+    transition: background .3s;
+
+    &::before { // focus circle
+      content: '';
+      position: absolute;
+      top: calc(50% - 0.5em);
+      left: calc(50% - 0.5em);
+      height: 1em;
+      width: 1em;
+      font-size: 14px;
+      border-radius: inherit;
+      border: 1px solid var(--color-contrast-high);
+      opacity: 0;
+      transform: scale(0);
+      transition: 0.3s;
+    }
+    
+    &:focus {
+      outline: none;
+      
+      &::before {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+  }
+}
+
+.svg-slideshow__nav-item--selected button {
+  opacity: 1;
+}
+
+@include breakpoint(md) {
+  .svg-slideshow__navigation {
+    height: 40px;
+  }
+
+  .svg-slideshow__nav-item {
+    button {
+      font-size: 10px; // dot size
+
+      &::before { // focus circle
+        font-size: 16px;
+      }
+    }
+  }
+}

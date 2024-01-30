@@ -1,0 +1,173 @@
+/* -------------------------------- 
+
+File#: _1_cross-table
+Title: Cross Table
+Descr: Two-way data tables used to display correlation between row and column variables
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+// >>> style affecting all (cards + expanded) versions 👇
+.cross-table {
+  position: relative;
+  z-index: 1;
+}
+// <<< end style affecting all versions
+
+// >>> expanded version only (desktop) 👇
+.cross-table:not(.cross-table--cards) {
+  font-size: var(--text-sm); // reduce font-size of all text elements
+
+  .cross-table__row {
+    .cross-table__cell:first-child {
+      border-left-width: 0;
+    }
+  
+    .cross-table__cell:last-child {
+      border-right-width: 0;
+    }
+  }
+  
+  .cross-table__header {
+    .cross-table__cell {
+      border-top-width: 0;
+    }
+  }
+
+  .cross-table__row--w-full { // row with cell spanning full width
+    background-color: var(--color-contrast-lower);
+  
+    .cross-table__cell {
+      font-weight: 600;
+    }
+  }
+
+  .cross-table__cell {
+    border: 1px solid var(--color-contrast-lower); // border style
+    border-bottom-width: 0;
+    padding: var(--space-sm);
+  }
+
+  .cross-table__label { // inline copy of column headers (js-cross-table__label)
+    display: none; // visible only in the card layout 👇
+  }
+}
+// <<< end expanded version
+
+// >>> cards version only (mobile) 👇
+.cross-table--cards { // class added in JS
+  display: block;
+  overflow: hidden;
+
+  .cross-table__header { // visually hidden - still accessible to SR
+    @include srHide;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+  }
+
+  .cross-table__body {
+    position: relative;
+    display: flex;
+    max-width: 100%;
+    overflow: auto;
+    padding-bottom: var(--space-sm);
+
+    &::-webkit-scrollbar { // custom scrollbar style
+      height: 8px;
+    }
+  
+    &::-webkit-scrollbar-track { // progress bar
+      background-color: var(--color-contrast-lower);
+    }
+  
+    &::-webkit-scrollbar-thumb { // handle
+      background-color: alpha(var(--color-contrast-higher), 0.9);
+      border-radius: 50em;
+    }
+  
+    &::-webkit-scrollbar-thumb:hover {
+      background-color: var(--color-contrast-higher);
+    }
+
+    &::after { // right margin at end of scrolling area
+      content: '';
+      display: block;
+      height: 1px;
+      padding-left: 1px;
+    }
+  }
+
+  .cross-table__row { // card
+    display: flex;
+    flex-direction: column;
+    width: 260px; // card width
+    flex-shrink: 0;
+    margin-right: var(--space-sm);
+  }
+
+  .cross-table__cell {
+    --cell-border-width: 2px;
+    font-size: 1em; // reset
+    display: flex;
+    padding: var(--space-sm);
+    justify-content: space-between;
+    align-items: center;
+    min-height: 60px;
+
+    text-align: left;
+    background-color: var(--color-bg);
+    border-left-width: var(--cell-border-width);
+    border-right-width: var(--cell-border-width);
+    border-style: solid;
+    border-color: var(--color-contrast-lower);
+
+    &:first-child { // card title
+      border-left-width: var(--cell-border-width);
+      border-top-width: var(--cell-border-width);
+      border-radius: var(--radius-md) var(--radius-md) 0 0;
+      background-color: var(--color-contrast-lower);
+      font-weight: 600;
+    }
+
+    &:last-child {
+      border-right-width: var(--cell-border-width);
+      border-bottom-width: var(--cell-border-width);
+      border-radius: 0 0 var(--radius-md) var(--radius-md);
+    }
+  }
+
+  .cross-table__label {
+    display: inline;
+    margin-right: var(--space-xs);
+  }
+
+  .cross-table__row--w-full {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: auto;
+    
+    .cross-table__cell { // labels on top of the table
+      border: none; // reset
+      background-color: transparent;
+      font-weight: normal;
+      min-height: 0;
+    }
+  }
+}
+// <<< end mobile version
+
+// used in JS - detect when the table needs to switch from an expanded (table) layout to a cards layout
+[class*="cross-table--expanded"]::before {
+  display: none;
+}
+
+@each $breakpoint, $value in $breakpoints {
+  .cross-table--expanded\@#{$breakpoint}::before {
+    content: 'cards';
+    @include breakpoint(#{$breakpoint}) {
+      content: 'expanded';
+    }
+  }
+}

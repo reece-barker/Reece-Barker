@@ -1,0 +1,33 @@
+/* -------------------------------- 
+
+File#: _3_advanced-filter
+Title: Advanced Filter
+Descr: A filter panel template
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+.adv-filter {
+  .sidebar--static {
+    // static variation -> sidebar is always visible (optimized for bigger screens)
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .accordion {
+    --accordion-icon-stroke-width: 1px; // arrow icon stroke width
+  }
+
+  .slider {
+    --slider-width: 80%;
+  }
+}
+
+@include breakpoint(md) {
+  .adv-filter__checkbox-list,
+  .adv-filter__radio-list {
+    font-size: var(--text-sm);
+    --checkbox-radio-size: 1.25em;
+    --checkbox-radio-translate-y: 0.25em; // edit to align buttons with labels
+  }
+}

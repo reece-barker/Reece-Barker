@@ -1,0 +1,6 @@
+
+                <svg version="1.0" id="table-cells" xmlns="http://www.w3.org/2000/svg" width="{{width}}px" height="{{height}}px"
+                    viewBox="0 0 448 512">
+                    <path d="M448 32H64C29 32 0 61 0 96V416C0 451 29 480 64 480H448C483 480 512 451 512 416V96C512 61 483 32 448 32ZM448 416H64V96H448V416Z" />
+                </svg>
+            

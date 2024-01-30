@@ -1,0 +1,6 @@
+
+                <svg version="1.0" id="square-full" xmlns="http://www.w3.org/2000/svg" width="{{width}}px" height="{{height}}px"
+                    viewBox="0 0 512 512">
+                    <path d="M0 0v512h512V0H0zm464 464H48V48h416v416z" />
+                </svg>
+            

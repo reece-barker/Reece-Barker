@@ -1,0 +1,94 @@
+/* -------------------------------- 
+
+File#: _2_table-of-contents
+Title: Table of Contents
+Descr: A navigation with a list of links to the main sections of the page 
+Usage: codyhouse.co/license
+
+-------------------------------- */
+:root {
+  --toc-border-width: 1px;
+}
+
+.toc {
+  @include spaceUnit(1rem); // convert all spacing units to rem
+  box-shadow: inset var(--toc-border-width) 0 0 var(--color-contrast-low);
+}
+
+.toc--sticky {
+  position: sticky;
+  top: var(--space-md);
+  max-height: calc(100vh - var(--space-md));
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.toc__list {
+  position: relative;
+
+  .toc__list .toc__link {
+    padding-left: calc(var(--space-sm) * 2); // offset sub nav
+  }
+}
+
+.toc__link,
+.toc__label {
+  padding: var(--space-xxxs) var(--space-sm);
+}
+
+.toc__link {
+  position: relative;
+  display: inline-flex;
+  color: var(--color-contrast-medium);
+  text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  &::before { // left mark
+    content: '';
+    width: var(--toc-border-width);
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  &:hover {
+    color: var(--color-contrast-high);
+  }
+}
+
+.toc__link--selected {
+  color: var(--color-primary);
+
+  &::before {
+    background-color: var(--color-primary);
+  }
+
+  &:hover {
+    color: var(--color-primary);
+  }
+}
+
+.toc__label { // label style
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: var(--text-sm);
+}
+
+.toc-content {
+  *:target {
+    animation: toc-target 2s; // highlight section on target
+  }
+}
+
+@keyframes toc-target {
+  0%, 50% {
+    outline: 2px solid alpha(var(--color-primary), 0.5);
+  }
+
+  100% {
+    outline: 2px solid alpha(var(--color-primary), 0);
+  }
+}

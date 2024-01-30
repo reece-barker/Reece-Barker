@@ -1,0 +1,154 @@
+/* -------------------------------- 
+
+File#: _2_draggable-img-gallery
+Title: Draggable Image Gallery
+Descr: A gallery of images that can be dragged to reveal new items
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+:root {
+  --drag-gallery-img-width: 260px; // single image width
+  --drag-gallery-img-gap: var(--space-lg);   // gap
+}
+
+@supports(--css: variables) {
+  :root {
+    @include breakpoint(sm) {
+      --drag-gallery-img-width: 400px;
+    }
+
+    @include breakpoint(md) {
+      --drag-gallery-img-width: 520px;
+    }
+  }
+}
+
+// default style
+.drag-gallery {
+  position: relative;
+  overflow: hidden;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.drag-gallery__list {
+  display: flex;
+  align-items: center;
+  overflow: auto;
+  padding: 0 var(--component-padding);
+
+  &::after { // never visible - make sure .drag-gallery__list padding-right is applied
+    display: block;
+    content: '';
+    height: 1px;
+    padding-right: inherit;
+  }
+}
+
+.drag-gallery__item {
+  float: left; // flex fallback
+  width: var(--drag-gallery-img-width);
+  flex-shrink: 0;
+  margin-right: var(--drag-gallery-img-gap);
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  img {
+    display: block;
+  }
+}
+
+.drag-gallery__gesture-hint {
+  width: 4em;
+  height: 4em;
+  background-color: rgba(#000, 0.95);
+  border-radius: 50%;
+  position: absolute;
+  top: calc(50% - 2em);
+  left: calc(50% - 2em);
+  display: none;
+}
+
+// js enabled style
+.js {
+  .drag-gallery {
+    cursor: grab;
+  }
+
+  .drag-gallery--is-dragging {
+    cursor: grabbing;
+  }
+
+  .drag-gallery__list {
+    overflow: visible;
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+
+  .drag-gallery__item {
+    opacity: 0;
+    transition: opacity 1.5s;
+    user-select: none;
+
+    img {
+      pointer-events: none;
+    }
+  }
+
+  .drag-gallery__item--visible {
+    opacity: 1;
+  }
+
+  .drag-gallery--anim-off .drag-gallery__item { // remove opacity animation if reduced motion is on
+    opacity: 1;
+  }
+
+  .drag-gallery__gesture-hint {
+    display: block;
+    opacity: 0;
+    transform: translateX(0) scale(1);
+  }
+  
+  .drag-gallery__gesture-hint--animate {
+    animation: drag-gallery-gesture-hint 2.8s;
+  }
+}
+
+@keyframes drag-gallery-gesture-hint {
+  0%, 60% {
+    opacity: 0;
+    transform: translateX(0) scale(1);
+  }
+
+  5%, 65% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+
+  10%, 70% {
+    opacity: 1;
+    transform: translateX(0) scale(0.8);
+  }
+
+  30%, 90% {
+    opacity: 1;
+    transform: translateX(-200%) scale(0.8);
+    animation-timing-function: var(--ease-in-out);
+  }
+
+  35%, 95% {
+    opacity: 1;
+    transform: translateX(-200%) scale(1);
+  }
+
+  40%, 100% {
+    opacity: 0;
+    transform: translateX(-200%) scale(1);
+  }
+}

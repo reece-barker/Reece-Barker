@@ -1,0 +1,40 @@
+/* -------------------------------- 
+
+File#: _2_article-preview-v4
+Title: Article Preview v4
+Descr: Blog post excerpt, containing a link to the article page and a preview image
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+.story-v4 {
+  position: relative;
+  z-index: 1;
+}
+
+.story-v4__title {
+  color: var(--color-contrast-higher);
+  text-decoration-color: alpha(var(--color-contrast-higher), 0.2);
+  transition: .2s;
+
+  &:hover {
+    text-decoration-color: alpha(var(--color-contrast-higher), 1);
+  }
+}
+
+.story-v4__img-link {
+  display: block;
+
+  img {
+    display: block;
+    width: 100%;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+    transition: .3s var(--ease-out);
+  }
+
+  &:hover {
+    img {
+      clip-path: polygon(2% 2%, 98% 2%, 98% 98%, 2% 98%);
+    }
+  }
+}

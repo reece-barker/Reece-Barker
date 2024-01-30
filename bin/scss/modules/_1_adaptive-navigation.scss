@@ -1,0 +1,145 @@
+/* -------------------------------- 
+
+File#: _1_adaptive-navigation
+Title: Adaptive Navigation
+Descr: Navigation where the number of visible items changes according to the available space
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+.adapt-nav {
+  position: relative;
+}
+
+.adapt-nav__list {
+  display: flex;
+  align-items: center;
+}
+
+.adapt-nav__item {
+  flex-shrink: 0;
+  margin-right: var(--space-xs); // gap among navigation items
+}
+
+.adapt-nav__link {
+  display: block;
+  color: var(--color-contrast-high);
+  text-decoration: none;
+  padding: var(--space-xxs) var(--space-xs);
+  border-radius: var(--radius-md);
+  transition: .2s;
+
+  &:hover {
+    background-color: var(--color-contrast-lower);
+  }
+
+  &[aria-current="page"] {
+    color: var(--color-bg);
+    background-color: var(--color-contrast-higher);
+  }
+}
+
+.adapt-nav__item--hidden { // used to hide the 'More Links' button
+  visibility: hidden;
+}
+
+.js {
+  .adapt-nav {
+    opacity: 0; // hide navigation while JS initializes nav
+  }
+
+  .adapt-nav--is-visible {
+    opacity: 1;
+  }
+
+  .adapt-nav__item--more { // list item containing 'More Links' button
+    position: relative;
+    margin-right: 0;
+  }
+
+  .adapt-nav__btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2em;
+    height: 2em;
+    border-radius: 50%;
+
+    .icon {
+      display: block;
+      width: 16px;
+      height: 16px;
+    }
+
+    &:hover {
+      background-color: var(--color-contrast-lower);
+    }
+
+    &:active {
+      background-color: var(--color-contrast-low);
+    }
+  }
+
+  .adapt-nav__dropdown { // dropdown with hidden items
+    position: absolute;
+    right: 0;
+    top: calc(100% + 4px);
+    width: 180px;
+    background-color: var(--color-bg);
+    box-shadow: var(--shadow-sm);
+    padding: var(--space-xxs) 0;
+    border-radius: var(--radius-md);
+    z-index: var(--zindex-popover);
+    user-select: none;
+
+    // hide dropdown
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s .2s, opacity .2s;
+  }
+
+  .adapt-nav__dropdown--is-visible {
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 0s, opacity .2s;
+  }
+
+  .adapt-nav__dropdown {
+    // optional - reset spacing and text units - no longer affected by em units
+    // @include spaceUnit(1rem);
+    // @include textUnit(1rem);
+  }
+
+  .adapt-nav__dropdown-link {
+    display: block;
+    padding: var(--space-xxs) var(--space-sm);
+    text-decoration: none; // reset link style
+    color: var(--color-contrast-high);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: .2s;
+
+    &:hover {
+      background-color: var(--color-contrast-lower);
+    }
+
+    &[aria-current="page"] {
+      color: var(--color-bg);
+      background-color: var(--color-contrast-higher);
+    }
+  }
+}
+
+html:not(.js) { // nav style if JS is disabled
+  .adapt-nav {
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .adapt-nav__list {
+    overflow: auto;
+    justify-content: left;
+  }
+}

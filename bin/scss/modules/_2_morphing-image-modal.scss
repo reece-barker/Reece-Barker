@@ -1,0 +1,128 @@
+/* -------------------------------- 
+
+File#: _2_morphing-image-modal
+Title: Morphing Image Modal
+Descr: An image morphing into a modal window, showing additional details
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+:root {
+  --morph-img-modal-transition-duration: .35s; // expanding animation duration
+}
+
+.morph-img-modal {
+  &.modal {
+    --modal-transition-duration: var(--morph-img-modal-transition-duration);
+  }
+  
+  // never visible -  used in JS to check if we need to run the morphing animation
+  &::before {
+    display: none;
+    content: 'mobile';
+  }
+}
+
+.morph-img-modal__content {
+  height: 100%;
+  width: 100%;
+}
+
+.morph-img-modal__img {
+  display: block;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.morph-img-modal__info {
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  transition: opacity .2s;
+}
+
+// morphing image/bg layer
+.morph-img-bg, .morph-img-clone {
+  position: fixed;
+  z-index: var(--zindex-overlay);
+  transform-origin: left top;
+
+  backface-visibility: hidden;
+  will-change: transform;
+}
+
+.morph-img-clone {
+  overflow: hidden;
+
+  svg, rect, image {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+// close btn
+.morph-img-close-btn {
+  position: fixed;
+  top: var(--space-sm);
+  right: var(--space-sm);
+  z-index: var(--zindex-overlay);
+
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: alpha(var(--color-contrast-higher), 0.8);
+  
+  flex-shrink: 0;
+  display: flex;
+
+  opacity: 0;
+  visibility: hidden;
+
+  transition: background .2s, opacity var(--morph-img-modal-transition-duration), visibility 0s var(--morph-img-modal-transition-duration);
+
+  &:hover {
+    background-color:alpha(var(--color-contrast-higher), 1);
+  }
+
+  .icon {
+    color: var(--color-bg); // icon color
+    display: block;
+    margin: auto;
+  }
+}
+
+.morph-img-close-btn--is-visible {
+  opacity: 1;
+  visibility: visible;
+  transition: background .2s, opacity var(--morph-img-modal-transition-duration);
+}
+
+@include breakpoint(md) {
+  .morph-img-modal {
+    padding: 0 var(--space-md);
+
+    &::before {
+      content: 'dekstop';
+    }
+  }
+
+  .morph-img-modal__content {
+    height: calc(100% - 96px - var(--space-md) * 2); // 96px = close-btn size x 2
+    max-height: 680px;
+    overflow: hidden;
+    display: flex;
+
+    & > * {
+      // switch to 2 cols grid
+      flex-basis: 50%;
+      height: 100%;
+      max-height: 100%;
+      min-width: 0;
+    }
+  }
+
+  .morph-img-bg {
+    background-image: linear-gradient(to right, transparent 0 30%, var(--color-bg) 30% 100%);
+  }
+}

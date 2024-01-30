@@ -1,0 +1,6 @@
+
+                <svg version="1.0" id="user-alt" xmlns="http://www.w3.org/2000/svg" width="{{width}}px" height="{{height}}px"
+                    viewBox="0 0 512 512">
+                    <path d="M400 144A144 144 0 1 1 256 0a144 144 0 0 1 144 144z,M384 320h-55.1a174.1 174.1 0 0 1-145.8 0H128A128 128 0 0 0 0 448v16a48 48 0 0 0 48 48h416a48 48 0 0 0 48-48v-16a128 128 0 0 0-128-128z" />
+                </svg>
+            

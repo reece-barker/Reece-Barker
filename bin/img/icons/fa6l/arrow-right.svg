@@ -1,0 +1,6 @@
+
+                <svg version="1.0" id="arrow-right" xmlns="http://www.w3.org/2000/svg" width="{{width}}px" height="{{height}}px"
+                    viewBox="0 0 448 512">
+                    <path d="M443 267L235 475C229 482 219 482 213 475C210 472 208 468 208 464S210 456 213 453L393 272H16C7 272 0 265 0 256S7 240 16 240H393L213 59C206 53 206 43 213 37S229 30 235 37L443 245C450 251 450 261 443 267Z" />
+                </svg>
+            

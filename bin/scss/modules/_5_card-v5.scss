@@ -1,0 +1,45 @@
+/* -------------------------------- 
+
+File#: 
+Title: Card v5
+Descr: Container of information used as teasers for further content, often displayed in a gallery of related items
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+.card-v5 {
+  background-color: var(--color-contrast-lower);
+}
+
+.card-v5__img-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+
+  &:hover {
+    .card-v5__img {
+      transform: scale(0.95);
+  
+      img {
+        transform: scale(1.05); // revert parent transformation
+      }
+    }
+  }
+}
+
+.card-v5__img {
+  will-change: transform;
+  transition: transform .3s;
+  overflow: hidden;
+
+  img {
+    display: block;
+    width: 100%;
+    will-change: inherit;
+    transition: inherit;
+  }
+}
+
+.card-v5__content {
+  padding: var(--space-sm);
+}

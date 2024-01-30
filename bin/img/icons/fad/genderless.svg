@@ -1,0 +1,6 @@
+
+                <svg version="1.0" id="genderless" xmlns="http://www.w3.org/2000/svg" width="{{width}}px" height="{{height}}px"
+                    viewBox="0 0 288 512">
+                    <path d="M144,336a80,80,0,1,1,80-80A80,80,0,0,1,144,336Z,M144,112A144,144,0,1,0,288,256,144,144,0,0,0,144,112Zm0,224a80,80,0,1,1,80-80A80,80,0,0,1,144,336Z" />
+                </svg>
+            

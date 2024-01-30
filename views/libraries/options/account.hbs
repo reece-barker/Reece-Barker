@@ -1,0 +1,523 @@
+<div class="flex justify-between padding-x-md margin-y-sm items-center">
+    <h1 class="hbs-ui__text text-lg">Account</h1>
+
+    <div class="language-picker margin-left-auto language-picker--flags js-language-picker"
+        data-trigger-class="btn bg js-tab-focus">
+        <form id="LANG" action="" class="language-picker__form">
+            <label class="hbs-ui__text" for="hbs-ui__languages-input">Select your language</label>
+
+            <select name="language-picker-select" id="hbs-ui__languages-input">
+                <option lang="en" class="hbs-ui__text" value="english" {{#if location.english.isSelected}}
+                    selected{{/if}}>
+                    English</option>
+                <option lang="de" class="hbs-ui__text" value="deutsch" {{#if location.deutsch.isSelected}}
+                    selected{{/if}}>
+                    Deutsch</option>
+                <option lang="fr" class="hbs-ui__text" value="francais" {{#if location.francais.isSelected}}
+                    selected{{/if}}>
+                    Français</option>
+                <option lang="it" class="hbs-ui__text" value="italiano" {{#if location.italiano.isSelected}}
+                    selected{{/if}}>
+                    Italiano</option>
+            </select>
+        </form>
+    </div>
+</div>
+
+<section class="radius-md padding-md">
+    <p class="hbs-ui__text bg padding-md shadow-xs radius-md margin-bottom-sm">
+        Acolytes is currently working on making the Settings section fully functional, please be patient.
+    </p>
+
+    <fieldset class="bg padding-md shadow-xs radius-md">
+        <legend class="form-legend sr-only margin-bottom-md">Profile Settings</legend>
+
+        <div class="margin-bottom-md margin-left-lg margin-top-lg">
+            <div class="grid items-center gap-xxs">
+                <div class="col-3@lg">
+                    <label class="inline-block text-sm padding-top-xs@lg" for="fn">What is your profile picture?</label>
+                </div>
+
+                <div class="col-6@lg">
+                    <input class="form-control width-100%" type="url" name="img"
+                        id="img" value="{{users._information.img}}">
+                </div>
+            </div>
+        </div>
+
+        <!-- input text -->
+        <div class="margin-bottom-md margin-left-lg margin-top-lg">
+            <div class="grid gap-xxs">
+                <div class="col-3@lg">
+                    <label class="inline-block text-sm padding-top-xs@lg" for="fn">What is your name?</label>
+                </div>
+
+                <div class="col-6@lg">
+                    <div class="input-merger form-control width-100% grid">
+                        <input class="reset input-merger__input min-width-0 col" type="text" name="fn" id="fn"
+                            value="{{users._information.fn}}">
+                        <input class="reset input-merger__input min-width-0 col" type="text" name="ln" id="ln"
+                            value="{{users._information.ln}}">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- input email -->
+        <div class="margin-bottom-md margin-left-lg">
+            <div class="grid gap-xxs">
+                <div class="col-3@lg">
+                    <label class="inline-block text-sm padding-top-xs@lg" for="address">What is your email?</label>
+                </div>
+
+                <div class="col-6@lg">
+                    <input class="form-control form-control--disabled width-100%" {{#if users._information.address}}disabled{{/if}} type="email" name="address"
+                        id="address" value="{{users._information.address}}">
+                </div>
+            </div>
+        </div>
+
+        <!-- textarea -->
+        <div class="margin-bottom-md margin-left-lg">
+            <div class="grid gap-xxs">
+                <div class="col-3@lg">
+                    <label class="inline-block text-sm padding-top-xs@lg" for="bio">What do you want in your
+                        bio?</label>
+                </div>
+
+                <div class="col-6@lg">
+                    <div class="character-count js-character-count">
+                        <textarea class="form-control width-100% js-character-count__input" name="bio" id="bio"
+                            style="resize: none;" maxlength="50">{{users._information.bio}}</textarea>
+
+                        <div class="character-count__helper character-count__helper--dynamic text-sm margin-top-xxxs"
+                            aria-live="polite" aria-atomic="true">
+                            You have <span class="js-character-count__counter"></span> characters left
+                        </div>
+
+                        <div class="character-count__helper character-count__helper--static text-sm margin-top-xxxs">Max
+                            50 characters</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- custom select -->
+        <div class="margin-bottom-md margin-left-lg">
+            <div class="grid gap-xxs">
+                <div class="col-3@lg">
+                    <label class="inline-block text-sm padding-top-xs@lg" for="employed">Are you available for
+                        work?</label>
+                </div>
+
+                <div class="col-6@lg">
+                    <div class="select">
+                        <select class="select__input form-control" name="employed" id="employed">
+                                <option {{#if users._information.employed}}selected{{/if}} value="0">Employed</option>
+                                <option {{#if users._information.employed}}{{else}}selected{{/if}} value="1">Unemployed</option>
+                        </select>
+
+                        <svg class="icon select__icon" aria-hidden="true" viewBox="0 0 16 16">
+                            <polyline points="1 5 8 12 15 5" fill="none" stroke="currentColor" stroke-linecap="round"
+                                stroke-linejoin="round" stroke-width="2" /></svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <legend class="form-legend sr-only margin-bottom-md">How would you like to be contacted?</legend>
+
+        <div class="margin-bottom-md margin-left-lg">
+            <div class="grid gap-xxs">
+                <div class="col-3@lg">
+                    <p class="inline-block text-sm padding-top-sm@lg">How would you like to be contacted?</p>
+                </div>
+
+                <div class="col-6@lg">
+                    <span title="This option has been disabled for reasons unknown."
+                        class="text-xs noselect inline-block color-contrast-medium">This option has been
+                        disabled.</span>
+
+                    <ul class="choice-tags sr-only flex flex-wrap gap-xxs js-choice-tags">
+                        <li>
+                            <label class="choice-tag choice-tag--checkbox text-sm js-choice-tag"
+                                for="checkbox-tag-calls">
+                                <input class="sr-only" type="checkbox" id="checkbox-tag-calls" checked>
+
+                                <svg class="choice-tag__icon icon margin-right-xxs" viewBox="0 0 16 16"
+                                    aria-hidden="true">
+                                    <g class="choice-tag__icon-group" fill="none" stroke="currentColor"
+                                        stroke-linecap="round" stroke-miterlimit="10" stroke-width="2">
+                                        <line x1="-6" y1="8" x2="8" y2="8" />
+                                        <line x1="8" y1="8" x2="22" y2="8" />
+                                        <line x1="8" y1="2" x2="8" y2="14" />
+                                    </g>
+                                </svg>
+
+                                <span>Calls</span>
+                            </label>
+                        </li>
+
+                        <li>
+                            <label class="choice-tag choice-tag--checkbox text-sm js-choice-tag"
+                                for="checkbox-tag-conferences">
+                                <input class="sr-only" type="checkbox" id="checkbox-tag-conferences">
+
+                                <svg class="choice-tag__icon icon margin-right-xxs" viewBox="0 0 16 16"
+                                    aria-hidden="true">
+                                    <g class="choice-tag__icon-group" fill="none" stroke="currentColor"
+                                        stroke-linecap="round" stroke-miterlimit="10" stroke-width="2">
+                                        <line x1="-6" y1="8" x2="8" y2="8" />
+                                        <line x1="8" y1="8" x2="22" y2="8" />
+                                        <line x1="8" y1="2" x2="8" y2="14" />
+                                    </g>
+                                </svg>
+
+                                <span>Conferences</span>
+                            </label>
+                        </li>
+
+                        <li>
+                            <label class="choice-tag choice-tag--checkbox text-sm js-choice-tag"
+                                for="checkbox-tag-messages">
+                                <input class="sr-only" type="checkbox" id="checkbox-tag-messages">
+
+                                <svg class="choice-tag__icon icon margin-right-xxs" viewBox="0 0 16 16"
+                                    aria-hidden="true">
+                                    <g class="choice-tag__icon-group" fill="none" stroke="currentColor"
+                                        stroke-linecap="round" stroke-miterlimit="10" stroke-width="2">
+                                        <line x1="-6" y1="8" x2="8" y2="8" />
+                                        <line x1="8" y1="8" x2="22" y2="8" />
+                                        <line x1="8" y1="2" x2="8" y2="14" />
+                                    </g>
+                                </svg>
+
+                                <span>Messages</span>
+                            </label>
+                        </li>
+
+                        <li>
+                            <label class="choice-tag choice-tag--checkbox text-sm js-choice-tag"
+                                for="checkbox-tag-emails">
+                                <input class="sr-only" type="checkbox" id="checkbox-tag-emails">
+
+                                <svg class="choice-tag__icon icon margin-right-xxs" viewBox="0 0 16 16"
+                                    aria-hidden="true">
+                                    <g class="choice-tag__icon-group" fill="none" stroke="currentColor"
+                                        stroke-linecap="round" stroke-miterlimit="10" stroke-width="2">
+                                        <line x1="-6" y1="8" x2="8" y2="8" />
+                                        <line x1="8" y1="8" x2="22" y2="8" />
+                                        <line x1="8" y1="2" x2="8" y2="14" />
+                                    </g>
+                                </svg>
+
+                                <span>Emails</span>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="margin-bottom-xs margin-left-lg">
+            <div class="grid gap-xxs">
+                <div class="col-3@lg">
+                    <label class="inline-block text-sm padding-top-xs@lg" for="birthday">When is your birthday?</label>
+                </div>
+
+                <div class="col-6@lg">
+                    <div data-date-format="d-m-y" class="date-input margin-bottom-md inline-block js-date-input">
+                        <div class="date-input__wrapper">
+                            <input type="text" class="js-date-input__text sr-only"
+                                value="{{users._information.birthday}}" name="birthday" id="birthday">
+
+                            <button class="btn btn--subtle js-date-input__trigger"
+                                aria-label="Select date using calendar widget" type="button">
+                                <svg class="icon margin-right-xxs" aria-hidden="true" viewBox="0 0 20 20">
+                                    <g fill="none" stroke="currentColor" stroke-linecap="square" stroke-miterlimit="10"
+                                        stroke-width="2">
+                                        <rect x="1" y="4" width="18" height="14" rx="1" />
+                                        <line x1="5" y1="1" x2="5" y2="4" />
+                                        <line x1="15" y1="1" x2="15" y2="4" />
+                                        <line x1="1" y1="9" x2="19" y2="9" />
+                                    </g>
+                                </svg>
+
+                                <span class="js-date-input__value"
+                                    aria-hidden="true">{{#if users._information.birthday}}{{else}}Birthday{{/if}}</span>
+                            </button>
+                        </div>
+
+                        <div class="date-picker bg radius-md shadow-md js-date-picker" role="dialog"
+                            aria-labelledby="calendar-label-1">
+                            <header class="date-picker__header">
+                                <div class="date-picker__month">
+                                    <span class="date-picker__month-label js-date-picker__month-label"
+                                        id="calendar-label-1"></span>
+                                    <!-- this will contain month label + year -->
+
+                                    <nav>
+                                        <ul class="date-picker__month-nav js-date-picker__month-nav">
+                                            <li>
+                                                <button
+                                                    class="reset date-picker__month-nav-btn js-date-picker__month-nav-btn js-date-picker__month-nav-btn--prev js-tab-focus"
+                                                    type="button">
+                                                    <svg class="icon icon--xs" viewBox="0 0 16 16">
+                                                        <title>Previous month</title>
+                                                        <polyline points="11 14 5 8 11 2" fill="none"
+                                                            stroke="currentColor" stroke-miterlimit="10"
+                                                            stroke-width="2" />
+                                                    </svg>
+                                                </button>
+                                            </li>
+
+                                            <li>
+                                                <button
+                                                    class="reset date-picker__month-nav-btn js-date-picker__month-nav-btn js-date-picker__month-nav-btn--next js-tab-focus"
+                                                    type="button">
+                                                    <svg class="icon icon--xs" viewBox="0 0 16 16">
+                                                        <title>Next month</title>
+                                                        <polyline points="5 2 11 8 5 14" fill="none"
+                                                            stroke="currentColor" stroke-miterlimit="10"
+                                                            stroke-width="2" />
+                                                    </svg>
+                                                </button>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+
+                                <ol class="date-picker__week">
+                                    <li>
+                                        <div class="date-picker__day">M<span class="sr-only">onday</span></div>
+                                    </li>
+                                    <li>
+                                        <div class="date-picker__day">T<span class="sr-only">uesday</span></div>
+                                    </li>
+                                    <li>
+                                        <div class="date-picker__day">W<span class="sr-only">ednesday</span></div>
+                                    </li>
+                                    <li>
+                                        <div class="date-picker__day">T<span class="sr-only">hursday</span></div>
+                                    </li>
+                                    <li>
+                                        <div class="date-picker__day">F<span class="sr-only">riday</span></div>
+                                    </li>
+                                    <li>
+                                        <div class="date-picker__day">S<span class="sr-only">aturday</span></div>
+                                    </li>
+                                    <li>
+                                        <div class="date-picker__day">S<span class="sr-only">unday</span></div>
+                                    </li>
+                                </ol>
+                            </header>
+
+                            <ol class="date-picker__dates js-date-picker__dates" aria-labelledby="calendar-label-1">
+                                <!-- days will be created using js -->
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+
+    <div class="border-top border-contrast-lower padding-top-md text-right">
+        <button type="submit" title="Save your settings with the updated information."
+            class="btn hbs-ui__text btn--primary btn--sm">
+            <span class="btn__content-a"><i class="fas fa-save"></i></span>
+            <span class="btn__content-b">
+                <svg class="icon icon--is-spinning" aria-hidden="true" viewBox="0 0 16 16">
+                    <title>Loading</title>
+                    <g stroke-width="1" fill="currentColor" stroke="currentColor">
+                        <path d="M.5,8a7.5,7.5,0,1,1,1.91,5" fill="none" stroke="currentColor" stroke-linecap="round"
+                            stroke-linejoin="round"></path>
+                    </g>
+                </svg>
+            </span>
+        </button>
+    </div>
+</section>
+
+<script class="hbs-ui__scripts">
+    $(async () => {
+        $('[type=submit]').on('click', async (e) => {
+            e.preventDefault();
+
+            $('[type=submit]').toggleClass('btn--state-b');
+
+            $.ajax({
+                type: 'POST',
+                url: '/options/account',
+                dataType: 'json',
+                contentType: 'application/x-www-form-urlencoded',
+                data: {
+                    img: document.querySelector('#img').value,
+                    fn: document.querySelector('#fn').value,
+                    ln: document.querySelector('#ln').value,
+                    address: document.querySelector('#address').value,
+                    bio: document.querySelector('#bio').value,
+                    employed: document.querySelector('#employed').value,
+                    birthday: document.querySelector('#birthday').value,
+                },
+                beforeSend: async (xhr) => {
+                    console.log(
+                        'You have requested to update your account with Acolytes.'
+                        );
+                },
+                error: async (err) => {
+                    if (err) {
+                        $('[type=submit]').toggleClass('btn--state-b');
+
+                        return console.error(err);
+                    }
+                },
+                success: async (args) => {
+                    const {
+                        err,
+                        _id,
+                        xhr
+                    } = args;
+
+                    if (err) {
+                        return await (async (err) => {
+                            const {
+                                elements,
+                                xhr,
+                                async
+                            } = err;
+
+                            if (async) {
+                                return await elements.forEach(async (
+                                    _id, i, elements) => {
+                                    if (!document
+                                        .querySelector(_id)
+                                        ) {
+                                        $('[type=submit]')
+                                            .toggleClass(
+                                                'btn--state-b'
+                                                );
+
+                                        return;
+                                    }
+
+                                    const element = document
+                                        .querySelector(_id);
+
+                                    element.classList.add(
+                                        'form-control--error'
+                                        );
+
+                                    element
+                                        .addEventListener(
+                                            'focus', async (
+                                                e) => {
+                                                if (e
+                                                    .target
+                                                    .closest(
+                                                        'input'
+                                                        )
+                                                    .classList
+                                                    .contains(
+                                                        'form-control--error'
+                                                        )
+                                                    ) {
+                                                    e.target
+                                                        .closest(
+                                                            'input'
+                                                            )
+                                                        .classList
+                                                        .remove(
+                                                            'form-control--error'
+                                                            );
+                                                }
+                                            });
+
+                                    if (xhr) {
+                                        element
+                                            .setAttribute(
+                                                'placeholder',
+                                                xhr[_id]);
+                                    }
+
+                                    $('[type=submit]')
+                                        .toggleClass(
+                                            'btn--state-b');
+                                });
+                            }
+
+                            elements.forEach((_id, i, elements) => {
+                                if (!document.querySelector(
+                                    _id)) {
+                                    $('[type=submit]')
+                                        .toggleClass(
+                                            'btn--state-b');
+
+                                    return;
+                                }
+
+                                const element = document
+                                    .querySelector(_id);
+
+                                element.classList.add(
+                                    'form-control--error');
+
+                                element.addEventListener(
+                                    'focus', (e) => {
+                                        if (e.target
+                                            .closest(
+                                                'input')
+                                            .classList
+                                            .contains(
+                                                'form-control--error'
+                                                )) {
+                                            e.target
+                                                .closest(
+                                                    'input')
+                                                .classList
+                                                .remove(
+                                                    'form-control--error'
+                                                    );
+                                        }
+                                    });
+
+                                if (xhr) {
+                                    element.setAttribute(
+                                        'placeholder', xhr[
+                                            _id]);
+                                }
+
+                                $('[type=submit]').toggleClass(
+                                    'btn--state-b');
+                            });
+                        })(err);
+                    }
+
+                    localStorage.setItem('_id', _id);
+
+                    if (xhr) {
+                        const {
+                            uuid,
+                            url,
+                            async
+                        } = xhr;
+
+                        if (uuid) {
+                            sessionStorage.setItem('uuid', uuid);
+
+                            if (async) {
+                                $('[type=submit]').toggleClass('btn--state-b');
+
+                                return await window.location.replace(url);
+                            }
+
+                            $('[type=submit]').toggleClass('btn--state-b');
+
+                            window.location.replace(url);
+                        }
+                    }
+                }
+            });
+        });
+    });
+</script>

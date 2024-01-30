@@ -1,0 +1,105 @@
+/* -------------------------------- 
+
+File#: _1_organization-cell
+Title: Organization Cell
+Descr: Profile card containing profile image + metadata
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+:root {
+    --organization-cell-img-size: 48px;
+}
+
+.organization-cell__list {
+    .organization-cell:not(:last-child) {
+        margin-bottom: var(--space-sm);
+    }
+}
+
+.organization-cell {
+    @include spaceUnit(1rem); // spacing not affected by em units
+    font-size: 1rem; // children font size not affected by global change of body font-size
+
+    background: var(--color-contrast-lower);
+    padding: var(--space-lg);
+    border-radius: var(--radius-md);
+}
+
+.organization-cell__cta {
+    margin-left: var(--space-md);
+}
+
+.organization-cell__img {
+    display: block;
+    border-radius: 50%;
+    width: var(--organization-cell-img-size);
+    height: var(--organization-cell-img-size);
+    margin-bottom: var(--space-sm);
+}
+
+.organization-cell__content {
+    margin-bottom: var(--space-sm);
+}
+
+#not-allowed {
+    @include spaceUnit(1rem);
+    font-size: 1rem;
+    position: fixed;
+    left: calc(var(--app-ui-static-sidebar-width) + var(--space-sm) * 3);
+    bottom: var(--space-lg);
+    z-index: 12;
+}
+
+.organization-cell__controls .flash-message {
+    @include spaceUnit(1rem);
+    font-size: 1rem;
+    position: fixed;
+    left: calc(var(--app-ui-static-sidebar-width) + var(--space-sm) * 3);
+    bottom: var(--space-lg);
+    z-index: 12;
+}
+
+.organization-cell__social-icon {
+    display: block;
+    padding: var(--space-sm);
+    border-radius: 50%;
+    background-color: var(--color-bg);
+    box-shadow: var(--shadow-xs);
+    color: var(--color-contrast-medium);
+    transition: 0.2s;
+
+    .icon {
+        display: block;
+        transition: color 0.2s;
+    }
+
+    &:hover {
+        box-shadow: var(--shadow-md);
+
+        .icon {
+            color: var(--color-primary);
+        }
+    }
+}
+
+@supports (grid-area: auto) {
+    .organization-cell {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: center;
+        grid-gap: var(--space-xxs);
+    }
+
+    .organization-cell__body {
+        display: grid;
+        grid-template-columns: var(--organization-cell-img-size) 1fr;
+        align-items: center;
+        grid-gap: var(--space-xs);
+    }
+
+    .organization-cell__img,
+    .organization-cell__content {
+        margin-bottom: 0; // reset
+    }
+}

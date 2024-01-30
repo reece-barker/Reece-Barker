@@ -1,0 +1,73 @@
+/* -------------------------------- 
+
+File#: _1_adv-multiple-custom-select
+Title: Advanced Multiple Custom Select
+Descr: Custom select with advanced structure options and where multiple options can be selected
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+.js .advm-select {
+  overflow: hidden;
+  height: 236px;
+  border-radius: var(--radius-md);
+  box-shadow: 0 0 0 1px alpha(var(--color-contrast-higher), 0.15);
+
+  transition: box-shadow .2s;
+
+  &:focus-within {
+    box-shadow: 0 0 0 2px var(--color-primary);
+
+    .advm-select__list {
+      border-color: var(--color-primary);
+    }
+  }
+}
+
+.advm-select__list {
+  @include spaceUnit(1rem); // reset space textUnit
+  @include fontSmooth;
+
+  height: 100%;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.advm-select__option, // <optgroup> custom label
+.advm-select__label { // custom <option>s
+  user-select: none;
+}
+
+.advm-select__option {
+  cursor: pointer;
+
+  &:hover {
+    background-color: alpha(var(--color-contrast-higher), 0.05);
+  }
+
+  &:focus {
+    outline: none;
+    background-color: alpha(var(--color-primary), 0.1);
+  }
+
+  &[aria-selected="true"] {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+
+    .advm-select__check {
+      visibility: visible;
+    }
+
+    &:focus {
+      background-color: var(--color-primary-dark);
+    }
+  }
+}
+
+.advm-select__check {
+  visibility: hidden;
+}

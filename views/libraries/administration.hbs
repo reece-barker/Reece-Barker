@@ -1,0 +1,530 @@
+<div class="flex justify-between padding-x-md margin-top-sm items-center">
+    <h1 class="hbs-ui__text text-lg">Administration</h1>
+
+    <div class="language-picker margin-left-auto language-picker--flags js-language-picker"
+        data-trigger-class="btn bg js-tab-focus">
+        <form id="LANG" action="" class="language-picker__form">
+            <label class="hbs-ui__text" for="hbs-ui__languages-input">Select your language</label>
+
+            <select name="language-picker-select" id="hbs-ui__languages-input">
+                <option lang="en" class="hbs-ui__text" value="english" {{#if cly.english.isSelected}} selected{{/if}}>
+                    English</option>
+                <option lang="de" class="hbs-ui__text" value="deutsch" {{#if cly.deutsch.isSelected}} selected{{/if}}>
+                    Deutsch</option>
+                <option lang="fr" class="hbs-ui__text" value="francais" {{#if cly.francais.isSelected}} selected{{/if}}>
+                    Français</option>
+                <option lang="it" class="hbs-ui__text" value="italiano" {{#if cly.italiano.isSelected}} selected{{/if}}>
+                    Italiano</option>
+            </select>
+        </form>
+    </div>
+</div>
+
+<div id="administration-sign-in" class="flex padding-lg radius-md flex-center">
+    <form method="POST" action="/administration" class="bg radius-md width-50% padding-md max-width-xs">
+        <div class="text-center margin-bottom-sm">
+            <h1>Administration</h1>
+            <p><input style="display: none;" type="text" id="clearance"></p>
+        </div>
+
+        <div class="margin-bottom-sm">
+            <label class="form-label margin-bottom-xxxs" for="username">Username</label>
+            <input class="form-control width-100%" id="username" autocomplete="off" name="username"
+                aria-label="Username" type="text" placeholder="Username" pattern=".{8,}" required
+                title="8 characters minimum">
+        </div>
+
+        <div class="margin-bottom-sm">
+            <div class="flex justify-between margin-bottom-xxxs">
+                <label class="form-label" for="password">Password</label>
+                <span class="text-sm"><a href="/forgot-your-password">Forgot your password?</a></span>
+            </div>
+
+            <input class="form-control password__input js-password__input width-100%" id="password" autocomplete="off"
+                class="form-control " name="password" aria-label="Password" type="password" placeholder="Password"
+                pattern=".{10,}" required title="10 characters minimum">
+        </div>
+
+        <div class="margin-bottom-sm">
+            <div class="flex justify-between">
+                <input class="checkbox checkbox--inline" type="checkbox" name="remember" id="remember">
+                <label class="text-sm" for="remember">Remember me</label>
+            </div>
+        </div>
+
+        <button type="submit"
+            class="btn btn--primary administration__btn btn--form btn--preserve-width btn--md width-100%">
+            <span class="btn__content-a"><svg version="1.0" id="sign-in" xmlns="http://www.w3.org/2000/svg" width="24px"
+                    height="24px" viewBox="0 0 512 512">
+                    <path fill="white"
+                        d="M184 83.5l164.5 164c4.7 4.7 4.7 12.3 0 17L184 428.5c-4.7 4.7-12.3 4.7-17 0l-7.1-7.1c-4.7-4.7-4.7-12.3 0-17l132-131.4H12c-6.6 0-12-5.4-12-12v-10c0-6.6 5.4-12 12-12h279.9L160 107.6c-4.7-4.7-4.7-12.3 0-17l7.1-7.1c4.6-4.7 12.2-4.7 16.9 0zM512 400V112c0-26.5-21.5-48-48-48H332c-6.6 0-12 5.4-12 12v8c0 6.6 5.4 12 12 12h132c8.8 0 16 7.2 16 16v288c0 8.8-7.2 16-16 16H332c-6.6 0-12 5.4-12 12v8c0 6.6 5.4 12 12 12h132c26.5 0 48-21.5 48-48z" />
+                </svg></span>
+            <span class="btn__content-b">
+                <svg class="icon icon--is-spinning" aria-hidden="true" viewBox="0 0 16 16">
+                    <title>Loading</title>
+                    <g stroke-width="1" fill="currentColor" stroke="currentColor">
+                        <path d="M.5,8a7.5,7.5,0,1,1,1.91,5" fill="none" stroke="currentColor" stroke-linecap="round"
+                            stroke-linejoin="round"></path>
+                    </g>
+                </svg>
+            </span>
+        </button>
+    </form>
+</div>
+
+<section style="display: none;" id="administration-ui" class="radius-md padding-md">
+    <div class="bg padding-md shadow-xs radius-md margin-bottom-sm">
+        <p class="int-table__row-empty sr-only">
+            There are no more users to track?
+        </p>
+
+        <div class="int-table int-table--sticky-header text-sm js-int-table">
+            <div class="int-table__inner">
+                <table class="int-table__table" aria-label="Interactive table example">
+                    <thead class="int-table__header js-int-table__header">
+                        <tr class="int-table__row">
+                            <td class="int-table__cell">
+                                <div class="custom-checkbox int-table__checkbox">
+                                    <input class="custom-checkbox__input js-int-table__select-all" type="checkbox"
+                                        aria-label="Select all rows" />
+                                    <div class="custom-checkbox__control" aria-hidden="true"></div>
+                                </div>
+                            </td>
+
+                            <th
+                                class="int-table__cell int-table__cell--th int-table__cell--sort js-int-table__cell--sort">
+                                <div class="flex items-center">
+                                    <span>_id</span>
+
+                                    <svg class="icon icon--xxs margin-left-xxxs int-table__sort-icon" aria-hidden="true"
+                                        viewBox="0 0 12 12">
+                                        <polygon class="arrow-up" points="6 0 10 5 2 5 6 0" />
+                                        <polygon class="arrow-down" points="6 12 2 7 10 7 6 12" /></svg>
+                                </div>
+
+                                <ul class="sr-only js-int-table__sort-list">
+                                    <li>
+                                        <input type="radio" name="sortingName" id="sortingNameNone" value="none"
+                                            checked>
+                                        <label for="sortingNameNone">No sorting</label>
+                                    </li>
+
+                                    <li>
+                                        <input type="radio" name="sortingName" id="sortingNameAsc" value="asc">
+                                        <label for="sortingNameAsc">Sort in ascending order</label>
+                                    </li>
+
+                                    <li>
+                                        <input type="radio" name="sortingName" id="sortingNameDes" value="desc">
+                                        <label for="sortingNameDes">Sort in descending order</label>
+                                    </li>
+                                </ul>
+                            </th>
+
+                            <th class="int-table__cell int-table__cell--th int-table__cell--sort js-int-table__cell--sort"
+                                data-date-format="dd-mm-yyyy">
+                                <div class="flex items-center">
+                                    <span>Username</span>
+
+                                    <svg class="icon icon--xxs margin-left-xxxs int-table__sort-icon" aria-hidden="true"
+                                        viewBox="0 0 12 12">
+                                        <polygon class="arrow-up" points="6 0 10 5 2 5 6 0" />
+                                        <polygon class="arrow-down" points="6 12 2 7 10 7 6 12" /></svg>
+                                </div>
+
+                                <ul class="sr-only js-int-table__sort-list">
+                                    <li>
+                                        <input type="radio" name="sortingDate" id="sortingDateNone" value="none"
+                                            checked>
+                                        <label for="sortingDateNone">No sorting</label>
+                                    </li>
+
+                                    <li>
+                                        <input type="radio" name="sortingDate" id="sortingDateAsc" value="asc">
+                                        <label for="sortingDateAsc">Sort in ascending order</label>
+                                    </li>
+
+                                    <li>
+                                        <input type="radio" name="sortingDate" id="sortingDateDes" value="desc">
+                                        <label for="sortingDateDes">Sort in descending order</label>
+                                    </li>
+                                </ul>
+                            </th>
+
+                            <th
+                                class="int-table__cell int-table__cell--th int-table__cell--sort js-int-table__cell--sort">
+                                <div class="flex items-center">
+                                    <span>Address</span>
+
+                                    <svg class="icon icon--xxs margin-left-xxxs int-table__sort-icon" aria-hidden="true"
+                                        viewBox="0 0 12 12">
+                                        <polygon class="arrow-up" points="6 0 10 5 2 5 6 0" />
+                                        <polygon class="arrow-down" points="6 12 2 7 10 7 6 12" /></svg>
+                                </div>
+
+                                <ul class="sr-only js-int-table__sort-list">
+                                    <li>
+                                        <input type="radio" name="sortingEmail" id="sortingEmailNone" value="none"
+                                            checked>
+                                        <label for="sortingEmailNone">No sorting</label>
+                                    </li>
+
+                                    <li>
+                                        <input type="radio" name="sortingEmail" id="sortingEmailAsc" value="asc">
+                                        <label for="sortingEmailAsc">Sort in ascending order</label>
+                                    </li>
+
+                                    <li>
+                                        <input type="radio" name="sortingEmail" id="sortingEmailDes" value="desc">
+                                        <label for="sortingEmailDes">Sort in descending order</label>
+                                    </li>
+                                </ul>
+                            </th>
+
+                            <th class="int-table__cell int-table__cell--th text-left">
+                                Bio
+                            </th>
+
+                            <th class="int-table__cell int-table__cell--th text-left">Birthday</th>
+                            <th class="int-table__cell int-table__cell--th text-right"></th>
+                        </tr>
+                    </thead>
+
+                    <tbody class="int-table__body js-int-table__body">
+                        {{#each _users}}
+                        <tr class="int-table__row">
+                            <th class="int-table__cell" scope="row">
+                                <div class="custom-checkbox int-table__checkbox">
+                                    <input class="custom-checkbox__input js-int-table__select-row" type="checkbox"
+                                        aria-label="Select this row" />
+                                    <div class="custom-checkbox__control" aria-hidden="true"></div>
+                                </div>
+                            </th>
+                            <td class="int-table__cell"><a class="elcheck" href="#0">{{this._information.fn}}
+                                    {{this._information.ln}}</a></td>
+                            <td class="int-table__cell elcheck">{{this.username}}</td>
+                            <td class="int-table__cell elcheck">{{this._information.address}}</td>
+                            <td class="int-table__cell elcheck max-width-xxxxs">{{this._information.bio}}</td>
+                            <td class="int-table__cell elcheck">{{this._information.birthday}}</td>
+                            <td class="int-table__cell">
+                                <div class="sr-only">{{this._id}}</div>
+                                <button class="reset int-table__menu-btn margin-left-auto js-tab-focus"
+                                    data-label="Edit row" aria-controls="dropdown">
+                                    <svg class="icon" viewBox="0 0 16 16">
+                                        <circle cx="8" cy="7.5" r="1.5" />
+                                        <circle cx="1.5" cy="7.5" r="1.5" />
+                                        <circle cx="14.5" cy="7.5" r="1.5" /></svg>
+                                </button>
+                            </td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <menu id="dropdown" class="menu menu--table js-menu">
+            <li role="menuitem">
+                <span class="menu__content js-menu__content">
+                    <i class="fas padding-left-xxs fa-info menu__icon icon"></i>
+                    <span class="sr-only">Information</span>
+                </span>
+            </li>
+
+            <li role="menuitem">
+                <span class="menu__content js-menu__content">
+                    <i class="fas fa-key menu__icon icon"></i>
+                    <span class="sr-only">Permissions</span>
+                </span>
+            </li>
+
+            <li role="menuitem">
+                <span class="menu__content js-menu__content">
+                    <i class="fas fa-link menu__icon icon"></i>
+                    <span class="sr-only">Attachments</span>
+                </span>
+            </li>
+
+            <li role="menuitem">
+                <span class="menu__content menu-archives js-menu__content">
+                    <i class="fas btn-danger fa-archive menu__icon icon" style="color: var(--color-error)"></i>
+                    <span class="sr-only">Archives</span>
+                </span>
+            </li>
+        </menu>
+    </div>
+</section>
+
+<script class="hbs-ui__scripts">
+    $(async () => {
+        const elcheck = document.querySelectorAll('.elcheck');
+
+        elcheck.forEach(async (element) => {
+            if (element.innerHTML === 'false') {
+                element.innerHTML = '';
+            }
+        });
+
+
+        const elements = [];
+
+        document.querySelector('.menu-archives').addEventListener('click', async (e) => {
+            const _id = document.querySelector('.menu-control--active').previousElementSibling.innerHTML;
+
+            $.ajax({
+                type: 'POST',
+                url: `/administration?_id=${_id}`,
+                dataType: 'text',
+                contentType: 'application/x-www-form-urlencoded',
+                data: {
+                    _id: _id
+                },
+                success: async (data) => {
+                    console.log(data)
+
+                    document.querySelectorAll('.int-table__row--checked').forEach(async (element) => {
+                        element.remove();
+                    });
+
+                    document.querySelector('.js-int-table__select-all').click();
+
+                    if ((document.querySelectorAll('.int-table__row').length - 1) <= 0) {
+                        document.querySelector('.int-table').classList.add('sr-only');
+                        document.querySelector('.int-table__row-empty').classList.remove('sr-only');
+                    }
+                }
+            });
+        });
+
+        document.querySelectorAll('.int-table__menu-btn').forEach(async (element) => {
+            element.addEventListener('click', async (e) => {
+                e.preventDefault();
+
+                document.querySelectorAll('.int-table__selected').forEach(async (
+                    element) => {
+                    element.classList.remove('int-table__selected');
+                });
+
+                if (!element.parentElement.parentElement.classList.contains(
+                        'int-table__row--checked')) {
+                    element.parentElement.parentElement.children[0].children[0]
+                        .children[0].click();
+                    element.click();
+                }
+
+                element.parentElement.parentElement.classList.add(
+                    'int-table__selected');
+                element.parentElement.parentElement.classList.add(
+                    'int-table__row--checked');
+            });
+        });
+
+        document.querySelectorAll('.int-table__row').forEach(async (element) => {
+            if (element.classList.contains('int-table__row-empty')) {
+                return;
+            }
+
+            elements.push({
+                element: element,
+                _id: element.children[1].children[0].innerHTML,
+                username: element.children[2].innerHTML,
+                address: element.children[3].innerHTML,
+                bio: element.children[4].innerHTML,
+                birthday: element.children[5].innerHTML
+            });
+        });
+
+    });
+</script>
+
+<script class="hbs-ui__scripts">
+    $(async () => {
+        let isSubmitted = false;
+
+        $('form').on('submit', async (e) => {
+            e.preventDefault();
+
+            if (isSubmitted) {
+                return;
+            }
+
+            isSubmitted = true;
+
+            $('[type=submit]').toggleClass('btn--state-b');
+
+            $.ajax({
+                type: 'POST',
+                url: '/administration',
+                dataType: 'json',
+                contentType: 'application/x-www-form-urlencoded',
+                data: $('form').serialize(),
+                beforeSend: async (xhr) => {
+                    console.log('You have requested to sign-in as an administrator with Acolytes.');
+                },
+                error: async (err) => {
+                    if (err) {
+                        $('[type=submit]').toggleClass('btn--state-b');
+                        isSubmitted = false;
+
+                        return console.error(err);
+                    }
+                },
+                success: async (args) => {
+                    const {
+                        err,
+                        _id,
+                        xhr
+                    } = args;
+
+                    if (err) {
+                        return await (async (err) => {
+                            const {
+                                elements,
+                                xhr,
+                                async
+                            } = err;
+
+                            if (async) {
+                                return await elements.forEach(async (
+                                    _id, i, elements) => {
+                                    if (!document
+                                        .querySelector(_id)
+                                    ) {
+                                        $('[type=submit]')
+                                            .toggleClass(
+                                                'btn--state-b'
+                                            );
+                                        isSubmitted = false;
+
+                                        return;
+                                    }
+
+                                    const element = document
+                                        .querySelector(_id);
+
+                                    element.classList.add(
+                                        'form-control--error'
+                                    );
+
+                                    element
+                                        .addEventListener(
+                                            'focus', async (
+                                                e) => {
+                                                if (e
+                                                    .target
+                                                    .closest(
+                                                        'input'
+                                                    )
+                                                    .classList
+                                                    .contains(
+                                                        'form-control--error'
+                                                    )
+                                                ) {
+                                                    e.target
+                                                        .closest(
+                                                            'input'
+                                                        )
+                                                        .classList
+                                                        .remove(
+                                                            'form-control--error'
+                                                        );
+                                                }
+                                            });
+
+                                    if (xhr) {
+                                        element
+                                            .setAttribute(
+                                                'placeholder',
+                                                xhr[_id]);
+                                    }
+
+                                    $('[type=submit]')
+                                        .toggleClass(
+                                            'btn--state-b');
+                                    isSubmitted = false;
+                                });
+                            }
+
+                            elements.forEach((_id, i, elements) => {
+                                if (!document.querySelector(
+                                        _id)) {
+                                    $('[type=submit]')
+                                        .toggleClass(
+                                            'btn--state-b');
+                                    isSubmitted = false;
+
+                                    return;
+                                }
+
+                                const element = document
+                                    .querySelector(_id);
+
+                                element.classList.add(
+                                    'form-control--error');
+
+                                element.addEventListener(
+                                    'focus', (e) => {
+                                        if (e.target
+                                            .closest(
+                                                'input')
+                                            .classList
+                                            .contains(
+                                                'form-control--error'
+                                            )) {
+                                            e.target
+                                                .closest(
+                                                    'input')
+                                                .classList
+                                                .remove(
+                                                    'form-control--error'
+                                                );
+                                        }
+                                    });
+
+                                if (xhr) {
+                                    element.setAttribute(
+                                        'placeholder', xhr[
+                                            _id]);
+                                }
+
+                                $('[type=submit]').toggleClass(
+                                    'btn--state-b');
+                                isSubmitted = false;
+                            });
+                        })(err);
+                    }
+
+                    localStorage.setItem('_id', _id);
+
+                    if (xhr) {
+                        const {
+                            uuid,
+                            url,
+                            async
+                        } = xhr;
+
+                        if (uuid) {
+                            sessionStorage.setItem('uuid', uuid);
+
+                            if (async) {
+                                $('[type=submit]').toggleClass('btn--state-b');
+                                isSubmitted = false;
+
+                                document.querySelector('#administration-sign-in').style.display = "none";
+                                document.querySelector('#administration-ui').style.display = "block";
+
+                                return;
+                            }
+
+                            $('[type=submit]').toggleClass('btn--state-b');
+                            isSubmitted = false;
+
+                            document.querySelector('#administration-sign-in').style.display = "none";
+                            document.querySelector('#administration-ui').style.display = "block";
+                        }
+                    }
+                }
+            });
+        });
+    });
+</script>

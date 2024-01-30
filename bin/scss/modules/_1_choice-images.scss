@@ -1,0 +1,73 @@
+/* -------------------------------- 
+
+File#: _1_choice-images
+Title: Choice Images
+Descr: Selectable images that behave like radio/checkbox buttons
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+:root {
+  // custom input
+  --choice-img-input-size: 100px; // custom input background size
+  --choice-img-input-icon-size: 26px; // icon size
+}
+
+.choice-img {
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: .3s;
+
+  &:hover {
+    cursor: pointer;
+    box-shadow: var(--shadow-md);
+  }
+
+  &:active {
+    transform: translateY(2px);
+  }
+}
+
+.choice-img[aria-checked="true"] {
+  transition: transform .3s;
+  box-shadow: var(--shadow-sm), 0 0 0 2px var(--color-primary);
+}
+
+// custom input
+.choice-img__input {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(1px, -1px);
+  background-color: var(--color-primary);
+  width: var(--choice-img-input-size);
+  height: var(--choice-img-input-size);
+  clip-path: polygon(15% 0%, 100% 0%, 100% 85%);
+  pointer-events: none;
+  opacity: 0;
+
+  .icon {
+    position: absolute;
+    top: calc(var(--choice-img-input-size)/4 - var(--choice-img-input-icon-size)/2);
+    right: calc(var(--choice-img-input-size)/4 - var(--choice-img-input-icon-size)/2);
+    font-size: var(--choice-img-input-icon-size);
+    color: var(--color-white); // icon color
+
+    > * {
+      transition: stroke-dashoffset .3s;
+      stroke-dasharray: 18;
+      stroke-dashoffset: 18;
+    }
+  }
+}
+
+.choice-img[aria-checked="true"] {
+  .choice-img__input {
+    opacity: 1;
+
+    .icon > * {
+      stroke-dashoffset: 0;
+    }
+  }
+}

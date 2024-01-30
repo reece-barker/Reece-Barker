@@ -1,0 +1,22 @@
+/* -------------------------------- 
+
+File#: _1_feature-v5
+Title: Feature v5
+Descr: Content group containing text components and a media element
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+.feature-v5 {
+  --feature-media-offset: var(--space-xxl); // image offset
+  --feature-content-media-gap: var(--space-lg); // space between text and image
+}
+
+.feature-v5__content {
+  background-color: var(--color-contrast-lower);
+  padding-bottom: calc(var(--feature-content-media-gap) + var(--feature-media-offset));
+}
+
+.feature-v5__media {
+  margin-top: calc(-1 * var(--feature-media-offset));
+}

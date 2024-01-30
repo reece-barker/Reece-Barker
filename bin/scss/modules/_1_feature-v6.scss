@@ -1,0 +1,25 @@
+/* -------------------------------- 
+
+File#: _1_feature-v6
+Title: Feature v6
+Descr: A section containing a list of features
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+.feature-v6 {}
+
+.feature-v6__item {
+  img {
+    display: block;
+    width: 100%;
+    margin-bottom: var(--space-sm);
+  }
+}
+
+// --img-sm -> set max-width for images
+.feature-v6--img-sm {
+  img {
+    max-width: 128px;
+  }
+}

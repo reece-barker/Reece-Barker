@@ -1,0 +1,6 @@
+
+                <svg version="1.0" id="sd-card" xmlns="http://www.w3.org/2000/svg" width="{{width}}px" height="{{height}}px"
+                    viewBox="0 0 384 512">
+                    <path d="M112 160h48V64h-48zm80 0h48V64h-48zm80-96v96h48V64z,M320 0H128L0 128v320a64.06 64.06 0 0 0 64 64h256a64.06 64.06 0 0 0 64-64V64a64.06 64.06 0 0 0-64-64zM160 160h-48V64h48zm80 0h-48V64h48zm80 0h-48V64h48z" />
+                </svg>
+            

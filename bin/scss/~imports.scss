@@ -1,0 +1,51 @@
+// --------------------------------
+
+// utils - essential CSS rules and utility classes
+// We suggestion you don't modify the utils/* files -> use the libraries/* files to create your bespoke style
+
+// --------------------------------
+
+@import "utils/reset";
+@import "utils/breakpoints";
+@import "utils/mixins";
+@import "utils/colors";
+@import "utils/spacing";
+@import "utils/grid-layout";
+@import "utils/shared-styles";
+@import "utils/typography";
+@import "utils/icons";
+@import "utils/buttons";
+@import "utils/forms";
+@import "utils/z-index";
+@import "utils/visibility";
+@import "utils/accessibility";
+@import "utils/util";
+
+// --------------------------------
+
+// Custom Style - your bespoke style
+
+// --------------------------------
+
+@import "libraries/colors";
+@import "libraries/spacing";
+@import "libraries/shared-styles";
+@import "libraries/typography";
+@import "libraries/icons";
+@import "libraries/buttons";
+@import "libraries/forms";
+@import "libraries/z-index";
+@import "libraries/util";
+
+// 👇 optional -> set custom breakpoints
+// $breakpoints: (
+//   xs: 32rem,
+//   sm: 48rem,
+//   md: 64rem,
+//   lg: 80rem,
+//   xl: 90rem
+// );
+
+/*! purgecss start ignore */
+@import "modules/**/*.scss";
+/*! purgecss end ignore */

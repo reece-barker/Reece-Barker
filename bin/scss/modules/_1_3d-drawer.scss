@@ -1,0 +1,130 @@
+/* -------------------------------- 
+
+File#: _1_3d-drawer
+Title: 3D Drawer
+Descr: A 3D panel used to display critical content
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+.td-drawer {
+  position: fixed;
+  z-index: var(--zindex-overlay);
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  background-color: alpha(var(--color-contrast-higher), 0);
+  transition: background-color .3s, visibility 0s .3s;
+  // hide drawer
+  visibility: hidden;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.td-drawer--is-visible {
+  visibility: visible;
+  background-color: alpha(var(--color-contrast-higher), 0.7);
+  transition: background-color .3s, visibility 0s;
+}
+
+.td-drawer__content {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 90%;
+  max-width: 720px;
+  height: 100%;
+  background-color: var(--color-bg);
+  box-shadow: var(--shadow-lg);
+  overflow: auto; // flex fallback
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform .3s var(--ease-out);
+
+  .td-drawer--left & {
+    right: auto;
+    left: 0;
+    transform: translateX(-100%);
+  }
+
+  .td-drawer--bottom & {
+    width: 100%;
+    max-width: none;
+    height: 70%;
+    max-height: 720px;
+    transform: translateY(100%);
+    top: auto;
+    bottom: 0;
+  }
+
+  .td-drawer--is-visible & {
+    transform: translateX(0);
+  }
+
+  .td-drawer--is-visible.td-drawer--bottom & {
+    transform: translateY(0);
+  }
+}
+
+.td-drawer__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+  padding: var(--space-xs) var(--component-padding);
+  background: var(--color-bg);
+  border-bottom: 2px solid var(--color-contrast-lower);
+}
+
+.td-drawer__close-btn {
+  display: flex;
+  width: 32px;
+  height: 32px;
+
+  flex-shrink: 0;
+  
+  border-radius: 50%;
+  background-color: var(--color-bg);
+  box-shadow: var(--shadow-sm);
+
+  transition: .2s;
+
+  &:hover {
+    box-shadow: var(--shadow-md);
+  }
+  
+  .icon {
+    display: block;
+    margin: auto;
+    color: var(--color-contrast-high);
+  }
+}
+
+.td-drawer__body {
+  // scrollable area
+  padding: var(--space-sm) var(--component-padding);
+  height: 100%;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+// page main content
+.td-drawer-main {
+  background: var(--color-bg);
+  box-shadow: var(--shadow-md);
+  height: 100vh;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+
+  will-change: transform;
+  transition: transform .3s var(--ease-out);
+}
+
+.td-drawer-main--drawer-is-visible {
+  transform: scale(0.9);
+  overflow: hidden;
+}

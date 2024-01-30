@@ -1,0 +1,122 @@
+/* -------------------------------- 
+
+File#: _1_main-footer-v3
+Title: Main Footer v3
+Descr: Footer navigation template
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+.footer-v3 {}
+
+.footer-v3__logo {
+  a, svg, img {
+    width: 104px; // logo width
+    height: 30px; // logo height
+    display: block;
+  }
+}
+
+.footer-v3__nav {
+  margin: var(--space-lg) 0;
+}
+
+.footer-v3__nav-item {
+  margin-bottom: var(--space-sm);
+
+  a {
+    color: var(--color-contrast-high);
+    font-size: 1.25em;
+
+    &:hover {
+      color: var(--color-primary);
+    }
+  }
+}
+
+.footer-v3__socials {
+  display: flex;
+  align-items: center;
+
+  a {
+    text-decoration: none;
+    display: inline-block;
+    margin: 0 var(--space-xs) 0 0;
+    color: var(--color-contrast-high); // icons color
+
+    &:hover {
+      color: var(--color-primary);
+    }
+
+    .icon {
+      display: block;
+      width: 1.25em;
+      height: 1.25em;
+    }
+  }
+}
+
+@supports (display: grid) {
+  @include breakpoint(md) {
+    .footer-v3__container {
+      display: grid;
+      grid-template-columns: 130px 1fr 130px; // 130px = logo width
+    }
+  
+    .footer-v3__nav {
+      margin: 0;
+    }
+  
+    .footer-v3__nav-list {
+      display: flex;
+      height: 100%;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+  
+    .footer-v3__nav-item  {
+      padding: 0 var(--space-xs);
+      margin: 0;
+      position: relative;
+  
+      a {
+        font-size: 0.875em; // reduce nav items size
+      }
+  
+      &::after {
+        content: '';
+        display: inline-block;
+        position: absolute;
+        height: 0.8em;
+        width: 1px;
+        right: 0;
+        top: calc(50% - 0.4em);
+        background-color: var(--color-contrast-low);
+      }
+  
+      &:first-child {
+        padding-left: 0;
+      }
+  
+      &:last-child {
+        padding-right: 0;
+  
+        &::after {
+          display: none;
+        }
+      }
+    }
+  
+    .footer-v3__socials {
+      a {
+        margin: 0 0 0 var(--space-xs);
+  
+        .icon {
+          width: 1em;
+          height: 1em;
+        }
+      }
+    }
+  }
+}

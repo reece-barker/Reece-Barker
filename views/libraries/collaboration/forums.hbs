@@ -1,0 +1,99 @@
+<div class="flex justify-between padding-x-md margin-y-sm items-center">
+    <h1 class="hbs-ui__text text-lg">Forums</h1>
+
+    <div class="language-picker margin-left-auto language-picker--flags js-language-picker"
+        data-trigger-class="btn bg js-tab-focus">
+        <form id="LANG" action="" class="language-picker__form">
+            <label class="hbs-ui__text" for="hbs-ui__languages-input">Select your language</label>
+
+            <select name="language-picker-select" id="hbs-ui__languages-input">
+                <option lang="en" class="hbs-ui__text" value="english" {{#if cly.english.isSelected}} selected{{/if}}>
+                    English</option>
+                <option lang="de" class="hbs-ui__text" value="deutsch" {{#if cly.deutsch.isSelected}} selected{{/if}}>
+                    Deutsch</option>
+                <option lang="fr" class="hbs-ui__text" value="francais" {{#if cly.francais.isSelected}} selected{{/if}}>
+                    Français</option>
+                <option lang="it" class="hbs-ui__text" value="italiano" {{#if cly.italiano.isSelected}} selected{{/if}}>
+                    Italiano</option>
+            </select>
+        </form>
+    </div>
+</div>
+
+<section class="radius-md padding-md">
+    <p class="hbs-ui__text bg padding-md shadow-xs radius-md margin-bottom-sm">
+        Acolytes is currently working on making the Forums collaboration section fully functional, please be patient.
+    </p>
+
+    <section class="bg radius-md shadow-xs margin-bottom-sm padding-md padding-lg@md">
+        <div class="grid gap-md items-center">
+            <div class="col-6@md">
+                <div class="text-component">
+                    <h1 class="text-xl">Forums</h1>
+                    <p class="color-contrast-medium">This section of our site allows you to collaborate with members of
+                        our community by
+                        posting interesting topics or articles.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-6@md">
+                <div class="flex gap-xs flex-column flex-row@xs justify-end@md">
+                    <button class="btn btn--subtle btn--posts btn--sm radius-full padding-xs">
+                        <svg class="icon" style="transform: rotate(45deg);" aria-hidden="true" viewBox="0 0 16 16">><g>
+                                <path
+                                    d="M14.7,1.3c-0.4-0.4-1-0.4-1.4,0L8,6.6L2.7,1.3c-0.4-0.4-1-0.4-1.4,0s-0.4,1,0,1.4L6.6,8l-5.3,5.3 c-0.4,0.4-0.4,1,0,1.4C1.5,14.9,1.7,15,2,15s0.5-0.1,0.7-0.3L8,9.4l5.3,5.3c0.2,0.2,0.5,0.3,0.7,0.3s0.5-0.1,0.7-0.3 c0.4-0.4,0.4-1,0-1.4L9.4,8l5.3-5.3C15.1,2.3,15.1,1.7,14.7,1.3z">
+                                </path>
+                            </g></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="stories bg padding-md radius-md shadow-xs">
+        <h3 class="sr-only stories__legend">Forums</h3>
+        <ol class="stories__list">
+            <li class="stories__story flex justify-between position-relative">
+                <div class="flex">
+                    <a href="#0" aria-controls="dialog-1" class="stories__img-wrapper">
+                        <figure>
+                            <img src="{{URL 'utils/img/svg/placeholders/article-example-img-1.svg'}}"
+                                alt="Image description">
+                        </figure>
+                    </a>
+
+                    <div class="stories__text text-component line-height-md v-space-sm">
+                        <h4 class="stories__headline"><a aria-controls="dialog-1" href="#0">My two natures had memory in
+                                common.</a></h4>
+                        <p class="stories__metadata"><time datetime="2020-05-10">Match 5, 2020</time> <span
+                                class="stories__separator" role="separator"></span> <a href="#0">Review</a></p>
+                    </div>
+                </div>
+
+                <div class="flex gap-xs margin-right-sm items-center">
+                    <div class="rating js-rating" data-animation="on">
+                        <label class="form-label sr-only margin-bottom-xxs" for="rating1">Select a rating value:</label>
+
+                        <div class="rating__select">
+                            <select name="rating1" id="rating1">
+                                <option value="1">1 out of 5</option>
+                                <option value="2">2 out of 5</option>
+                                <option value="3">3 out of 5</option>
+                                <option value="4">4 out of 5</option>
+                                <option value="5">5 out of 5</option>
+                            </select>
+                        </div>
+
+                        <div class="rating__control rating__control--is-hidden js-rating__control">
+                            <svg width="24" height="24" viewBox="0 0 24 24">
+                                <polygon
+                                    points="12 1.489 15.09 7.751 22 8.755 17 13.629 18.18 20.511 12 17.261 5.82 20.511 7 13.629 2 8.755 8.91 7.751 12 1.489"
+                                    fill="currentColor" /></svg>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ol>
+    </div>
+</section>

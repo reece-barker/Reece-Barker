@@ -1,0 +1,6 @@
+
+                <svg version="1.0" id="dolly-flatbed-empty" xmlns="http://www.w3.org/2000/svg" width="{{width}}px" height="{{height}}px"
+                    viewBox="0 0 640 512">
+                    <path d="M162.74 448a48 48 0 1 0 90.52 0zm378.52 0h-90.52a48 48 0 1 0 90.52 0z,M640 400v32a16 16 0 0 1-16 16H80a16 16 0 0 1-16-16V64H16A16 16 0 0 1 0 48V16A16 16 0 0 1 16 0h96a16 16 0 0 1 16 16v368h496a16 16 0 0 1 16 16z" />
+                </svg>
+            

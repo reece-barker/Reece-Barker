@@ -1,0 +1,22 @@
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30">
+    <style>
+        path {
+            fill: #212121;
+        }
+        circle {
+            fill: white;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            path {
+                fill: white;
+            }
+            circle {
+                fill: #212121;
+            }
+        }
+    </style>
+
+    <circle cx="15" cy="15" r="15"/>
+    <path d="M 25.607 4.393 L 4.393 25.607 A 15 15 0 0 0 25.607 4.393 Z M 19 11 A 1 1 0 0 0 12 18" />
+</svg>

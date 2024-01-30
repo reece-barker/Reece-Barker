@@ -1,0 +1,326 @@
+/* --------------------------------
+
+File#: _1_product-tour
+Title: Product Tour
+Descr: A step-by-step interactive guide
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+:root {
+  /* 👇 visible only on bigger screens */
+  --p-tour-pin-size: 12px; /* dot indicator size */
+  --p-tour-pin-tooltip-gap: 4px; /* gap between dot and tooltip */
+}
+
+.p-tour {
+  --p-tour-layout: 'mobile'; /* used in JS to detect layout type */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: var(--zindex-overlay);
+
+  opacity: 1;
+  visibility: visible;
+}
+
+.p-tour--is-hidden {
+  opacity: 0;
+  visibility: hidden;
+
+  transition: opacity .3s, visibility 0s .3s;
+}
+
+.p-tour__background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: alpha(var(--color-black), 0.8);
+}
+
+.p-tour__pin {
+  display: none; /* hide pin on smaller devices */
+}
+
+.p-tour__steps {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.p-tour__step {
+  position: absolute;
+  width: calc(100% - 2*var(--space-md));
+  left: var(--space-md);
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: auto;
+  z-index: 1;
+  max-height: calc(100% - 2*var(--space-md));
+  overflow: auto;
+
+  border-radius: var(--radius-md);
+  box-shadow:
+    0 0.9px 2.2px rgba(0, 0, 0, 0.025),
+    0 2.1px 5.3px rgba(0, 0, 0, 0.036),
+    0 3.9px 10px rgba(0, 0, 0, 0.045),
+    0 6.9px 17.9px rgba(0, 0, 0, 0.054),
+    0 13px 33.4px rgba(0, 0, 0, 0.065),
+    0 31px 80px rgba(0, 0, 0, 0.09);
+
+  transition: transform .3s, opacity .3s, visibility 0s 0.3s;
+}
+
+.p-tour__step--current {
+  opacity: 1;
+  visibility: visible;
+  z-index: 2;
+  transition: transform .3s, opacity .3s, visibility 0s;
+}
+
+/* slide effect on smaller devices */
+.p-tour__step--m-left {
+  transform: translateY(-50%) translateX(-50px);
+}
+
+.p-tour__step--m-right {
+  transform: translateY(-50%) translateX(50px);
+}
+
+.p-tour__skip {
+  --size: 28px;
+  width: var(--size);
+  height: var(--size);
+  background-color: alpha(var(--color-contrast-higher), 0.1);
+  border-radius: 50%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  backface-visibility: hidden;
+
+  transition: background-color .2s;
+
+  &:hover {
+    background-color: alpha(var(--color-contrast-higher), 0.15);
+  }
+
+  .icon {
+    --size: 16px;
+  }
+}
+
+@include breakpoint(sm) {
+  .p-tour {
+    --p-tour-layout: 'desktop';
+    display: block;
+    padding: 0;
+    pointer-events: none;
+  }
+
+  .p-tour__background {
+    opacity: 0;
+  }
+
+  .p-tour__background--animate {
+    animation: p-tour-bg-anim 1.5s;
+  }
+
+  @keyframes p-tour-bg-anim {
+    0%, 100% {
+      opacity: 0;
+    }
+
+    30%, 60%  {
+      opacity: 1;
+    }
+  }
+
+  .p-tour__step {
+    width: 340px;
+    transform: translate3d(0);
+    transition: opacity .3s, visibility 0s 0.3s;
+    max-height: none;
+    overflow: visible;
+  }
+
+  .p-tour__step--current {
+    transition: opacity .3s, visibility 0s;
+  }
+
+  /* triangle indicator */
+  .p-tour__step--top,
+  .p-tour__step--bottom,
+  .p-tour__step--right,
+  .p-tour__step--left,
+  .p-tour__step--bottom-right,
+  .p-tour__step--bottom-left,
+  .p-tour__step--top-right,
+  .p-tour__step--top-left {
+    &::before {
+      content: '';
+      position: absolute;
+    }
+  }
+
+  .p-tour__step--bottom-right, 
+  .p-tour__step--top-right {
+    transform: translateX(calc(1.5 * var(--p-tour-pin-size) + var(--p-tour-pin-tooltip-gap)));
+  }
+
+  .p-tour__step--bottom-left, 
+  .p-tour__step--top-left {
+    transform: translateX(calc(-1.5 * var(--p-tour-pin-size) - var(--p-tour-pin-tooltip-gap)));
+  }
+
+  .p-tour__step--top {
+    transform: translateY(calc(-1.5 * var(--p-tour-pin-size) - var(--p-tour-pin-tooltip-gap)));
+
+    &::before {
+      top: calc(100% - 1px);
+      left: 50%;
+      transform: translate(-50%);
+      @include triangle(down, 12px, var(--color-bg));
+    }
+  }
+
+  .p-tour__step--top-right,
+  .p-tour__step--top-left {
+    &::before {
+      width: var(--p-tour-pin-size);
+      height: var(--p-tour-pin-size);
+      background-color: var(--color-bg);
+      bottom: 0;
+    }
+  }
+
+  .p-tour__step--top-right {
+    border-bottom-left-radius: 0;
+
+    &::before {
+      right: calc(100% - 1px);
+      clip-path: polygon(0% 100%, 100% 0%, 100% 100%);
+    }
+  }
+
+  .p-tour__step--top-left {
+    border-bottom-right-radius: 0;
+
+    &::before {
+      left: calc(100% - 1px);
+      clip-path: polygon(0% 0%, 100% 100%, 0% 100%);
+    }
+  }
+
+  .p-tour__step--bottom {
+    transform: translateY(calc(var(--p-tour-pin-size) * 1.5 + var(--p-tour-pin-tooltip-gap)));
+
+    &::before {
+      bottom: calc(100% - 1px);
+      left: 50%;
+      transform: translate(-50%);
+      @include triangle(up, 12px, var(--color-bg));
+    }
+  }
+
+  .p-tour__step--bottom-right,
+  .p-tour__step--bottom-left {
+    &::before {
+      width: var(--p-tour-pin-size);
+      height: var(--p-tour-pin-size);
+      background-color: var(--color-bg);
+      top: 0;
+    }
+  }
+
+  .p-tour__step--bottom-right {
+    border-top-left-radius: 0;
+
+    &::before {
+      right: calc(100% - 1px);
+      clip-path: polygon(0% 0%, 100% 0%, 100% 100%);
+    }
+  }
+
+  .p-tour__step--bottom-left {
+    border-top-right-radius: 0;
+
+    &::before {
+      left: calc(100% - 1px);
+      clip-path: polygon(0% 0%, 100% 0%, 0% 100%);
+    }
+  }
+
+  .p-tour__step--left {
+    transform: translateX(calc(-1.5 * var(--p-tour-pin-size) - var(--p-tour-pin-tooltip-gap)));
+
+    &::before {
+      top: 50%;
+      left: calc(100% - 1px);
+      transform: translateY(-50%);
+      @include triangle(right, 12px, var(--color-bg));
+    }
+  }
+
+  .p-tour__step--right {
+    transform: translateX(calc(1.5 * var(--p-tour-pin-size) + var(--p-tour-pin-tooltip-gap)));
+
+    &::before {
+      top: 50%;
+      right: calc(100% - 1px);
+      transform: translateY(-50%);
+      @include triangle(left, 12px, var(--color-bg));
+    }
+  }
+
+  /* dot indicator */
+  .p-tour__pin {
+    position: absolute;
+    display: inline-block;
+    width: var(--p-tour-pin-size);
+    height: var(--p-tour-pin-size);
+    border-radius: 50%;
+    background-color: var(--color-accent);
+    pointer-events: none;
+    transform: translateX(-50%) translateY(-50%);
+    transition: transform .3s;
+
+    &::before { /* animated bg */
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: inherit;
+      background-color: inherit;
+      animation: p-tour-pin-anim 1.5s infinite var(--ease-out);
+    }
+  }
+
+  .p-tour__pin--out {
+    transform: translateX(-50%) translateY(-50%) scale(0);
+  }
+
+  @keyframes p-tour-pin-anim {
+    from {
+      opacity: 1;
+      transform: scale(0.25);
+    }
+
+    to {
+      opacity: 0;
+      transform: scale(3);
+    }
+  }
+}

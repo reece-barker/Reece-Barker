@@ -1,0 +1,44 @@
+/* -------------------------------- 
+
+File#: _2_footnotes
+Title: Footnotes
+Descr: A list of notes placed at the bottom of a text component, and linked to elements within the article for quick access
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+.text-component--has-footnotes {
+  counter-reset: footnotes;
+}
+
+.footnotes {
+  border-top: 1px solid var(--color-contrast-low);
+  font-size: 0.875em;
+}
+
+.footnotes-link, .footnotes__back-link {
+  counter-increment: footnotes;
+  font-size: 0.75em;
+  vertical-align: super;
+}
+
+.footnotes-link { // link to footnotes section
+  &::before {
+    content: '[' counter(footnotes) ']';
+  }
+}
+
+.footnotes__back-link { // link back to article
+  &::before {
+    content: '[';
+  }
+
+  &::after {
+    content: ']';
+  }
+}
+
+.footnotes-link:target, .footnotes__item:target {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}

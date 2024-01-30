@@ -1,0 +1,34 @@
+/* -------------------------------- 
+
+File#: _1_input-merger
+Title: Input Merger
+Descr: Merge multiple input elements
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+.input-merger {
+  padding: 0;
+
+  &:focus-within {
+    // ⚠️ copy here :focus style of .form-control in Framework > custom-style > _forms.scss
+  }
+}
+
+.input-merger__input {
+  width: 100%;
+  padding: var(--form-control-padding-y) var(--form-control-padding-x);
+  // line divider
+  background: linear-gradient(to right, transparent calc(100% - 1px), var(--color-contrast-low) 100%);
+  background-size: 100% 50%;
+  background-repeat: no-repeat;
+  background-position: center center;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:last-of-type {
+    background: transparent; // remove divider if last element
+  }
+}

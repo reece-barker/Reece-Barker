@@ -1,0 +1,32 @@
+/* -------------------------------- 
+
+File#: _2_flexi-sub-navigation
+Title: Flexi Sub Navigation
+Descr: Secondary navigation template
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+.flexi-subnav__social {
+  display: block; // fallback
+  display: flex;
+  width: 2em;
+  height: 2em;
+  border-radius: 50%;
+  background-color: var(--color-contrast-lower);
+  text-decoration: none;
+  color: var(--color-contrast-medium); // icon color
+  transition: .2s;
+
+  .icon {
+    margin: auto;
+    width: 1em;
+    height: 1em;
+  }
+
+  &:hover {
+    background-color: var(--color-bg);
+    box-shadow: var(--shadow-md);
+    color: var(--color-contrast-higher);
+  }
+}

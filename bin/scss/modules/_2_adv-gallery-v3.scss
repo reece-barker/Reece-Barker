@@ -1,0 +1,60 @@
+/* -------------------------------- 
+
+File#: _2_adv-gallery-v3
+Title: Advanced Gallery v3
+Descr: Advanced image gallery template
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+.adv-gallery-v3 {}
+
+@include breakpoint(md) {
+  .adv-gallery-v3__title {
+    border-top: 1px solid alpha(var(--color-contrast-higher), 0.1);
+    padding-top: var(--space-xs);
+  }
+}
+
+.adv-gallery-v3__img-link {
+  position: relative;
+  display: block;
+  text-decoration: none;
+  color: inherit;
+
+  &::before, &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 48px;
+    height: 48px;
+  }
+  
+  &::before { // icon background
+    clip-path: polygon(100% 0%, 100% 0%, 100% 0%, 100% 0%);
+    background-color: alpha(var(--color-black), 0.9);
+    transition: clip-path .2s var(--ease-out);
+  }
+
+  &::after { // icon
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpolyline points='4 2 14 2 14 12' fill='none' stroke='%23FFF' stroke-miterlimit='10' stroke-width='2'/%3E%3Cline x1='14' y1='2' x2='2' y2='14' fill='none' stroke='%23FFF' stroke-miterlimit='10' stroke-width='2'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    transform: scale(0.5) translateX(-5px) translateY(5px);
+    will-change: transform;
+    opacity: 0;
+    transition: opacity .2s, transform .2s var(--ease-out);
+  }
+
+  &:hover {
+    &::before {
+      clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+    }
+
+    &::after {
+      transform: scale(1) translateX(0) translateY(0);
+      opacity: 1;
+    }
+  }
+}

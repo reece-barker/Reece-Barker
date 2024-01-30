@@ -1,0 +1,239 @@
+<div class="flex justify-between padding-x-md margin-y-sm items-center">
+    <h1 class="hbs-ui__text text-lg">Chatrooms</h1>
+
+    <div class="language-picker margin-left-auto language-picker--flags js-language-picker"
+        data-trigger-class="btn bg js-tab-focus">
+        <form id="LANG" action="" class="language-picker__form">
+            <label class="hbs-ui__text" for="hbs-ui__languages-input">Select your language</label>
+
+            <select name="language-picker-select" id="hbs-ui__languages-input">
+                <option lang="en" class="hbs-ui__text" value="english" {{#if cly.english.isSelected}} selected{{/if}}>
+                    English</option>
+                <option lang="de" class="hbs-ui__text" value="deutsch" {{#if cly.deutsch.isSelected}} selected{{/if}}>
+                    Deutsch</option>
+                <option lang="fr" class="hbs-ui__text" value="francais" {{#if cly.francais.isSelected}} selected{{/if}}>
+                    Français</option>
+                <option lang="it" class="hbs-ui__text" value="italiano" {{#if cly.italiano.isSelected}} selected{{/if}}>
+                    Italiano</option>
+            </select>
+        </form>
+    </div>
+</div>
+
+<section class="radius-md padding-md">
+    <p class="hbs-ui__text bg padding-md shadow-xs radius-md margin-bottom-sm">
+        Acolytes is currently working on making the Chatrooms collaboration section fully functional, please be patient.
+    </p>
+
+    <div class="bg padding-md shadow-xs radius-md margin-bottom-sm">
+        <div class="margin-bottom-md">
+            <p class="text-center margin-bottom-sm">Howdy, type to start a conversation or just listen in to our
+                contributors.</p>
+            <p class="text-xs text-center"><span id="viewers">0</span> viewers • <span id="contributors">0</span>
+                contributors</p>
+        </div>
+
+        <div style="height: 25em;" class="position-relative z-index-1 border border-contrast-low border-2 radius-lg overflow-auto padding-y-lg">
+            <div></div>
+            <div class="container max-width-adaptive-lg">
+                <div class="v-timeline js-v-timeline" data-animation="on">
+                </div>
+            </div>
+        </div>
+
+        <form method="POST" action="/" target="_self">
+            <div class="character-count margin-top-md js-character-count">
+                <input class="form-control width-100% js-character-count__input" name="pkg" id="pkg"
+                    style="resize: none;" maxlength="200" spellcheck="true" />
+
+                <div class="character-count__helper character-count__helper--dynamic text-sm margin-top-xxxs"
+                    aria-live="polite" aria-atomic="true">
+                    You have <span class="js-character-count__counter"></span> characters left
+                </div>
+
+                <div class="character-count__helper character-count__helper--static text-sm margin-top-xxxs">Max
+                    200 characters</div>
+            </div>
+
+            <div class="padding-top-md text-right">
+                <button type="submit" title="Send something to the chatroom."
+                    class="btn hbs-ui__text btn--primary btn--sm">
+                    <span class="btn__content-a"><i class="fas fa-paper-plane"></i></span>
+                    <span class="btn__content-b">
+                        <svg class="icon icon--is-spinning" aria-hidden="true" viewBox="0 0 16 16">
+                            <title>Loading</title>
+                            <g stroke-width="1" fill="currentColor" stroke="currentColor">
+                                <path d="M.5,8a7.5,7.5,0,1,1,1.91,5" fill="none" stroke="currentColor"
+                                    stroke-linecap="round" stroke-linejoin="round"></path>
+                            </g>
+                        </svg>
+                    </span>
+                </button>
+            </div>
+        </form>
+    </div>
+</section>
+
+<script class="hbs-ui__scripts">
+    $(async () => {
+        const contributors = document.querySelector('#contributors');
+        const viewers = document.querySelector('#viewers');
+
+        socket.viewers = true;
+        socket.emit('viewers', 1);
+
+        socket.on('viewers', async (args) => {
+            viewers.innerHTML = args.viewers;
+
+            if (parseInt(contributors.innerHTML) > args.contributors) {
+                contributors.innerHTML = args.contributors;
+            } else if (parseInt(contributors.innerHTML) < args.contributors) {
+                contributors.innerHTML = args.contributors;
+            }
+
+            new Audio('https://freesound.org/data/previews/352/352661_4019029-lq.mp3').play();
+        });
+
+        socket.on('contributors', async (args) => {
+            contributors.innerHTML = args.contributors;
+
+            if (parseInt(viewers.innerHTML) > args.viewers) {
+                viewers.innerHTML = args.viewers;
+            } else if (parseInt(viewers.innerHTML) < args.viewers) {
+                viewers.innerHTML = args.viewers;
+            }
+
+            new Audio('https://freesound.org/data/previews/352/352661_4019029-lq.mp3').play();
+        });
+
+        class Chatroom {
+            constructor(pkg, author, ts, type, _ts, sound) {
+                this.pkg = pkg;
+                this.id = Math.floor(Math.random() * 10000).toString();
+                this.author = author;
+                this.ts = ts;
+                this.type = type;
+                this._ts = _ts;
+                this.sound = sound;
+
+                this.element = document.createElement('section');
+                this.element.setAttribute('class', 'v-timeline__section js-v-timeline__section');
+                this.element.setAttribute('id', this.id);
+
+                this.element.innerHTML = `
+                    <div class="v-timeline__marker bg-${this.author.username === '{{users.username}}' ? 'primary' : 'contrast-high'} border border-3 border-contrast-lower" aria-hidden="true"></div>
+
+                    <div class="v-timeline__items-group">
+                        <div class="v-timeline__item bg-contrast-lower padding-sm radius-md shadow-xs">
+                            <div class="v-timeline__date margin-bottom-sm">
+                                <time class="v-timeline__date-value" datetime="${this._ts}"></time>
+                            </div>
+
+                            <div class="text-component">
+                                <p>${this.pkg}</p>
+                                <p class="text-xs color-contrast-medium margin-top-xxxs">
+                                ${this.author.username} • <time>${this.ts}</time></p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                document.querySelector('.v-timeline').appendChild(this.element);
+
+                this.element.scrollIntoView({behavior: 'smooth'});
+
+                const timelines = document.querySelectorAll('.js-v-timeline'),
+                    intersectionObserverSupported = ('IntersectionObserver' in
+                        window &&
+                        'IntersectionObserverEntry' in window &&
+                        'intersectionRatio' in
+                        window
+                        .IntersectionObserverEntry.prototype),
+                    reducedMotion = Util.osHasReducedMotion();
+                if (timelines.length > 0) {
+                    for (var i = 0; i < timelines.length; i++) {
+                        if (intersectionObserverSupported && !reducedMotion)(
+                            function (
+                                i) {
+                                new window.VTimeline(timelines[i]);
+                            })(i);
+                        else timelines[i].removeAttribute('data-animation');
+                    }
+                }
+
+                if (this.sound) {
+                    new Audio('https://freesound.org/data/previews/320/320181_274531-lq.mp3').play();
+                }
+            }
+        }
+
+        $('form').on('submit', async (e) => {
+            e.preventDefault();
+
+            if ($('[type=submit]').hasClass('btn--state-b')) return;
+
+            $('[type=submit]').toggleClass('btn--state-b');
+
+            const counter = document.querySelector('.js-character-count__counter');
+            const pkg = document.querySelector('#pkg');
+
+            if (pkg.value.length <= 0) {
+                if ($('[type=submit]').hasClass('btn--state-b')) {
+                    $('[type=submit]').toggleClass('btn--state-b');
+                }
+
+                return;
+            }
+
+            const author = {
+                username: '{{users.username}}'
+            };
+            const {
+                ts,
+                _ts
+            } = await $.ajax({
+                type: 'GET',
+                url: '/api/ts',
+                success: async (args) => {
+                    return args;
+                }
+            });
+
+            const chatroom = new Chatroom(pkg.value, author, ts, false, _ts, true);
+
+            pkg.value = new String();
+            counter.innerHTML = 200;
+
+            if (!document.querySelector('.hbs-ui__body').hasAttribute('data-contributors')) {
+                document.querySelector('.hbs-ui__body').setAttribute('data-contributors', '1');
+
+                socket.contributors = true;
+                socket.emit('contributors', 1);
+            }
+
+            socket.emit('submit', {
+                pkg: chatroom.pkg,
+                author: chatroom.author,
+                ts: chatroom.ts,
+                type: chatroom.type,
+                _ts: chatroom._ts,
+                sound: chatroom.sound
+            });
+
+            $('[type=submit]').toggleClass('btn--state-b');
+        });
+
+        socket.on('submit', async (args) => {
+            const {
+                pkg,
+                author,
+                ts,
+                type,
+                _ts,
+                sound
+            } = args;
+
+            new Chatroom(pkg, author, ts, type, _ts, sound);
+        });
+    });
+</script>

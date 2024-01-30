@@ -1,0 +1,38 @@
+/* -------------------------------- 
+
+File#: _2_form-template
+Title: Form Template
+Descr: Form template example
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+.t-form {
+  background-color: var(--color-bg);
+  box-shadow: var(--shadow-xs);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.t-form__img {
+  height: 80px;
+  background: url('../../../../../app/assets/img/form-template-img-1.jpg') no-repeat center center;
+  background-size: cover;
+}
+
+.t-form__content {
+  padding: var(--space-md);
+}
+
+@include breakpoint(md) {
+  @supports (grid-area: auto) {
+    .t-form {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+    }
+
+    .t-form__img {
+      height: 100%;
+    }
+  }
+}

@@ -1,0 +1,70 @@
+/* -------------------------------- 
+
+File#: _1_details-list
+Title: Details List
+Descr: Pairs of related information displayed in a list
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+.details-list {}
+
+.details-list__item {
+  padding: var(--space-md) 0;
+  border-bottom: 1px solid var(--color-contrast-low);
+
+  > * {
+    margin-bottom: var(--space-xxs); // vertical spacing
+  }
+
+  dd:last-of-type {
+    margin-bottom: 0;
+  }
+}
+
+.details-list__dt {
+  font-weight: bold;
+}
+
+.details-list__dd { 
+  line-height: 1.4;
+}
+
+.details-list__dd--cta {
+  margin-top: var(--space-lg);
+}
+
+@include breakpoint(md) {
+  @supports (grid-area: auto) {
+    .details-list__item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+
+      > * {
+        margin-bottom: 0;
+      }
+    }
+
+    dd:last-of-type {
+      text-align: right;
+    }
+
+    .details-list__dd--cta {
+      margin-top: 0;
+    }
+  }
+}
+
+// --col-3
+@include breakpoint(md) {
+  @supports (grid-area: auto) {
+    .details-list--col-3 {
+      .details-list__item {
+        display: grid;
+        justify-content: start;
+        grid-template-columns: 30% 50% 20%;
+      }
+    }
+  }
+}

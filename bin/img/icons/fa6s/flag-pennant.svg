@@ -1,0 +1,6 @@
+
+                <svg version="1.0" id="flag-pennant" xmlns="http://www.w3.org/2000/svg" width="{{width}}px" height="{{height}}px"
+                    viewBox="0 0 512 512">
+                    <path d="M64 496C64 505 57 512 48 512H16C7 512 0 505 0 496V32C0 14 14 0 32 0S64 14 64 32V496ZM63 26C63 28 64 30 64 32V26L63 26ZM496 185L96 38V378L496 231C506 227 512 218 512 208S506 189 496 185Z" />
+                </svg>
+            

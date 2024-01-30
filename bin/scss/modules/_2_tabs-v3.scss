@@ -1,0 +1,140 @@
+/* -------------------------------- 
+
+File#: _2_tabs-v3
+Title: Tabs v3
+Descr: Accessible tabbed content v3
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+:root {
+  --tabs-v3-border-width: 2px;
+  --tabs-v3-radius: 0.25em;
+  --tabs-v3-control-gap: 0;
+  --tabs-v3-control-radius: 0;
+}
+
+.tabs-v3 {
+  border: var(--tabs-v3-border-width) solid var(--color-contrast-low);
+  padding: var(--component-padding);
+  border-radius: var(--tabs-v3-radius);
+  background-color: var(--color-bg);
+}
+
+.tabs-v3__controls {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: var(--space-xs);
+
+  li {
+    display: inline-block; // flex fallback
+    margin: 0 var(--space-xs) var(--space-xs) 0;
+  }
+}
+
+.tabs-v3__control {
+  display: inline-flex;
+  background-color: var(--color-contrast-low);
+  padding: var(--space-xs) var(--space-sm);
+  white-space: nowrap;
+  color: inherit;
+  border-radius: var(--tabs-v3-control-radius);
+
+  &:hover {
+    background-color: var(--color-contrast-lower);
+  }
+}
+
+.tabs-v3__panel {
+  margin-bottom: var(--space-md);
+}
+
+.js {
+  .tabs-v3__control {
+    text-decoration: none;
+
+    &[aria-selected="true"] {
+      background-color: var(--color-primary);
+      color: var(--color-white);
+      @include fontSmooth;
+  
+      &:hover {
+        background-color: var(--color-primary-light);
+      }
+    }
+  }
+
+  .tabs-v3__panel {
+    margin-bottom: 0;
+  }
+
+  @include breakpoint(md) {
+    .tabs-v3 {
+      padding: 0;
+      border: none;
+      background-color: transparent;
+    }
+
+    .tabs-v3__controls {
+      margin-bottom: 0;
+
+      li {
+        margin-top: 0;
+        margin-left: calc(-1 * var(--tabs-v3-border-width));
+        margin-right: var(--tabs-v3-control-gap);
+        margin-bottom: 0;
+      }
+
+      li:first-child {
+        margin-left: 0;
+      }
+
+      li:first-child a {
+        border-radius: var(--tabs-v3-radius) var(--tabs-v3-control-radius) 0 0;
+      }
+
+      li:last-child a {
+        border-radius: var(--tabs-v3-control-radius) var(--tabs-v3-radius) 0 0;
+      }
+    }
+
+    .tabs-v3__control {
+      height: 100%;
+      border: var(--tabs-v3-border-width) solid transparent;
+      border-bottom-width: 0;
+      border-radius: var(--tabs-v3-control-radius) var(--tabs-v3-control-radius) 0 0;
+
+      &[aria-selected="true"] {
+        background-color: var(--color-bg);
+        color: var(--color-primary);
+        position: relative;
+        border-color: var(--color-contrast-low);
+  
+        &:hover {
+          background-color: inherit;
+        }
+  
+        &::after { // border bottom -> it covers the border of the panel element
+          content: '';
+          position: absolute;
+          left: 0;
+          bottom: calc(-1 * var(--tabs-v3-border-width));
+          width: 100%;
+          height: var(--tabs-v3-border-width);
+          background-color: var(--color-bg);
+          z-index: 1;
+        }
+      }
+    }
+
+    .tabs-v3__panels {
+      border: var(--tabs-v3-border-width) solid var(--color-contrast-low);
+      border-radius: 0 var(--tabs-v3-radius) var(--tabs-v3-radius) var(--tabs-v3-radius);
+      background-color: var(--color-bg);
+    }
+
+    .tabs-v3__panel {
+      padding: var(--space-sm);
+    }
+  }
+}

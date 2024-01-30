@@ -1,0 +1,39 @@
+/* -------------------------------- 
+
+File#: _2_checkout
+Title: Checkout
+Descr: Checkout template
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+.checkout {
+  position: relative;
+  z-index: 1;
+}
+
+.checkout__billing-checkbox {
+  display: none;
+}
+
+@include breakpoint(lg) {
+  .checkout {
+    .order-summary {
+      position: sticky;
+      top: var(--space-sm);
+      max-height: calc(100vh - var(--space-sm));
+      overflow: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+  }
+}
+
+.js {
+  .checkout__billing-checkbox {
+    display: block;
+  }
+
+  .checkout__billing-info {
+    display: none;
+  }
+}

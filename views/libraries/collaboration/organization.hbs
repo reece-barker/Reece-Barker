@@ -1,0 +1,164 @@
+<div class="flex justify-between padding-x-md margin-y-sm items-center">
+    <h1 class="hbs-ui__text text-lg">Organization</h1>
+
+    <div class="language-picker margin-left-auto language-picker--flags js-language-picker"
+        data-trigger-class="btn bg js-tab-focus">
+        <form id="LANG" action="" class="language-picker__form">
+            <label class="hbs-ui__text" for="hbs-ui__languages-input">Select your language</label>
+
+            <select name="language-picker-select" id="hbs-ui__languages-input">
+                <option lang="en" class="hbs-ui__text" value="english" {{#if cly.english.isSelected}} selected{{/if}}>
+                    English</option>
+                <option lang="de" class="hbs-ui__text" value="deutsch" {{#if cly.deutsch.isSelected}} selected{{/if}}>
+                    Deutsch</option>
+                <option lang="fr" class="hbs-ui__text" value="francais" {{#if cly.francais.isSelected}} selected{{/if}}>
+                    Français</option>
+                <option lang="it" class="hbs-ui__text" value="italiano" {{#if cly.italiano.isSelected}} selected{{/if}}>
+                    Italiano</option>
+            </select>
+        </form>
+    </div>
+</div>
+
+<section class="radius-md padding-md">
+    <p class="hbs-ui__text bg padding-md shadow-xs radius-md margin-bottom-sm">
+        Acolytes is currently working on making the Organization collaboration section fully functional, please be
+        patient.
+    </p>
+
+    <div class="bg padding-md shadow-xs radius-md margin-bottom-sm">
+        <div class="grid gap-xl">
+            <div class="card-v13 col-4@md">
+                <a class="card-v13__figure-wrapper" href="#0">
+                    <figure class="card-v13__figure padding-xl radius-md">
+                        <img class="radius-lg" src="/utils/img/icons/fa/book-open.svg" alt="Image description" loading="lazy">
+                    </figure>
+                </a>
+
+                <div class="text-center margin-top-sm">
+                    <h3 class="text-md">
+                        <a class="color-contrast-higher" href="#0">James Powell</a>
+                    </h3>
+
+                    <div class="card-v13__separator margin-x-auto margin-y-sm" role="presentation"></div>
+
+                    <p class="color-contrast-medium text-sm line-height-lg">Lorem ipsum dolor sit amet consectetur
+                        adipisicing elit. Earum neque velit.</p>
+
+                    <div class="margin-top-sm">
+                        <button class="reset btn-fx-3 radius-md text-sm">
+                            <div class="btn-fx-3__inner padding-y-xs padding-x-md">
+                                <span>Book Class</span>
+
+                                <figure class="btn-fx-3__icon-wrapper" aria-hidden="true">
+                                    <svg class="icon icon--xs" viewBox="0 0 16 16">
+                                        <title>calendar-add-event</title>
+                                        <g stroke="currentColor" fill="none" stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <path d="M8 11.5h7.5"></path>
+                                            <path d="M13 9l2.5 2.5L13 14"></path>
+                                            <path d="M.5 5.5h15"></path>
+                                            <path
+                                                d="M15.5 8.5V4A1.5 1.5 0 0 0 14 2.5H2A1.5 1.5 0 0 0 .5 4v9A1.5 1.5 0 0 0 2 14.5h7.5">
+                                            </path>
+                                            <path d="M4.5.5v2"></path>
+                                            <path d="M11.5.5v2"></path>
+                                        </g>
+                                    </svg>
+                                </figure>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-v13 col-4@md">
+                <a class="card-v13__figure-wrapper" href="#0">
+                    <figure class="card-v13__figure padding-xl radius-md">
+                        <img class="radius-lg" src="/utils/img/icons/fa/award.svg" alt="Image description" loading="lazy">
+                    </figure>
+                </a>
+
+                <div class="text-center margin-top-sm">
+                    <h3 class="text-md">
+                        <a class="color-contrast-higher" href="#0">Olivia Gribben</a>
+                    </h3>
+
+                    <div class="card-v13__separator margin-x-auto margin-y-sm" role="presentation"></div>
+
+                    <p class="color-contrast-medium text-sm line-height-lg">Lorem ipsum dolor sit amet consectetur
+                        adipisicing elit. Earum neque velit.</p>
+
+                    <div class="margin-top-sm">
+                        <button class="reset btn-fx-3 radius-md text-sm">
+                            <div class="btn-fx-3__inner padding-y-xs padding-x-md">
+                                <span>Book Class</span>
+
+                                <figure class="btn-fx-3__icon-wrapper" aria-hidden="true">
+                                    <svg class="icon icon--xs" viewBox="0 0 16 16">
+                                        <title>calendar-add-event</title>
+                                        <g stroke="currentColor" fill="none" stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <path d="M8 11.5h7.5"></path>
+                                            <path d="M13 9l2.5 2.5L13 14"></path>
+                                            <path d="M.5 5.5h15"></path>
+                                            <path
+                                                d="M15.5 8.5V4A1.5 1.5 0 0 0 14 2.5H2A1.5 1.5 0 0 0 .5 4v9A1.5 1.5 0 0 0 2 14.5h7.5">
+                                            </path>
+                                            <path d="M4.5.5v2"></path>
+                                            <path d="M11.5.5v2"></path>
+                                        </g>
+                                    </svg>
+                                </figure>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-v13 col-4@md">
+                <a class="card-v13__figure-wrapper" href="#0">
+                    <figure class="card-v13__figure padding-xl radius-md">
+                        <img class="radius-lg" src="/utils/img/icons/fa/theater-masks.svg" alt="Image description" loading="lazy">
+                    </figure>
+                </a>
+
+                <div class="text-center margin-top-sm">
+                    <h3 class="text-md">
+                        <a class="color-contrast-higher" href="#0">Mathew Burford</a>
+                    </h3>
+
+                    <div class="card-v13__separator margin-x-auto margin-y-sm" role="presentation"></div>
+
+                    <p class="color-contrast-medium text-sm line-height-lg">Lorem ipsum dolor sit amet consectetur
+                        adipisicing elit. Earum neque velit.</p>
+
+                    <div class="margin-top-sm">
+                        <button class="reset btn-fx-3 radius-md text-sm">
+                            <div class="btn-fx-3__inner padding-y-xs padding-x-md">
+                                <span>Book Class</span>
+
+                                <figure class="btn-fx-3__icon-wrapper" aria-hidden="true">
+                                    <svg class="icon icon--xs" viewBox="0 0 16 16">
+                                        <title>calendar-add-event</title>
+                                        <g stroke="currentColor" fill="none" stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <path d="M8 11.5h7.5"></path>
+                                            <path d="M13 9l2.5 2.5L13 14"></path>
+                                            <path d="M.5 5.5h15"></path>
+                                            <path
+                                                d="M15.5 8.5V4A1.5 1.5 0 0 0 14 2.5H2A1.5 1.5 0 0 0 .5 4v9A1.5 1.5 0 0 0 2 14.5h7.5">
+                                            </path>
+                                            <path d="M4.5.5v2"></path>
+                                            <path d="M11.5.5v2"></path>
+                                        </g>
+                                    </svg>
+                                </figure>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

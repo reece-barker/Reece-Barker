@@ -1,0 +1,236 @@
+/* -------------------------------- 
+
+File#: _3_expandable-img-gallery
+Title: Expandable Image Gallery
+Descr: Image gallery that expands in a modal media gallery on click
+Usage: codyhouse.co/license
+
+-------------------------------- */
+:root {
+  --exp-gallery-animation-duration: 0.3s; // expanding animation duration
+}
+
+.exp-gallery-item-hidden { // hide original item when its 'clone' is animating
+  opacity: 0;
+}
+
+.exp-lightbox {
+  transition: background var(--exp-gallery-animation-duration);
+  
+  .menu-bar {
+    --menu-bar-button-size: 2.2em; // size of the menu buttons
+    --menu-bar-icon-size: 1.2em; // size of the icons inside the buttons
+    --menu-bar-horizontal-gap: var(--space-xxs); // horizontal gap between buttons
+    --menu-bar-vertical-gap: 4px; // vertical gap between buttons and labels (tooltips)
+    --menu-bar-label-size: var(--text-xs); // label font size
+  }
+
+  .slideshow {
+    --slideshow-btn-width: 1.6em; // slideshow button width
+    --slideshow-btn-height: 3.2em; // slideshow button height
+    --slideshow-btn-icon-size: 1.6em; // slideshow button icon size
+    --slideshow-btn-offset: var(--component-padding); // gap between button and slideshow edges
+  }
+
+  .slideshow__content {
+    position: relative;
+  }
+
+  &:not(.modal--is-visible) {
+    background-color: transparent;
+  }
+}
+
+.exp-lightbox__content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.exp-lightbox__header {
+  position: relative;
+  z-index: 2;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-xs) var(--component-padding) 0;
+}
+
+.exp-lightbox__title {
+  font-size: var(--text-md);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-right: var(--space-sm);
+}
+
+.exp-lightbox__body { 
+  position: relative;
+  z-index: 1;
+  flex-grow: 1;
+  padding: var(--space-md); // slideshow padding
+
+  @include breakpoint(md) {
+    padding-top: var(--space-xs);
+    padding-bottom: var(--space-xs);
+    padding-right: calc(var(--space-xs) + var(--slideshow-btn-width) + var(--slideshow-btn-offset));
+    padding-left: calc(var(--space-xs) + var(--slideshow-btn-width) + var(--slideshow-btn-offset));
+  }
+}
+
+// slideshow style
+.js .exp-lightbox {
+  --slideshow-height: 100%; // update slideshow height - inherited from Slideshow component
+
+  .slideshow {
+    display: flex;
+    align-items: stretch;
+  }
+  
+  .slideshow__content {
+    flex-grow: 1;
+  }
+}
+
+.exp-lightbox--no-transition .slideshow__content * { // used in JS to select the first visible slide
+  transition: none!important;
+  animation: none!important;
+}
+
+// single slide content style
+.exp-lightbox__media { // figure element wrapping images
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  max-height: 100%;
+  max-width: 100%;
+} 
+
+.exp-lightbox__media-outer {
+  position: relative;
+  width: 100%;
+  flex-grow: 1;
+
+  .slideshow__content--is-hidden & { // hide image during expanding animation
+    opacity: 0;
+  }
+}
+
+.exp-lightbox__media-inner {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    display: inline-block;
+    height: auto;
+    width: auto;
+    max-height: 100%; 
+  }
+}
+
+.js .exp-lightbox.modal--is-visible { // make sure imgs are draggable and zoomable
+  .slideshow[data-swipe="on"][data-zoom="on"] .exp-lightbox__media-inner img {
+    pointer-events: auto;
+    user-select: none;
+  }
+}
+
+.exp-lightbox__caption { // img caption
+  flex-shrink: 0;
+  text-align: center;
+  max-width: 600px;
+  margin-top: var(--space-xs);
+  font-size: var(--text-sm);
+}
+
+.exp-lightbox__media-outer { // flex fallback
+  min-height: 200px;
+
+  @supports(display: flex) {
+    min-height: 0;
+  }
+}
+
+.exp-lightbox__clone-img-wrapper { // image clone created and animated in JS
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--zindex-overlay);
+  pointer-events: none;
+  visibility: hidden;
+  opacity: 0;
+  transform-origin: top left;
+  transition: transform var(--exp-gallery-animation-duration) var(--ease-out);
+  will-change: transform;
+
+  svg, rect, image {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+.exp-lightbox__clone-img-wrapper--is-visible {
+  visibility: visible;
+  opacity: 1;
+}
+
+// img zoom-in enabled
+.exp-lightbox__body[data-zoom="on"] .exp-lightbox__media-inner img {
+  cursor: zoom-in;
+}
+
+.exp-lightbox__zoom { // zoom-in image wrapper - created in JS
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 3;
+  overflow: auto;
+  background-color: var(--color-bg);
+  cursor: zoom-out;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0s 0.3s, visibility 0s 0.3s;
+
+  img {
+    display: block;
+    width: 100%;
+    max-width: none;
+    transform-origin: top left;
+    transition: transform 0.3s;
+  }
+}
+
+.exp-lightbox__zoom--no-transition img {
+  transition: none;
+}
+
+.exp-lightbox__zoom--is-visible {
+  opacity: 1;
+  visibility: visible;
+  transition: none;
+}
+
+// demo gallery
+.exp-gallery {
+  img {
+    display: block;
+    width: 100%;
+    transition: opacity .3s;
+
+    &:hover {
+      cursor: pointer;
+      opacity: 0.85;
+    }
+  }
+}

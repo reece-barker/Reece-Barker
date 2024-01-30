@@ -1,0 +1,27 @@
+/* -------------------------------- 
+
+File#: _1_feature-v7
+Title: Feature v7
+Descr: A section containing a list of features
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+.feature-v7 {}
+
+.feature-v7__item {
+  figure {
+    flex-shrink: 0;
+  }
+
+  img {
+    display: block;
+    width: 64px;
+  }
+}
+
+@include breakpoint(md) {
+  .feature-v7__item img {
+    width: 128px;
+  }
+}

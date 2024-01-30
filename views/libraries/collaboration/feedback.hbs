@@ -1,0 +1,23 @@
+<div class="flex justify-between padding-x-md margin-y-sm items-center">
+    <h1 class="hbs-ui__text text-lg">Feedback</h1>
+
+    <div class="language-picker margin-left-auto language-picker--flags js-language-picker"
+        data-trigger-class="btn bg js-tab-focus">
+        <form id="LANG" action="" class="language-picker__form">
+            <label class="hbs-ui__text" for="hbs-ui__languages-input">Select your language</label>
+
+            <select name="language-picker-select" id="hbs-ui__languages-input">
+                <option lang="en" class="hbs-ui__text" value="english"{{#if cly.english.isSelected}} selected{{/if}}>English</option>
+                <option lang="de" class="hbs-ui__text" value="deutsch"{{#if cly.deutsch.isSelected}} selected{{/if}}>Deutsch</option>
+                <option lang="fr" class="hbs-ui__text" value="francais"{{#if cly.francais.isSelected}} selected{{/if}}>Français</option>
+                <option lang="it" class="hbs-ui__text" value="italiano"{{#if cly.italiano.isSelected}} selected{{/if}}>Italiano</option>
+            </select>
+        </form>
+    </div>
+</div>
+
+<section class="radius-md padding-md">
+    <p class="hbs-ui__text bg padding-md shadow-xs radius-md margin-bottom-sm">
+        Acolytes is currently working on making the Feedback collaboration section fully functional, please be patient.
+    </p>
+</section>

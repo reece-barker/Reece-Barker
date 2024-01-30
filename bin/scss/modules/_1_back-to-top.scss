@@ -1,0 +1,45 @@
+/* -------------------------------- 
+
+File#: _1_back-to-top
+Title: Back to top
+Descr: Component that triggers scroll-y to the top of the page
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+:root {
+  /* style */
+  --btt-icon-size: 1.25em;
+}
+
+.back-to-top {
+  position: fixed;
+  right: var(--space-md);
+  bottom: var(--space-md);
+  padding: var(--space-xs);
+  z-index: var(--zindex-fixed-element);
+  border-radius: var(--radius-md);
+  background-color: alpha(var(--color-contrast-higher), 0.9);
+  transition: 0.3s;
+  
+  &:hover {
+    background-color: var(--color-contrast-higher);
+  }
+
+  .icon {
+    display: block;
+    color: var(--color-bg);
+    width: var(--btt-icon-size);
+    height: var(--btt-icon-size);
+  }
+}
+  
+.js .back-to-top { // if JS is enabled, hide back to top
+  visibility: hidden;
+  opacity: 0;
+}
+
+.js .back-to-top--is-visible { // show button
+  visibility: visible;
+  opacity: 1;
+}

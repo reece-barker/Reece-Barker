@@ -1,0 +1,22 @@
+/* -------------------------------- 
+
+File#: _2_feature-v15
+Title: Feature v15
+Descr: Feature content with text overlapping a background image
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+.feature-v15 {
+  position: relative;
+  z-index: 1;
+}
+
+.feature-v15__content {
+  border-radius: var(--radius-md);
+  backdrop-filter: saturate(50%) blur(5px);
+
+  @include breakpoint(md) {
+    border-radius: 0;
+  }
+}

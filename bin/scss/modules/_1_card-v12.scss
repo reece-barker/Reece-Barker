@@ -1,0 +1,122 @@
+/* -------------------------------- 
+
+File#: _1_card-v12
+Title: Card v12
+Descr: Container of information used as teaser for further content exploration
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+:root {
+  --card-v12-transition-duration: .4s;
+}
+
+.card-v12 {
+  position: relative;
+  z-index: 1;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+
+  background-color: alpha(var(--color-bg), 0.95);
+
+  transition: box-shadow, transform;
+  will-change: transform;
+  transition-duration: var(--card-v12-transition-duration);
+
+  @supports (backdrop-filter: blur(10px)) {
+    background-color: alpha(var(--color-bg), 0.8);
+    backdrop-filter: blur(10px);
+  }
+
+  &::after { // inner glow
+    content: '';
+    position: absolute;
+    z-index: 3;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    border-radius: inherit;
+    box-shadow: inset 0 0 0.5px 1px hsla(0, 0%, 100%, 0.15);
+  }
+
+  &:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+  }
+}
+
+.card-v12__figure {
+  position: relative;
+  z-index: 2;
+
+  clip-path: inset(0% var(--space-sm) 0% 0% round 0% var(--radius-md) var(--radius-md) 0%);
+
+  will-change: clip-path;
+  transition: clip-path var(--card-v12-transition-duration);
+
+  img {
+    will-change: transform;
+    transition: transform var(--card-v12-transition-duration);
+  }
+
+  .card-v12:hover & {
+    clip-path: inset(0% calc(var(--space-sm) + 80px) 0% 0% round 0% var(--radius-md) var(--radius-md) 0%);
+
+    img {
+      transform: translateX(-40px);
+    }
+  }
+}
+
+.card-v12__separator {
+  display: block;
+  width: 32px;
+}
+
+.card-v12__icon {
+  --size: 60px;
+  position: absolute;
+  z-index: 1;
+  right: var(--space-sm);
+  top: calc(50% - var(--size)/2);
+  height: var(--size);
+  width: var(--size);
+
+  
+  opacity: 0;
+  transform: translateX(-20px);
+  will-change: transform;
+  transition: transform, opacity;
+  transition-duration: var(--card-v12-transition-duration);
+
+  .icon-group {
+    > * {
+      transform-origin: 57px 30px;
+      will-change: transform;
+      transition: transform var(--card-v12-transition-duration);
+    }
+
+    > *:nth-child(2) {
+      transform: rotate(35deg);
+    }
+
+    > *:nth-child(3) {
+      transform: rotate(-35deg);
+    }
+  }
+
+  .card-v12:hover & {
+    opacity: 1;
+    transform: translateX(0);
+
+    .icon-group {
+      > *:nth-child(2),
+      > *:nth-child(3) {
+        transform: rotate(0);
+      }
+    }
+  }
+}

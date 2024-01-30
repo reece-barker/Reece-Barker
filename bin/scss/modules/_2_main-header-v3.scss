@@ -1,0 +1,299 @@
+/* -------------------------------- 
+
+File#: _2_main-header-v3
+Title: Main Header v3
+Descr: Accessible website navigation
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+:root {
+  --header-v3-height: 50px;    // header height on small screens
+
+  @include breakpoint(md) {
+    --header-v3-height: 70px
+  }
+}
+
+.header-v3 {
+  height: var(--header-v3-height);
+  width: 100%;
+  z-index: var(--zindex-header);
+  transition: background .3s;
+}
+
+.header-v3--expanded {
+  // class added when navigation is visible (small devices) or search input is visible (big devices)
+}
+
+.header-v3__container {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-v3__logo {
+  position: relative;
+  flex-shrink: 0;
+  z-index: 2;
+
+  a, svg {
+    display: block;
+  }
+}
+
+.header-v3__nav-control.switch-icon { // menu button - visible only on small screens
+  padding: var(--space-xxs);
+  z-index: 2;
+
+  .switch-icon__icon {
+    font-size: 24px; // icon size
+  }
+}
+
+.header-v3__nav { // main navigation
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--color-bg);
+  box-shadow: var(--shadow-md);
+  z-index: 1;
+  
+  // hide
+  position: absolute;
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
+
+  transition: height .5s var(--ease-in-out);
+
+  &::before { // top border
+    content: '';
+    position: absolute;
+    top: var(--header-v3-height);
+    width: 100%;
+    height: 1px;
+    background-color: var(--color-contrast-low);
+    z-index: 10;
+  }
+}
+
+.header-v3__nav--is-visible { // show nav
+  clip: auto;
+  clip-path: none;
+  height: 100vh;
+  visibility: visible;
+}
+
+.header-v3__nav-list {
+  position: absolute;
+  top: var(--header-v3-height);
+  left: 0;
+  width: 100%;
+  height: calc(100% - var(--header-v3-height));
+  padding: var(--space-sm) var(--component-padding) var(--component-padding);
+  z-index: 1;
+
+  -webkit-overflow-scrolling: touch;
+  overflow: auto;
+  overscroll-behavior: contain;
+}
+
+.header-v3__nav-item {
+  border-bottom: 1px solid var(--color-contrast-low);
+  opacity: 0;
+  transform: translateY(-10%);
+  transition: opacity .4s, transform .4s;
+
+  .header-v3__nav--animate-children & { // class used to trigger list items animation 
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .header-v3__nav:not(.header-v3__nav--animate-children) & {
+    transition-delay: 0s!important;
+  }
+}
+
+.header-v3__nav-item--logo,
+.header-v3__nav-item--search-btn {
+  display: none; // hide logo within nav and search btn
+}
+
+.header-v3__nav-item--search-form {
+  margin: var(--space-xs) 0;
+  border-bottom: none;
+}
+
+.header-v3__nav-link {
+  display: block;
+  padding: var(--space-sm) 0;
+  font-size: var(--text-md);
+  color: var(--color-contrast-high);
+  text-decoration: none;
+
+  &:hover {
+    color: var(--color-primary);
+  }
+}
+
+.header-v3__nav-link--icon {
+  display: flex;
+  align-items: center;
+
+  .icon {
+    flex-shrink: 0;
+    color: currentColor;
+  }
+
+  span { // text
+    margin-left: var(--space-xxs);
+  }
+}
+
+@include breakpoint(md) {
+  .header-v3 {
+    height: var(--header-v3-height);
+  }
+
+  .header-v3__container {
+    position: relative;
+  }
+
+  .header-v3__nav-control,
+  .header-v3__logo {
+    display: none; // hide search and menu button
+  }
+
+  .header-v3__nav {
+    // reset
+    padding: 0; 
+    background-color: transparent;
+    box-shadow: none;
+    position: static;
+    clip: auto;
+    clip-path: none;
+    height: auto;
+    overflow: visible;
+    visibility: visible;
+    overscroll-behavior: auto;
+
+    &::before {
+      display: none;
+    }
+  }
+
+  .header-v3__nav-list {
+    // reset
+    position: static;
+    padding: 0;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    overscroll-behavior: auto;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .header-v3__nav-item {
+    // reset
+    border-bottom: none;
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity .3s, visibility .3s;
+    transition-delay: 0s!important; // reset inline delay set in JS for the mobile animation
+  }
+
+  .header-v3__nav-item--logo { // make visible logo inside nav
+    display: block;
+
+    .header-v3__logo {
+      display: block;
+    }
+  }
+
+  .header-v3__nav-item--search-btn { // show search btn
+    display: block;
+    
+    .switch-icon {
+      padding: var(--space-xxxs);
+    }
+
+    .switch-icon__icon {
+      display: block;
+    }
+  }
+
+  .header-v3__nav-link {
+    display: inline-flex;
+    padding: var(--space-xxxs);
+    font-size: 0.9em;
+  }
+
+  .header-v3__nav-link--icon {
+    span {
+      display: none; // hide labels and show only icons
+    }
+  }
+
+  .header-v3__nav-link--icon,
+  .header-v3__nav-item--search-btn .switch-icon__icon {
+    font-size: 20px; // icons size
+  }
+
+  .header-v3__nav-item--search-btn {
+    z-index: 4;
+  }
+
+  .header-v3__nav-item--search-form {
+    margin: 0; // reset
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: calc(100% - var(--space-lg));
+    height: 100%;
+    z-index: var(--zindex-popover);
+    transition: all .3s;
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  .header-v3__nav--animate-children .header-v3__nav-item--search-form { // reset mobile style
+    opacity: 0;
+  }
+
+  .header-v3__nav-form-control {
+    height: 50px;
+    position: absolute;
+    left: 0;
+    padding: var(--space-xs) var(--space-sm);
+    top: calc(50% - 25px);
+    will-change: transform;
+    transition: transform .3s;
+    transform: translateY(-50%);
+  }
+
+  .header-v3--show-search {
+    background: var(--color-bg);
+
+    .header-v3__nav-item {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .header-v3__nav-item--search-form,
+    .header-v3__nav-item--search-btn {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .header-v3__nav-form-control {
+      transform: translateY(0);
+    }
+  }
+}

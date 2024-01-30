@@ -1,0 +1,103 @@
+/* -------------------------------- 
+
+File#: _1_card-v11
+Title: Card v11
+Descr: Container of information over a background image
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+:root {
+  --card-v11-height: 320px; // card height
+  --card-v11-btn-height: 50px; // arrow button height
+
+  @include breakpoint(md) {
+    --card-v11-height: 480px;
+    --card-v11-btn-height: 70px;
+  }
+}
+
+.card-v11 {
+  display: block;
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+  overflow: hidden;
+
+  height: var(--card-v11-height);
+
+  background-color: var(--color-contrast-lower);
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  &:hover {
+    .card-v11__btn {
+      background-color: var(--color-bg);
+      color: var(--color-contrast-higher);
+    }
+
+    .card-v11__icon {
+      line:nth-child(1),
+      line:nth-child(2) {
+        opacity: 1;
+        transform: rotate(0deg);
+        transition: opacity 0s .2s, transform .2s .2s var(--ease-in-out);
+      }
+
+      line:nth-child(3) {
+        stroke-dashoffset: 96;
+        transition: stroke-dashoffset .2s var(--ease-in-out);
+      }
+    }
+  }
+}
+
+.card-v11__box {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+
+  background-color: alpha(var(--color-contrast-higher), 0.95);
+
+  color: var(--color-bg);
+  @include fontSmooth;
+
+  @supports (backdrop-filter: blur(10px)) {
+    background-color: alpha(var(--color-contrast-higher), 0.7);
+    backdrop-filter: blur(10px);
+  }
+}
+
+.card-v11__btn {
+  display: flex;
+  align-items: center;
+
+  height: var(--card-v11-btn-height);
+
+  transition: .4s;
+}
+
+.card-v11__icon {
+  font-size: 48px; // icon size
+
+  line:nth-child(1),
+  line:nth-child(2) {
+    transform-origin: 47px 24px;
+    opacity: 0;
+    transition: opacity 0s .2s, transform .2s var(--ease-in-out);
+  }
+
+  line:nth-child(1) {
+    transform: rotate(-45deg);
+  }
+
+  line:nth-child(2) {
+    transform: rotate(45deg);
+  }
+
+  line:nth-child(3) {
+    stroke-dasharray: 48;
+    stroke-dashoffset: 72;
+    transition: stroke-dashoffset .2s .2s var(--ease-in-out);
+  }
+}

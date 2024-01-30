@@ -1,0 +1,106 @@
+/* -------------------------------- 
+
+File#: _1_tilted-img-slideshow
+Title: Tilted Image Slideshow
+Descr: A slideshow plugin to loop through a list of 3 tilted images
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+:root {
+  // transform values
+  --tilted-slideshow-translate-x: 0px;
+  --tilted-slideshow-translate-z: 0px;
+  --tilted-slideshow-rotate-z: 0deg;
+}
+
+.tilted-slideshow {}
+
+.tilted-slideshow__item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  // set image transform values
+  transform: translateX(var(--tilted-slideshow-translate-x)) translateZ(var(--tilted-slideshow-translate-z)) rotateZ(var(--tilted-slideshow-rotate-z));
+  transition: transform 0.35s, opacity 0.35s;
+}
+
+.tilted-slideshow__item--top { // top image
+  position: relative;
+  z-index: 3;
+}
+
+.tilted-slideshow__item--middle { // middle image
+  z-index: 2;
+}
+
+.tilted-slideshow__item--bottom { // bottom image
+  z-index: 1;
+}
+
+// rotate images
+.tilted-slideshow__item:nth-of-type(2) {
+  --tilted-slideshow-rotate-z: -10deg;
+}
+
+.tilted-slideshow__item:nth-of-type(3) {
+  --tilted-slideshow-rotate-z: 10deg;
+}
+
+// move images along the z axis
+.tilted-slideshow__item--middle {
+  --tilted-slideshow-translate-z: -10px;
+}
+
+.tilted-slideshow__item--bottom {
+  --tilted-slideshow-translate-z: -20px;
+}
+
+// move out animation -> top image translates from center to right
+.tilted-slideshow__item--move-out {
+  position: absolute;
+  z-index: 4;
+  opacity: 0;
+  --tilted-slideshow-translate-x: 50px;
+}
+
+// move in animation -> bottom image translates from left to center
+.tilted-slideshow__item--move-in {
+  opacity: 0;
+  --tilted-slideshow-translate-x: -50px;
+}
+
+// set custom cursor
+.js .tilted-slideshow__item {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' opacity='0.9'/%3E%3Cline x1='15' y1='31' x2='47' y2='31' fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'/%3E%3Cpolyline points='37 21 47 31 37 41' fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'/%3E%3C/svg%3E") 32 32, pointer;
+  cursor: -webkit-image-set(url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAAAsSAAALEgHS3X78AAADcUlEQVR4nO1bO2sbQRD+Ng8IASe2UkYBl8HqE+LCncGuHYwKVXn0Bv8OQyo3VlwZDCZqbUM6FzZJL+PSEAfSRIioCYR4wsLocjrda+92TrfSfSCEQLc733czs69ZRUSYZdyZafYA7kl3oJRqAFgGoL/rAF4lPHIB4AZAF8A5EXVF7ZMIAaXUGoDhZy5ncwMAp/pDRKeWTPRgTQCl1CMA7wFs8puWgPaMIwB7RPTLit02BFBKbTP5vG87LQYswk5u2/MIoJTS8fxB8I0nQXvEFhFdZG0gkwDs7vqtv8thvE20AexkCQtjAZRSzwDsA1iaANE4XAJ4Q0TfTB4yEoCHtE6BsW4KnRs2TIbO1BMhB8iDbeuwramQSgBHyA9hJEJiCHDMf3aEvB86HFaTckKsB3C233eQPNjmfeYQiaQQ2C5htjfBEnOIRGQI8CTnUwlJZcHrqMlSnABfJjjDs40bInoZ1mZoCPDcflrIa9SZ0xjGPICTxldHE18c9KjwIjhdDvOAIld1RWKOuY0gTIDNSVq5u7v7+Pj4uFar1SS268a4jXTCOzkTjf3FxcW76+vrD87Ozp4IiFBnjh6CHayNP1MsWq1Wv9vt/mk0GveFRBjhOJIElVJXZYh/TVqT1yJoMVZWVn72er1bS80PiOj58IenLi8eSpH8NFlNWsgT5vwLJX+jy5Y6sAJhETyu/gZTr6GLgqAIoR5QypmfkAgeVy8JKqW+5zVWErYTIxE91d/OnA1KhUNmDzg8PJxvNpsP8xqQB/1+/3ZhYeFHliac8wApOJMDYDkPOOcBUrNDJwSQnBqXXgDhdcGIAJlPWKUgSN7j6hfgpjTM5d+8x9UvgGgtjgmk3d7P1S/AuQgbQxRAHn6ungB8pDwQ4pUaBwcH88LkB/7j8+AoYL0KyxTX19d/T05OfguRR5BjcEtM75d9FOi0THjrL7cLOxiZpiOxIMaOyMImQkcTMa0YjHGrjsaC/+I/7BVqWjEIrS6tjsdjHtqSs6dwRHKJFIArKtpTQL4dV0obWyXGCbHjcJ3QJRdORpbQVmVySa1wAxtlWCcYYFgym1g3nGpHiBcProhgVC+cekvMERHkiqXxX4RVTi5lwyXHvNHGjvGmqC8nlGmIbKeN+SCqKzPVpanq2lx1cdJ2m6MdzOLVWZcw2/UBAP4BLzU5/CzhtvgAAAAASUVORK5CYII=") 1x, url("data:image/png;base64,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") 2x) 32 32, pointer;
+}
+
+// hint to tap - visible on touch devices only
+.tilted-slideshow__touch-hint {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  z-index: 5;
+
+  font-size: var(--text-sm);
+  background-color: alpha(var(--color-black), 0.9);
+  color: var(--color-white);
+  padding: var(--space-xxs) var(--space-sm);
+  border-radius: 50em;
+  @include fontSmooth;
+  cursor: default;
+
+  @media (pointer: fine) {
+    display: none;
+  }
+
+  .tilted-slideshow--interacted & {
+    display: none;
+  }
+}
+
+html:not(.js) .tilted-slideshow__touch-hint {
+  display: none;
+}

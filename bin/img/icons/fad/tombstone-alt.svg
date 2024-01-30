@@ -1,0 +1,6 @@
+
+                <svg version="1.0" id="tombstone-alt" xmlns="http://www.w3.org/2000/svg" width="{{width}}px" height="{{height}}px"
+                    viewBox="0 0 512 512">
+                    <path d="M448 192v224H64V192C64 86 150 0 256 0s192 86 192 192z,M512 464v32a16 16 0 0 1-16 16H16a16 16 0 0 1-16-16v-32a16 16 0 0 1 16-16h480a16 16 0 0 1 16 16z" />
+                </svg>
+            

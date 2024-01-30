@@ -1,0 +1,13 @@
+/* -------------------------------- 
+
+File#: _2_article-gallery-v4
+Title: Article Gallery v4
+Descr: A gallery of blog articles
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+.articles-v4.masonry {
+  --masonry-grid-gap: var(--space-sm);
+  --masonry-col-auto-size: 320px; // col min-width value -> used in JS to auto-update the masonry cols width
+}
