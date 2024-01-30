@@ -18,7 +18,7 @@
 - 🔭 I love to write articles about my experiences over on [Dev.to][devto].
 - 🌱 I’m currently learning everything! 🤣
 - 👯 I’m looking to collaborate with other creators!
-- 🥅 2023 Goals: Contribute more to Open Source projects!
+- 🥅 2024 Goals: Contribute more to Open Source projects!
 - ⚡ Fun fact: I love to play games and the piano!
 - :warning: Another Fun fact: I currently Admin for an amazing Rust [community][rustnite]!
 
